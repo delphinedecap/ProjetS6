@@ -1,4 +1,4 @@
 # ProjetS6
 Création d'une application desktop 
 
-Madame Delphine Decap
+Madame Delphine Decap, Monsieur Benjamin Basset, Monsieur Jérémy Patapy
