@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="benj_delp ok">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/Produit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/Produit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +23,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="package" />
         <option value="Class" />
       </list>
     </option>
@@ -54,9 +56,10 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.47586206",
     "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
     "vue.rearranger.settings.migration": "true"
   }
@@ -78,7 +81,8 @@
       <workItem from="1705336689615" duration="746000" />
       <workItem from="1705341756859" duration="803000" />
       <workItem from="1705416958205" duration="6000" />
-      <workItem from="1706172229275" duration="975000" />
+      <workItem from="1706172229275" duration="1412000" />
+      <workItem from="1706178697611" duration="4273000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>

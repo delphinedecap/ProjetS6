@@ -1,11 +1,14 @@
 package com.triceratops.triceratops;
 
+import com.triceratops.triceratops.modele.Produit;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static com.triceratops.triceratops.persistance.ProduitSerializer.serializeToFile;
 
 public class HelloApplication extends Application {
     @Override
@@ -18,6 +21,8 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+        Produit test = new Produit(1,"TEST","produit de test",10,10,"kg");
+        serializeToFile(test);
         launch();
     }
 }
