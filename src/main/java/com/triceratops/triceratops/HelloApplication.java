@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        Produit test = new Produit(1,"TEST","produit de test",10,10,"kg");
+        Produit test = new Produit(2,"TEST2","produit de test 2",20,10,"kg");
         serializeToFile(test);
         launch();
     }
