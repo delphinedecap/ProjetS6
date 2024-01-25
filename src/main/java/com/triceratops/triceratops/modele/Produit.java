@@ -1,6 +1,7 @@
 package com.triceratops.triceratops.modele;
 
 public class Produit {
+
     private int quantite;
     private String code;
     private String nom;
