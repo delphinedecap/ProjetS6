@@ -13,10 +13,11 @@ public class ProduitSerializer {
 
         try {
             // Sérialisation de l'objet Produit en chaîne JSON
-            String jsonString = objectMapper.writeValueAsString(produit);
+            // Commenter car inutile et encode mal le fichier
+            //String jsonString = objectMapper.writeValueAsString(produit);
 
             // Écriture de la chaîne JSON dans un fichier
-            objectMapper.writeValue(new File("src/main/java/com/triceratops/triceratops/persistance/produit.json"), jsonString);
+            objectMapper.writeValue(new File("produit.json"), produit);
         } catch (IOException e) {
             e.printStackTrace();
         }

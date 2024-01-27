@@ -1,0 +1,20 @@
+@import 'Colors.css';
+
+
+.rootPane{
+    -fx-background-color: -color-second;
+}
+
+.rootPane .title{
+    -fx-font-size: 30px;
+    -fx-text-fill: -color-marronClair;
+}
+
+.rootPane .logo{
+    -fx-background-color: -color-primary;
+    -fx-background-radius: 30;
+    -fx-background-image: url("../img/logo.png");
+    -fx-background-size: 190;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

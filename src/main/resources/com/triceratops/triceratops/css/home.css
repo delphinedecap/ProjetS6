@@ -1,0 +1,27 @@
+.menu{
+    -fx-background-color: -color-primary;
+    -fx-background-radius: 30;
+}
+
+
+.menu .content{
+    -fx-background-color: -color-primary-darker;
+    -fx-background-radius: 20;
+    -fx-start-margin: 20;
+}
+
+.menu .t-second {
+    -fx-text-fill: #FFF;
+    -fx-font-size: 18;
+    -fx-alignment: center;
+}
+
+.menu .simule {
+    -fx-background-color: -color-marron;
+    -fx-background-radius: 8;
+    -fx-border-radius: 10;
+    -fx-text-fill: #FFF;
+    -fx-font-size: 17;
+    -fx-padding: 10 50;
+    -fx-cursor: hand;
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@../css/home.css"
+          fx:controller="com.triceratops.triceratops.controllers.Home"
+          prefHeight="550.0" prefWidth="1200.0" styleClass="menu" alignment="center" hgap="10">
+
+    <!-- Colonne 0 -->
+    <columnConstraints>
+        <ColumnConstraints percentWidth="47"/>
+    </columnConstraints>
+    <!-- Colonne 1 -->
+    <columnConstraints>
+        <ColumnConstraints percentWidth="47"/>
+    </columnConstraints>
+
+    <!-- Ligne 0 -->
+    <rowConstraints>
+        <RowConstraints percentHeight="45"/>
+    </rowConstraints>
+    <!-- Ligne 1 -->
+    <rowConstraints>
+        <RowConstraints minHeight="10" maxHeight="30"/>
+    </rowConstraints>
+    <!-- Ligne 2 -->
+    <rowConstraints>
+        <RowConstraints percentHeight="45"/>
+    </rowConstraints>
+
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="content" alignment="TOP_CENTER">
+        <Label text="Bienvenue sur Triceratops" styleClass="t-second">
+            <VBox.margin><Insets top="10.0"/></VBox.margin>
+        </Label>
+        <Region VBox.vgrow="ALWAYS" />
+        <MFXButton text="Simulateur" styleClass="simule">
+            <VBox.margin>
+                <Insets bottom="15.0"/>
+            </VBox.margin>
+        </MFXButton>
+
+    </VBox>
+
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="content" alignment="TOP_CENTER">
+        <Label text="Fichier" styleClass="t-second">
+            <VBox.margin><Insets top="15.0"/></VBox.margin>
+        </Label>
+    </VBox>
+
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="3" styleClass="content" alignment="TOP_CENTER">
+        <Label text="Etat des stocks" styleClass="t-second">
+            <VBox.margin><Insets top="15.0"/></VBox.margin>
+        </Label>
+        <Label text="-------------" styleClass="t-second"></Label>
+        <Label text="-------------" styleClass="t-second"></Label>
+        <Label text="-------------" styleClass="t-second"></Label>
+        <Label text="-------------" styleClass="t-second"></Label>
+        <Label text="-------------" styleClass="t-second"></Label>
+    </VBox>
+</GridPane>

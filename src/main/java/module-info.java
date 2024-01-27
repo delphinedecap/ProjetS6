@@ -4,8 +4,10 @@ module com.triceratops.triceratops {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.annotation;
+    requires MaterialFX;
 
     opens com.triceratops.triceratops to javafx.fxml;
     exports com.triceratops.triceratops;
     exports com.triceratops.triceratops.modele;
+    exports com.triceratops.triceratops.controllers; // Ajoutez cette ligne pour exporter le package avec la classe Home
 }
