@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import javafx.geometry.Insets?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@../css/home.css"
@@ -53,10 +54,8 @@
         <Label text="Etat des stocks" styleClass="t-second">
             <VBox.margin><Insets top="15.0"/></VBox.margin>
         </Label>
-        <Label text="-------------" styleClass="t-second"></Label>
-        <Label text="-------------" styleClass="t-second"></Label>
-        <Label text="-------------" styleClass="t-second"></Label>
-        <Label text="-------------" styleClass="t-second"></Label>
-        <Label text="-------------" styleClass="t-second"></Label>
+        <MFXTableView fx:id="paginated" prefWidth="800.0" prefHeight="500">
+            <VBox.margin><Insets topRightBottomLeft="15.0"/></VBox.margin>
+        </MFXTableView>
     </VBox>
 </GridPane>

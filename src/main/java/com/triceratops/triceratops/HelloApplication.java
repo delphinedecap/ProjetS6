@@ -1,6 +1,5 @@
 package com.triceratops.triceratops;
 
-import com.triceratops.triceratops.modele.Produit;
 import io.github.palexdev.materialfx.theming.JavaFXThemes;
 import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
 import io.github.palexdev.materialfx.theming.UserAgentBuilder;
@@ -26,11 +25,12 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
         stage.setTitle("Triceratops");
         stage.setScene(scene);
+        stage.setMinWidth(800);
+        stage.setMinHeight(450);
         stage.show();
     }
 
     public static void main(String[] args) {
-        Produit test = new Produit(2,"TEST2","produit de test 2",20,10,"kg");
         //serializeToFile(test);
         launch();
     }

@@ -26,6 +26,18 @@ public class Produit {
         this.unite = unite;
     }
 
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "quantite=" + quantite +
+                ", code='" + code + '\'' +
+                ", nom='" + nom + '\'' +
+                ", pAchat=" + pAchat +
+                ", pVente=" + pVente +
+                ", unite='" + unite + '\'' +
+                '}';
+    }
+
     public int getQuantite() {
         return quantite;
     }

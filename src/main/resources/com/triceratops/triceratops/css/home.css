@@ -25,3 +25,34 @@
     -fx-padding: 10 50;
     -fx-cursor: hand;
 }
+
+#paginated.mfx-table-view{
+    -fx-background-color: -color-primary-darker;
+}
+
+#paginated.mfx-table-view .virtual-flow{
+    -fx-background-color: -color-primary;
+}
+
+#paginated.mfx-table-view .virtual-flow .mfx-table-row{
+    -fx-background-color: -color-primary;
+
+    transition: -fx-background-color 0.5s ease;
+}
+
+#paginated.mfx-table-view .virtual-flow .mfx-table-row:hover{
+    -fx-background-color: -color-primary-darker;
+}
+#paginated.mfx-table-view .virtual-flow .scroll-bar:vertical .track{
+    -fx-background-color: -color-primary-darker;
+}
+
+#paginated.mfx-table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: #FFF;
+}
+
+#paginated.mfx-table-view *{
+    -fx-text-fill: #FFF;
+    -fx-text-alignment: center !important;
+
+}

@@ -29,3 +29,11 @@
 .test{
     -fx-background-color: #F00;
 }
+
+.rootPane .logo_simple {
+    -fx-background-color: -color-marron;
+    -fx-background-radius: 20px;
+    -fx-background-position: center;
+    -fx-background-image: url("../img/logo_simple.png");
+    -fx-background-size: 65px;
+}
