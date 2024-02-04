@@ -1,0 +1,28 @@
+[ {
+  "ProduitIn" : {
+    "TEST2" : 1,
+    "TEST1" : 5
+  },
+  "produitOut" : {
+    "quantite" : 30,
+    "code" : "TEST3",
+    "nom" : "produit3",
+    "pAchat" : 10.0,
+    "pVente" : 30.0,
+    "unite" : "Kg"
+  }
+}, {
+  "ProduitIn" : {
+    "TEST2" : 10,
+    "TEST3" : 2,
+    "TEST1" : 1
+  },
+  "produitOut" : {
+    "quantite" : 30,
+    "code" : "TEST4",
+    "nom" : "produit4",
+    "pAchat" : 60.0,
+    "pVente" : 80.0,
+    "unite" : "Kg"
+  }
+} ]

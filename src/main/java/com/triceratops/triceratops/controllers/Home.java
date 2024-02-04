@@ -1,7 +1,7 @@
 package com.triceratops.triceratops.controllers;
 
 import com.triceratops.triceratops.modele.Produit;
-import com.triceratops.triceratops.modele.StockP;
+import com.triceratops.triceratops.modele.StockProduit;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
@@ -16,6 +16,8 @@ import javafx.geometry.Pos;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
+
+import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeFromFile;
 
 public class Home implements Initializable {
 
@@ -57,29 +59,8 @@ public class Home implements Initializable {
                 new IntegerFilter<>("Quantite", Produit::getQuantite)
         );
 
-
-        //Test
-        StockP stockP = new StockP("stock");
-
-        Produit p1 = new Produit(2,"P32426","produit de test 1",24,50,"kg");
-        Produit p2 = new Produit(5,"P27624","produit de test 2",7,20,"kg");
-
-        stockP.add(p1);
-        stockP.add(p2);
-        stockP.add(p1);
-        stockP.add(p2);
-        stockP.add(p1);
-        stockP.add(p2);
-        stockP.add(p1);
-        stockP.add(p2);
-        stockP.add(p1);
-        stockP.add(p2);
-        stockP.add(p1);
-        stockP.add(p2);
-        stockP.add(p1);
-        stockP.add(p2);
-
-        ObservableList<Produit> observableList = FXCollections.observableArrayList(stockP.getStock());
+        StockProduit stockProduit = new StockProduit(deserializeFromFile(Produit.class, "produit.json"));
+        ObservableList<Produit> observableList = FXCollections.observableArrayList(stockProduit.getStock());
 
         paginated.setItems(observableList);
     }

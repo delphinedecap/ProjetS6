@@ -17,6 +17,9 @@ public class Produit {
     @JsonProperty("unite")
     private String unite; // Remplacer éventuellement par un enum
 
+    public Produit() {
+    }
+
     public Produit(int quantite, String code, String nom, float pAchat, float pVente, String unite) {
         this.quantite = quantite;
         this.code = code;
@@ -24,18 +27,6 @@ public class Produit {
         this.pAchat = pAchat;
         this.pVente = pVente;
         this.unite = unite;
-    }
-
-    @Override
-    public String toString() {
-        return "Produit{" +
-                "quantite=" + quantite +
-                ", code='" + code + '\'' +
-                ", nom='" + nom + '\'' +
-                ", pAchat=" + pAchat +
-                ", pVente=" + pVente +
-                ", unite='" + unite + '\'' +
-                '}';
     }
 
     public int getQuantite() {

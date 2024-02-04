@@ -1,0 +1,29 @@
+[ {
+  "quantite" : 20,
+  "code" : "TEST1",
+  "nom" : "produit1",
+  "pAchat" : 10.0,
+  "pVente" : 20.0,
+  "unite" : "kg"
+}, {
+  "quantite" : 20,
+  "code" : "TEST2",
+  "nom" : "produit2",
+  "pAchat" : 5.0,
+  "pVente" : 10.0,
+  "unite" : "L"
+}, {
+  "quantite" : 30,
+  "code" : "TEST3",
+  "nom" : "produit3",
+  "pAchat" : 10.0,
+  "pVente" : 30.0,
+  "unite" : "Kg"
+}, {
+  "quantite" : 30,
+  "code" : "TEST4",
+  "nom" : "produit4",
+  "pAchat" : 60.0,
+  "pVente" : 80.0,
+  "unite" : "Kg"
+} ]

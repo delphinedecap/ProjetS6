@@ -2,18 +2,13 @@ package com.triceratops.triceratops.modele;
 
 import java.util.ArrayList;
 
-public class StockP {
+public class StockProduit {
 
     private ArrayList<Produit> stock = new ArrayList<>();
-    private String nom;
 
-    public StockP(String nom) {
-        this.nom = nom;
-    }
 
-    public StockP(ArrayList<Produit> stock, String nom) {
+    public StockProduit(ArrayList<Produit> stock) {
         this.stock = stock;
-        this.nom = nom;
     }
 
     public ArrayList<Produit> getStock() {
@@ -35,9 +30,6 @@ public class StockP {
         return null;
     }
 
-    public String getNom() {
-        return nom;
-    }
 
     @Override
     public String toString() {
