@@ -4,9 +4,9 @@
     "TEST1" : 5
   },
   "produitOut" : {
-    "quantite" : 30,
     "code" : "TEST3",
     "nom" : "produit3",
+    "quantite" : 30,
     "pAchat" : 10.0,
     "pVente" : 30.0,
     "unite" : "Kg"
@@ -18,9 +18,9 @@
     "TEST1" : 1
   },
   "produitOut" : {
-    "quantite" : 30,
     "code" : "TEST4",
     "nom" : "produit4",
+    "quantite" : 30,
     "pAchat" : 60.0,
     "pVente" : 80.0,
     "unite" : "Kg"

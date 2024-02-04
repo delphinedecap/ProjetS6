@@ -1,15 +1,18 @@
 package com.triceratops.triceratops.modele;
 
 
+import com.fasterxml.jackson.annotation.JsonKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public class Produit {
-    @JsonProperty("quantite")
-    private int quantite;
+
     @JsonProperty("code")
     private String code;
     @JsonProperty("nom")
     private String nom;
+    @JsonProperty("quantite")
+    private int quantite;
     @JsonProperty("pAchat")
     private float pAchat;
     @JsonProperty("pVente")
@@ -27,6 +30,18 @@ public class Produit {
         this.pAchat = pAchat;
         this.pVente = pVente;
         this.unite = unite;
+    }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "quantite=" + quantite +
+                ", code='" + code + '\'' +
+                ", nom='" + nom + '\'' +
+                ", pAchat=" + pAchat +
+                ", pVente=" + pVente +
+                ", unite='" + unite + '\'' +
+                '}';
     }
 
     public int getQuantite() {
