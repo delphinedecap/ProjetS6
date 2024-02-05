@@ -16,6 +16,11 @@ import java.util.ArrayList;
 import static com.triceratops.triceratops.persistance.InterfacePersistance.*;
 
 public class HelloApplication extends Application {
+    /**
+     *
+     * @param stage
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         UserAgentBuilder.builder()

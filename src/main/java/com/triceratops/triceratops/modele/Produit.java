@@ -20,9 +20,21 @@ public class Produit {
     @JsonProperty("unite")
     private String unite; // Remplacer éventuellement par un enum
 
+    /**
+     * constructeur par defaut
+     */
     public Produit() {
     }
 
+    /**
+     *
+     * @param quantite : quantité actuelle du produit
+     * @param code : code générique du produit
+     * @param nom : nom du produit
+     * @param pAchat : prix d'achat du produit
+     * @param pVente : prix de vente du produit
+     * @param unite : type d'unité du produit (litre, kilogramme ...)
+     */
     public Produit(int quantite, String code, String nom, float pAchat, float pVente, String unite) {
         this.quantite = quantite;
         this.code = code;
@@ -32,6 +44,10 @@ public class Produit {
         this.unite = unite;
     }
 
+    /**
+     * methode toString
+     * @return la descrition du produit
+     */
     @Override
     public String toString() {
         return "Produit{" +
@@ -44,50 +60,98 @@ public class Produit {
                 '}';
     }
 
+    /**
+     *
+     * @return quantité actuelle du produit
+     */
     public int getQuantite() {
         return quantite;
     }
 
+    /**
+     * met à jour la quantité du produit
+     * @param quantite : nouvelle quantité du produit
+     */
     public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
 
+    /**
+     *
+     * @return code générique du produit
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Met à jour le code du produit
+     * @param code : nouveau code du produit
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     *
+     * @return nom du produit
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Met à jour le nom du produit
+     * @param nom : nouveau nom du produit
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     *
+     * @return prix d'achat du produit
+     */
     public float getpAchat() {
         return pAchat;
     }
 
+    /**
+     * Met à jour le prix d'achat du produit
+     * @param pAchat : nouveau prix d'achat
+     */
     public void setpAchat(float pAchat) {
         this.pAchat = pAchat;
     }
 
+    /**
+     *
+     * @return prix de vente du produit
+     */
     public float getpVente() {
         return pVente;
     }
 
+    /**
+     * Met à jour le prix de vente du produit
+     * @param pVente : nouveau prix de vente du produit
+     */
     public void setpVente(float pVente) {
         this.pVente = pVente;
     }
 
+    /**
+     *
+     * @return unité du produit
+     */
     public String getUnite() {
         return unite;
     }
 
+    /**
+     * Met à jour l'unité du produit
+     * @param unite : nouvelle unité du produit
+     */
     public void setUnite(String unite) {
         this.unite = unite;
     }

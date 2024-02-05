@@ -24,6 +24,12 @@ public class Home implements Initializable {
     @FXML
     private MFXTableView<Produit> paginated;
 
+    /**
+     * Permet d'initialiser une page à partir d'un url et d'un ressourceBundle
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -38,7 +44,9 @@ public class Home implements Initializable {
                 .listen();*/
     }
 
-
+    /**
+     * Permet de créer une pagination
+     */
     private void setupPaginated() {
         MFXTableColumn<Produit> codeColumn = new MFXTableColumn<>("Code", false, Comparator.comparing(Produit::getCode));
         MFXTableColumn<Produit> nomColumn = new MFXTableColumn<>("Nom", false, Comparator.comparing(Produit::getNom));

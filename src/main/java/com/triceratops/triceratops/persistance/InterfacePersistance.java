@@ -9,7 +9,14 @@ import java.util.ArrayList;
 
 
 public class InterfacePersistance {
-    //Ecrase par un nouveau JSON qui contiendra les entrées
+
+    /**
+     * Crée un fichier JSON avec une liste d'objets
+     * Si le fichier existe déjà, il sera écrasé
+     * @param objects : liste d'objets à serialiser dans le fichier
+     * @param output : nom du fichier
+     * @param <T> : type générique
+     */
     public static <T> void serializeToFile(ArrayList<T> objects, String output) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -20,9 +27,12 @@ public class InterfacePersistance {
         }
     }
 
-
-    //Renvoie une Arraylist des données stockées en persistance
-
+    /**
+     * Retourne une liste contenant les données stockées en persistance
+     * @param type type des données
+     * @param path fichier utilisé par la pêrsistance
+     * @return liste des données stockées
+     */
     public static <T> ArrayList<T> deserializeFromFile(Class<T> type,String path) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -35,7 +45,12 @@ public class InterfacePersistance {
     }
 
 
-    //Ajoute les nouvelles entrées et mets à jour les anciennes
+    /**
+     * Permet de mettre à jour un fichier à partir d'une liste de nouvelles entrées
+     * @param objects : liste des objets à ajouter ou mettre à jour
+     * @param objectType : type des objets
+     * @param path : fichier à mettre à jour
+     */
     public static <T> void addToFile(ArrayList<T> objects, Class<T> objectType, String path) {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
