@@ -1,30 +1,89 @@
 .menu{
-    -fx-background-color: -color-primary;
+    /*-fx-background-color: -color-primary;*/
     -fx-background-radius: 30;
 }
 
 
 .menu .content{
-    -fx-background-color: -color-primary-darker;
+    -fx-background-color: -color-vert-clair;
+    /*-fx-background-color: -color-primary;
+    -fx-background-color: -color-primary-darker;*/
     -fx-background-radius: 20;
     -fx-start-margin: 20;
 }
 
 .menu .t-second {
-    -fx-text-fill: #FFF;
+    /*-fx-font-family: 'Protest Riot', sans-serif;*/
+    -fx-text-fill: #000000;
     -fx-font-size: 18;
     -fx-alignment: center;
 }
 
 .menu .simule {
-    -fx-background-color: -color-marron;
+    -fx-background-color: -color-icon;
     -fx-background-radius: 8;
     -fx-border-radius: 10;
-    -fx-text-fill: #FFF;
+    -fx-text-fill: #000000;
     -fx-font-size: 17;
     -fx-padding: 10 50;
     -fx-cursor: hand;
 }
+
+
+#paginated.mfx-table-view{
+    -fx-background-color: #0000;
+    -fx-border-width: 0;
+}
+
+#paginated.mfx-table-view .columns-container .mfx-table-column{
+    -fx-border-color: #0000;
+    -fx-font-size: 14px;
+    -fx-font-weight: 900;
+}
+
+#paginated.mfx-table-view .columns-container .mfx-table-column .mfx-icon-wrapper{
+    -fx-cursor: hand;
+    -fx-background-color: -color-primary-darker;
+}
+
+#paginated.mfx-table-view .columns-container .mfx-table-column .mfx-icon-wrapper .mfx-font-icon{
+    -mfx-color: #FFF;
+}
+
+#paginated.mfx-table-view .columns-container, #paginated.mfx-table-view .virtual-flow .mfx-table-row{
+    /*-fx-background-color: -color-primary;*/
+    -fx-background-color: -color-primary-darker;
+    -fx-background-radius: 5px;
+
+    -fx-border-width: 0;
+
+    -fx-padding: 0 10px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+
+#paginated.mfx-table-view .virtual-flow .mfx-table-row .mfx-table-row-cell{
+    -fx-alignment: center;
+}
+
+#paginated.mfx-table-view .virtual-flow .scroll-bar:vertical .track{
+    -fx-background-color: -color-primary-darker;
+}
+
+#paginated.mfx-table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: #FFF;
+}
+
+#paginated.mfx-table-view *{
+    -fx-text-fill: #FFF;
+    -fx-text-alignment: center !important;
+}
+
+
+/*
+
+ Ancien Design
 
 #paginated.mfx-table-view{
     -fx-background-color: -color-primary-darker;
@@ -56,3 +115,4 @@
     -fx-text-alignment: center !important;
 
 }
+*/

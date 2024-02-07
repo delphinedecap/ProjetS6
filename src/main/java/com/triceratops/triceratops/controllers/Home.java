@@ -35,19 +35,15 @@ public class Home implements Initializable {
 
         paginated.autosizeColumnsOnInitialization();
 
-        setupPaginated();
+        setupTable();
 
         paginated.setFooterVisible(false);
-
-        /*When.onChanged(paginated.currentPageProperty())
-                .then((oldValue, newValue) -> paginated.autosizeColumns())
-                .listen();*/
     }
 
     /**
-     * Permet de créer une pagination
+     * Permet de créer un tableau avec les données
      */
-    private void setupPaginated() {
+    private void setupTable() {
         MFXTableColumn<Produit> codeColumn = new MFXTableColumn<>("Code", false, Comparator.comparing(Produit::getCode));
         MFXTableColumn<Produit> nomColumn = new MFXTableColumn<>("Nom", false, Comparator.comparing(Produit::getNom));
         MFXTableColumn<Produit> quantiteColumn = new MFXTableColumn<>("Quantite", false, Comparator.comparing(Produit::getQuantite));

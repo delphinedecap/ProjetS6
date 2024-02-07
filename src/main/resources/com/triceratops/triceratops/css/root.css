@@ -1,29 +1,33 @@
 @import 'Colors.css';
-
+@import "../font/font.css";
 
 
 /**************************************************
  * Root
 **************************************************/
 .rootPane {
-    -fx-background-color: -color-second;
+    -fx-font-family: "Exo";
+    -fx-background-color: -color-background;
     -fx-background-radius: 10;
     -fx-border-color: #ebebeb;
     -fx-border-radius: 10;
 }
 
 .rootPane .about{
-    -fx-background-color: -color-primary;
+    -fx-background-color: -color-vert-clair;
+
     -fx-background-radius: 5;
-    -fx-text-fill: #fff;
+    -fx-text-fill: #000000;
     -fx-padding: 15 20;
     -fx-cursor: hand;
 }
 
 
 .rootPane .title{
-    -fx-font-size: 30px;
-    -fx-text-fill: -color-marronClair;
+    -fx-font-weight: 900;
+    -fx-font-size: 40px;
+    -fx-text-fill: -color-vert-clair;
+    /*-fx-font-family: 'Protest Riot', sans-serif;*/
 }
 
 .test{
@@ -31,7 +35,7 @@
 }
 
 .rootPane .logo_simple {
-    -fx-background-color: -color-marron;
+    /*-fx-background-color: -color-marron;*/
     -fx-background-radius: 20px;
     -fx-background-position: center;
     -fx-background-image: url("../img/logo_simple.png");

@@ -2,22 +2,24 @@
 
 
 .rootPane{
-    -fx-background-color: -color-second;
+    -fx-background-color: -color-background;
 }
 
 .rootPane .title{
+    /*-fx-font-family: 'Protest Riot', sans-serif;*/
+    -fx-font-weight: 900;
     -fx-font-size: 30px;
-    -fx-text-fill: -color-marronClair;
+    -fx-text-fill: -color-vert-clair;
 }
 
 .rootPane .logo{
-    -fx-background-color: -color-marron;
+    /*-fx-background-color: -color-marron;*/
     -fx-background-radius: 35;
-    -fx-background-image: url("../img/logo.png");
-    -fx-background-size: 190;
+    -fx-background-image: url("../img/logo_simple.png");
+    -fx-background-size: 100;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
-    -fx-border-color: -color-primary;
+    /*-fx-border-color: -color-primary;
     -fx-border-width: 10px;
-    -fx-border-radius: 25;
+    -fx-border-radius: 25;*/
 }

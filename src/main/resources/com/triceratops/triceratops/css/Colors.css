@@ -1,12 +1,23 @@
 
 * {
+    /* Old */
     -color-primary: #43766C;
     -color-primary-darker: #355751;
     -color-second:#F8FAE5;
     -color-marron:#76453B;
     -color-marronClair : #B19470;
 
+    /* Palette de couleur */
+    -color-background: #182524;
+    -color-vert-clair:#E2F1E6;
+    -color-icon: #F2E2DE;
 
+    /* Test*/
+    -color-vert: #648a6a;
+    -color-icon-darker: #98786f;
+
+
+    /* Default */
     -mfx-blue: #2196f3;
     -mfx-charcoal: #445055;
     -mfx-green: #4caf50;

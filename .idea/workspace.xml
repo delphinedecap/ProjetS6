@@ -5,13 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="benj_delp ok">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Exo/Exo-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Exo/Exo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Exo/OFL.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-BoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-ExtraBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-ExtraBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Italic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-LightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-SemiBold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-SemiBoldItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Protest_Riot/OFL.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Protest_Riot/ProtestRiot-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Protest_Riot/Protest_Riot.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/font.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/img/old_logo_simple.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chaine.json" beforeDir="false" afterPath="$PROJECT_DIR$/chaine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/produit.json" beforeDir="false" afterPath="$PROJECT_DIR$/produit.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/Produit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/Produit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/Colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/Colors.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/about.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/img/logo_simple.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/img/logo_simple.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +43,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -43,6 +65,7 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2ZUZJqyf452AGPMr63PHwCS1kMa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,7 +76,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev-unstable",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/JérémyPatapy/IdeaProjects/ProjetS6/src/main/resources/com/triceratops/triceratops/img",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -63,9 +89,35 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\JérémyPatapy\IdeaProjects\ProjetS6\src\main\resources\com\triceratops\triceratops\img" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.triceratops.triceratops.HelloApplication" />
+      <module name="Triceratops" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.triceratops.triceratops.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-3183f394aec4-f0552fc0" />
         <option value="jdk-19.0.2-corretto-19.0.2-f644763e9732-1e16d6ec" />
       </set>
     </attachedChunks>
@@ -88,6 +140,10 @@
       <workItem from="1705341756859" duration="437000" />
       <workItem from="1707081647787" duration="27000" />
       <workItem from="1707081712677" duration="4181000" />
+      <workItem from="1707137728785" duration="20000" />
+      <workItem from="1707147335826" duration="172000" />
+      <workItem from="1707210528745" duration="156000" />
+      <workItem from="1707235641560" duration="13872000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>
@@ -103,6 +159,41 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dev-benjamin" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dev-unstable" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/dev-delphine" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
