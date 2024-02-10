@@ -1,11 +1,14 @@
+@import 'Colors.css';
+@import "../font/font.css";
+
 .menu{
-    /*-fx-background-color: -color-primary;*/
-    -fx-background-radius: 30;
+    -fx-background-color: -color-white;
+    -fx-background-radius: 0 0 10 10;
 }
 
 
 .menu .content{
-    -fx-background-color: -color-vert-clair;
+    -fx-background-color: -color-background;
     /*-fx-background-color: -color-primary;
     -fx-background-color: -color-primary-darker;*/
     -fx-background-radius: 20;
@@ -14,7 +17,7 @@
 
 .menu .t-second {
     /*-fx-font-family: 'Protest Riot', sans-serif;*/
-    -fx-text-fill: #000000;
+    -fx-text-fill: #FFF;
     -fx-font-size: 18;
     -fx-alignment: center;
 }
@@ -30,29 +33,30 @@
 }
 
 
-#paginated.mfx-table-view{
+#table.mfx-table-view{
     -fx-background-color: #0000;
     -fx-border-width: 0;
 }
 
-#paginated.mfx-table-view .columns-container .mfx-table-column{
+#table.mfx-table-view .columns-container .mfx-table-column{
     -fx-border-color: #0000;
     -fx-font-size: 14px;
+    -fx-text-fill: #000;
     -fx-font-weight: 900;
 }
 
-#paginated.mfx-table-view .columns-container .mfx-table-column .mfx-icon-wrapper{
+#table.mfx-table-view .columns-container .mfx-table-column .mfx-icon-wrapper{
     -fx-cursor: hand;
-    -fx-background-color: -color-primary-darker;
+    -fx-background-color: -color-vert-clair;
 }
 
-#paginated.mfx-table-view .columns-container .mfx-table-column .mfx-icon-wrapper .mfx-font-icon{
-    -mfx-color: #FFF;
+#table.mfx-table-view .columns-container .mfx-table-column .mfx-icon-wrapper .mfx-font-icon{
+    -mfx-color: #000;
 }
 
-#paginated.mfx-table-view .columns-container, #paginated.mfx-table-view .virtual-flow .mfx-table-row{
+#table.mfx-table-view .columns-container, #table.mfx-table-view .virtual-flow .mfx-table-row{
     /*-fx-background-color: -color-primary;*/
-    -fx-background-color: -color-primary-darker;
+    -fx-background-color: -color-vert-clair;
     -fx-background-radius: 5px;
 
     -fx-border-width: 0;
@@ -63,19 +67,20 @@
 }
 
 
-#paginated.mfx-table-view .virtual-flow .mfx-table-row .mfx-table-row-cell{
+#table.mfx-table-view .virtual-flow .mfx-table-row .mfx-table-row-cell{
     -fx-alignment: center;
+    -fx-text-fill: #000;
 }
 
-#paginated.mfx-table-view .virtual-flow .scroll-bar:vertical .track{
-    -fx-background-color: -color-primary-darker;
+#table.mfx-table-view .virtual-flow .scroll-bar:vertical .track{
+    -fx-background-color: -color-vert-clair;
 }
 
-#paginated.mfx-table-view .virtual-flow .scroll-bar:vertical .thumb{
+#table.mfx-table-view .virtual-flow .scroll-bar:vertical .thumb{
     -fx-background-color: #FFF;
 }
 
-#paginated.mfx-table-view *{
+#table.mfx-table-view *{
     -fx-text-fill: #FFF;
     -fx-text-alignment: center !important;
 }

@@ -10,28 +10,119 @@
     -fx-background-color: -color-background;
     -fx-background-radius: 10;
     -fx-border-color: #ebebeb;
+    -fx-border-width: 0;
     -fx-border-radius: 10;
 }
 
-.rootPane .about{
+/*.rootPane .about{
     -fx-background-color: -color-vert-clair;
 
     -fx-background-radius: 5;
     -fx-text-fill: #000000;
     -fx-padding: 15 20;
     -fx-cursor: hand;
-}
+}*/
 
 
 .rootPane .title{
     -fx-font-weight: 900;
     -fx-font-size: 40px;
-    -fx-text-fill: -color-vert-clair;
+    -fx-text-fill: -color-icon;
     /*-fx-font-family: 'Protest Riot', sans-serif;*/
 }
 
-.test{
-    -fx-background-color: #F00;
+
+/**************************************************
+ * Window Header
+**************************************************/
+.rootPane .close-icon,
+.rootPane .minimize-icon,
+.rootPane .maximize{
+    -fx-cursor: hand;
+}
+
+.rootPane .close-icon {
+    -mfx-color: -mfx-red;
+    -fx-opacity: 0.5;
+}
+
+.rootPane .close-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.rootPane .minimize-icon {
+    -mfx-color: #ffbf37;
+    -fx-opacity: 0.5;
+}
+
+.rootPane .minimize-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.rootPane .maximize {
+    -mfx-color: -mfx-green;
+    -fx-opacity: 0.5;
+}
+
+.rootPane .maximize:hover {
+    -fx-opacity: 1.0;
+}
+
+
+/*
+
+    Menu
+
+ */
+
+.menu{
+    -fx-background-color: -color-icon;
+}
+
+.menu .navBar{
+    -fx-background-radius: 0 0 5px 5px;
+}
+
+
+.menu .mfx-rectangle-toggle-node{
+    -fx-background-color: #0000;
+    -fx-border-width: 0;
+
+    -fx-min-height: 40px;
+
+    -fx-font-size: 13px;
+    -fx-alignment: center;
+
+    -fx-cursor: hand;
+
+    -fx-transition: -fx-background-color 0.5s, -fx-background-radius 0.5s;
+}
+
+.menu .mfx-rectangle-toggle-node:hover{
+    -fx-background-color: #0002;
+}
+
+
+.menu .mfx-rectangle-toggle-node:selected {
+    -fx-background-color: -color-background;
+    -fx-background-radius: 0 0 15px 15px;
+    -fx-text-fill: #FFF;
+}
+
+.menu .mfx-rectangle-toggle-node:selected .selection-rectangle {
+    -fx-stroke: transparent;
+    -fx-fill: #601cbe;
+}
+
+/*
+
+    Content
+
+ */
+
+.contentPane{
+    -fx-background-color: #FFF;
+    -fx-background-radius: 0 0 6px 6px;
 }
 
 .rootPane .logo_simple {
@@ -39,5 +130,5 @@
     -fx-background-radius: 20px;
     -fx-background-position: center;
     -fx-background-image: url("../img/logo_simple.png");
-    -fx-background-size: 65px;
+    -fx-background-size: 95px;
 }

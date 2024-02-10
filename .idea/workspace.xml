@@ -4,35 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="benj_delp ok">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Exo/Exo-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Exo/Exo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Exo/OFL.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-ExtraBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-ExtraBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-SemiBold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans-SemiBoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/OpenSans/OpenSans.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Protest_Riot/OFL.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Protest_Riot/ProtestRiot-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/Protest_Riot/Protest_Riot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/font/font.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/img/old_logo_simple.png" afterDir="false" />
+    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="Upate Design &amp; WindowsHeader&#10;Patch Bug&#10;Bug connue au niveau du resize sur la hauteur">
+      <change afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/MFXResourcesLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/About.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/About.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/Colors.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/Colors.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/about.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/about.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/about.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/about.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/hello-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/img/logo_simple.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/img/logo_simple.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/root.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/root.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +29,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
         <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev-benjamin" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -59,6 +52,9 @@
         <option name="mavenHome" value="Use Maven wrapper" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -75,8 +71,9 @@
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev-unstable",
+    "git-widget-placeholder": "dev-jeremy",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/JérémyPatapy/IdeaProjects/ProjetS6/src/main/resources/com/triceratops/triceratops/img",
     "list.type.of.created.stylesheet": "CSS",
@@ -85,13 +82,19 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "settings.qodana",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\JérémyPatapy\IdeaProjects\ProjetS6\src\main\resources\com\triceratops\triceratops\img" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.triceratops.triceratops" />
     </key>
   </component>
   <component name="RunManager">
@@ -119,6 +122,7 @@
       <set>
         <option value="jdk-19.0.2-corretto-19.0.2-3183f394aec4-f0552fc0" />
         <option value="jdk-19.0.2-corretto-19.0.2-f644763e9732-1e16d6ec" />
+        <option value="jdk-21.0.1-liberica-21.0.1-3183f394aec4-a11a7b3b" />
       </set>
     </attachedChunks>
   </component>
@@ -144,6 +148,9 @@
       <workItem from="1707147335826" duration="172000" />
       <workItem from="1707210528745" duration="156000" />
       <workItem from="1707235641560" duration="13872000" />
+      <workItem from="1707383845034" duration="3207000" />
+      <workItem from="1707388295025" duration="7804000" />
+      <workItem from="1707486122653" duration="20900000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>
@@ -206,6 +213,25 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idea files" />
-    <option name="LAST_COMMIT_MESSAGE" value="idea files" />
+    <MESSAGE value="Upate Design &amp; WindowsHeader&#10;Patch Bug&#10;Bug connue au niveau du resize sur la hauteur" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upate Design &amp; WindowsHeader&#10;Patch Bug&#10;Bug connue au niveau du resize sur la hauteur" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

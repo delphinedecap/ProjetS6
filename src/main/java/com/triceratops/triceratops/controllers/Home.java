@@ -1,5 +1,6 @@
 package com.triceratops.triceratops.controllers;
 
+import com.triceratops.triceratops.HelloController;
 import com.triceratops.triceratops.modele.Produit;
 import com.triceratops.triceratops.modele.StockProduit;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
@@ -9,6 +10,7 @@ import io.github.palexdev.materialfx.filter.IntegerFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -22,7 +24,9 @@ import static com.triceratops.triceratops.persistance.InterfacePersistance.deser
 public class Home implements Initializable {
 
     @FXML
-    private MFXTableView<Produit> paginated;
+    private MFXTableView<Produit> table;
+
+    private HelloController helloController;
 
     /**
      * Permet d'initialiser une page à partir d'un url et d'un ressourceBundle
@@ -33,11 +37,9 @@ public class Home implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        paginated.autosizeColumnsOnInitialization();
-
+        table.autosizeColumnsOnInitialization();
         setupTable();
-
-        paginated.setFooterVisible(false);
+        table.setFooterVisible(false);
     }
 
     /**
@@ -56,8 +58,8 @@ public class Home implements Initializable {
         nomColumn.setAlignment(Pos.CENTER);
         quantiteColumn.setAlignment(Pos.CENTER);
 
-        paginated.getTableColumns().addAll(codeColumn,nomColumn,quantiteColumn);
-        paginated.getFilters().addAll(
+        table.getTableColumns().addAll(codeColumn,nomColumn,quantiteColumn);
+        table.getFilters().addAll(
                 new StringFilter<>("Code", Produit::getCode),
                 new StringFilter<>("Nom", Produit::getNom),
                 new IntegerFilter<>("Quantite", Produit::getQuantite)
@@ -66,6 +68,16 @@ public class Home implements Initializable {
         StockProduit stockProduit = new StockProduit(deserializeFromFile(Produit.class, "produit.json"));
         ObservableList<Produit> observableList = FXCollections.observableArrayList(stockProduit.getStock());
 
-        paginated.setItems(observableList);
+        table.setItems(observableList);
+    }
+
+    public void simulateur(ActionEvent event) {
+        /*
+        try {
+            // Appelle la méthode changeGrid de HelloController pour changer la grille
+            HelloController.changeGrid("fxml/old_about.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 }

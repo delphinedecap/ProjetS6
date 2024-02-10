@@ -1,19 +1,75 @@
 package com.triceratops.triceratops;
 
-import javafx.event.ActionEvent;
+import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode;
+import io.github.palexdev.materialfx.utils.ToggleButtonsUtil;
+import io.github.palexdev.materialfx.utils.others.loader.MFXLoader;
+import io.github.palexdev.materialfx.utils.others.loader.MFXLoaderBean;
+import io.github.palexdev.mfxresources.fonts.MFXFontIcon;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.util.List;
+
+import static com.triceratops.triceratops.MFXResourcesLoader.loadURL;
 
 public class HelloController {
+    private final Stage stage;
+    private double xOffset;
+    private double yOffset;
+
+    /*
+
+        Agrandir & réduire
+
+     */
+    private Cursor cursorEvent = Cursor.DEFAULT;
+    private boolean isFullScreen = false;
+    private double saveX;
+    private double saveY;
+    private double saveWitdh;
+    private double saveHeight;
+
+    private final int MAXWITDH = 800;
+    private final int MAXHEIGHT = 450;
+    private final int MARGE = 10;
+
+
+    public HBox navBar;
+
+    /*@FXML
+    private GridPane contentPane;*/
+
+    private final ToggleGroup toggleGroup;
+
     @FXML
-    public GridPane contentPane;
+    public AnchorPane rootPane;
+    @FXML
+    public HBox windowHeader;
+
+    @FXML
+    private MFXFontIcon closeIcon;
+
+    @FXML
+    private MFXFontIcon minimizeIcon;
+    @FXML
+    public MFXFontIcon maximize;
+
+
+    @FXML
+    private StackPane contentPane;
+
 
     /*@FXML
     private Label welcomeText;
@@ -23,21 +79,186 @@ public class HelloController {
         welcomeText.setText("Welcome to JavaFX Application! : Benjamin, Delphine et Jérémy");
     }*/
 
-    public void initialize() throws IOException {
-        GridPane screen = FXMLLoader.load(getClass().getResource("fxml/home.fxml"));
-        contentPane.setAlignment(Pos.CENTER);
-        contentPane.add(screen,0,0);
+
+    public HelloController(Stage stage){
+        this.stage = stage;
+        this.toggleGroup = new ToggleGroup();
+        ToggleButtonsUtil.addAlwaysOneSelectedSupport(toggleGroup);
     }
 
+    public void initialize() {
+        /*
+            WindowsHeader
+         */
+        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Platform.exit());
+        maximize.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if(isFullScreen){
+                stage.setX(saveX);
+                stage.setY(saveY);
+                stage.setWidth(saveWitdh);
+                stage.setHeight(saveHeight);
+                isFullScreen = false;
+            }else {
+                saveX = stage.getX();
+                saveY = stage.getY();
 
-    public void about(ActionEvent actionEvent) {
+                saveWitdh = stage.getWidth();
+                saveHeight = stage.getHeight();
+
+                Screen screen = Screen.getPrimary();
+                Rectangle2D bounds = screen.getVisualBounds();
+
+                stage.setX(bounds.getMinX());
+                stage.setY(bounds.getMinY());
+                stage.setWidth(bounds.getWidth());
+                stage.setHeight(bounds.getHeight());
+                isFullScreen = true;
+            }
+        });
+        minimizeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> ((Stage) rootPane.getScene().getWindow()).setIconified(true));
+
+        //Move windows
+        windowHeader.setOnMousePressed(event -> {
+            xOffset = stage.getX() - event.getScreenX();
+            yOffset = stage.getY() - event.getScreenY();
+        });
+        windowHeader.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() + xOffset);
+            stage.setY(event.getScreenY() + yOffset);
+        });
+
+        // Gestion du redimensionnement de la fenêtre avec la souris
+        rootPane.setOnMouseMoved(event -> {
+
+            double mouseEventX = event.getX(),
+                    mouseEventY = event.getY(),
+                    sceneWidth = stage.getWidth(),
+                    sceneHeight = stage.getHeight();
+
+            if (mouseEventX < MARGE && mouseEventY < MARGE) {
+                cursorEvent = Cursor.NW_RESIZE;
+            } else if (mouseEventX < MARGE && mouseEventY > sceneHeight - MARGE) {
+                cursorEvent = Cursor.SW_RESIZE;
+            } else if (mouseEventX > sceneWidth - MARGE && mouseEventY < MARGE) {
+                cursorEvent = Cursor.NE_RESIZE;
+            } else if (mouseEventX > sceneWidth - MARGE && mouseEventY > sceneHeight - MARGE) {
+                cursorEvent = Cursor.SE_RESIZE;
+            } else if (mouseEventX < MARGE) {
+                cursorEvent = Cursor.W_RESIZE;
+            } else if (mouseEventX > sceneWidth - MARGE) {
+                cursorEvent = Cursor.E_RESIZE;
+            } else if (mouseEventY < MARGE) {
+                cursorEvent = Cursor.N_RESIZE;
+            } else if (mouseEventY > sceneHeight - MARGE) {
+                cursorEvent = Cursor.S_RESIZE;
+            }else{
+                cursorEvent = Cursor.DEFAULT;
+            }
+            rootPane.setCursor(cursorEvent);
+        });
+        rootPane.setOnMouseDragged(mouseEvent -> {
+
+            int border = 4;
+            double startX = 0;
+            double startY = 0;
+
+            Scene scene = stage.getScene();
+
+            double mouseEventX = mouseEvent.getSceneX(),
+                    mouseEventY = mouseEvent.getSceneY(),
+                    sceneWidth = scene.getWidth(),
+                    sceneHeight = scene.getHeight();
+
+            if (Cursor.DEFAULT.equals(cursorEvent) == false) {
+                if (Cursor.W_RESIZE.equals(cursorEvent) == false && Cursor.E_RESIZE.equals(cursorEvent) == false) {
+                    double minHeight = stage.getMinHeight() > (border*2) ? stage.getMinHeight() : (border*2);
+                    if (Cursor.NW_RESIZE.equals(cursorEvent) == true || Cursor.N_RESIZE.equals(cursorEvent) == true || Cursor.NE_RESIZE.equals(cursorEvent) == true) {
+                        if (stage.getHeight() > minHeight || mouseEventY < 0) {
+                            stage.setHeight(stage.getY() - mouseEvent.getScreenY() + stage.getHeight());
+                            stage.setY(mouseEvent.getScreenY());
+                        }
+                    } else {
+                        if (stage.getHeight() > minHeight || mouseEventY + startY - stage.getHeight() > 0) {
+                            stage.setHeight(mouseEventY + startY);
+                        }
+                    }
+                }
+
+                if (Cursor.N_RESIZE.equals(cursorEvent) == false && Cursor.S_RESIZE.equals(cursorEvent) == false) {
+                    double minWidth = stage.getMinWidth() > (border*2) ? stage.getMinWidth() : (border*2);
+                    if (Cursor.NW_RESIZE.equals(cursorEvent) == true || Cursor.W_RESIZE.equals(cursorEvent) == true || Cursor.SW_RESIZE.equals(cursorEvent) == true) {
+                        if (stage.getWidth() > minWidth || mouseEventX < 0) {
+                            stage.setWidth(stage.getX() - mouseEvent.getScreenX() + stage.getWidth());
+                            stage.setX(mouseEvent.getScreenX());
+                        }
+                    } else {
+                        if (stage.getWidth() > minWidth || mouseEventX + startX - stage.getWidth() > 0) {
+                            stage.setWidth(mouseEventX + startX);
+                        }
+                    }
+                }
+            }
+        });
+
+        initializeLoader();
+
+    }
+
+    private void initializeLoader() {
+        MFXLoader loader = new MFXLoader();
+        loader.addView(MFXLoaderBean.of("Accueil", loadURL("fxml/home.fxml")).setBeanToNodeMapper(() -> createToggle("Accueil")).setDefaultRoot(true).get());
+        loader.addView(MFXLoaderBean.of("Test", loadURL("fxml/hello-view.fxml")).setBeanToNodeMapper(() -> createToggle("Test")).get());
+        //loader.addView(MFXLoaderBean.of("Simulateur", loadURL("fxml/simu.fxml")).setBeanToNodeMapper(() -> createToggle("Simulateur")).get());
+
+        loader.addView(MFXLoaderBean.of("A propos", loadURL("fxml/about.fxml")).setBeanToNodeMapper(() -> createToggle("A propos")).get());
+
+        loader.setOnLoadedAction(beans -> {
+            List<ToggleButton> nodes = beans.stream()
+                    .map(bean -> {
+                        ToggleButton toggle = (ToggleButton) bean.getBeanToNodeMapper().get();
+                        System.out.println(toggle.getClass());
+                        toggle.setOnAction(event -> contentPane.getChildren().setAll(bean.getRoot()));
+                        if (bean.isDefaultView()) {
+                            contentPane.getChildren().setAll(bean.getRoot());
+                            toggle.setSelected(true);
+                        }
+                        return toggle;
+                    })
+                    .toList();
+            navBar.getChildren().setAll(nodes);
+        });
+        loader.start();
+    }
+
+    private boolean isResizeZone(MouseEvent event) {
+        double x = event.getX();
+        double y = event.getY();
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+        return x < 10 || y < 10 || x > width - 10 || y > height - 10;
+    }
+
+    private ToggleButton createToggle(String text) {
+        MFXRectangleToggleNode toggleNode = new MFXRectangleToggleNode(text);
+        toggleNode.setAlignment(Pos.CENTER_LEFT);
+        toggleNode.setMaxWidth(Double.MAX_VALUE);
+        toggleNode.setToggleGroup(toggleGroup);
+        return toggleNode;
+    }
+
+    /*public void about(ActionEvent actionEvent) {
         try {
             //Create view from FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/about.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/old_about.fxml"));
 
             //Create Stage
             Stage stage = new Stage();
             stage.setTitle("A propos - Triceratops");
+
+            //Logo
+            URL url = getClass().getResource("img/logo_simple.png");
+            stage.getIcons().add(new Image(String.valueOf(url)));
+
             stage.initModality(Modality.APPLICATION_MODAL);
 
             // Bloquer la redimension de la fenêtre
@@ -53,5 +274,5 @@ public class HelloController {
             e.printStackTrace();
         };
 
-    }
+    }*/
 }

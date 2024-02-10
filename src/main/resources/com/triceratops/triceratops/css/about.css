@@ -1,25 +1,51 @@
 @import 'Colors.css';
 
 
-.rootPane{
-    -fx-background-color: -color-background;
+/* Style pour la partie gauche */
+.left-pane {
+    -fx-alignment: TOP_CENTER;
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+    -fx-background-radius: 0 0 0 10px;
+    -fx-padding: 10px; /* Espacement intérieur */
 }
 
-.rootPane .title{
-    /*-fx-font-family: 'Protest Riot', sans-serif;*/
-    -fx-font-weight: 900;
-    -fx-font-size: 30px;
-    -fx-text-fill: -color-vert-clair;
+/* Style pour la partie droite */
+.right-pane {
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-background-radius: 0 0 10px 0;
+    -fx-padding: 10px; /* Espacement intérieur */
+    -fx-alignment: center; /* Centrer le contenu */
 }
 
-.rootPane .logo{
-    /*-fx-background-color: -color-marron;*/
-    -fx-background-radius: 35;
+/* Style pour le titre */
+.left-pane .label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+.left-pane .title_dev{
+    -fx-font-size: 30px !important;
+    -fx-text-fill: -color-background;
+    -fx-underline: true;
+}
+
+/* Style pour les exemples de développement */
+.left-pane .label {
+    -fx-font-size: 14px;
+}
+
+/* Style pour le logo */
+.right-pane .logo {
+    -fx-alignment: center;
     -fx-background-image: url("../img/logo_simple.png");
-    -fx-background-size: 100;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    /*-fx-border-color: -color-primary;
-    -fx-border-width: 10px;
-    -fx-border-radius: 25;*/
+    -fx-background-size: 150px;
+    -fx-min-width: 150px; /* Largeur de l'image */
+    -fx-min-height: 150px; /* Hauteur de l'image */
+}
+
+/* Style pour la version de l'application */
+.right-pane .label {
+    -fx-font-size: 14px;
 }
