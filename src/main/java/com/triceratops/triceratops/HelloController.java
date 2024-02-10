@@ -1,16 +1,19 @@
 package com.triceratops.triceratops;
 
+import com.triceratops.triceratops.utils.NavigationUtils;
+import com.triceratops.triceratops.utils.ToggleNode;
 import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode;
 import io.github.palexdev.materialfx.utils.ToggleButtonsUtil;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoader;
 import io.github.palexdev.materialfx.utils.others.loader.MFXLoaderBean;
 import io.github.palexdev.mfxresources.fonts.MFXFontIcon;
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
@@ -19,10 +22,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.List;
 
 import static com.triceratops.triceratops.MFXResourcesLoader.loadURL;
+
 
 public class HelloController {
     private final Stage stage;
@@ -40,16 +45,10 @@ public class HelloController {
     private double saveY;
     private double saveWitdh;
     private double saveHeight;
-
-    private final int MAXWITDH = 800;
-    private final int MAXHEIGHT = 450;
     private final int MARGE = 10;
 
 
     public HBox navBar;
-
-    /*@FXML
-    private GridPane contentPane;*/
 
     private final ToggleGroup toggleGroup;
 
@@ -71,15 +70,6 @@ public class HelloController {
     private StackPane contentPane;
 
 
-    /*@FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application! : Benjamin, Delphine et Jérémy");
-    }*/
-
-
     public HelloController(Stage stage){
         this.stage = stage;
         this.toggleGroup = new ToggleGroup();
@@ -90,7 +80,27 @@ public class HelloController {
         /*
             WindowsHeader
          */
-        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> Platform.exit());
+        closeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            // Création d'une transition de mise à l'échelle vers zéro
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.4), rootPane);
+            scaleTransition.setToX(0);
+            scaleTransition.setToY(0);
+
+            // Création d'une transition de fondu
+            FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.2), rootPane);
+            fadeTransition.setToValue(0); // Fondu vers 0 (invisible)
+
+            // Définition de l'action à effectuer à la fin de la transition
+            fadeTransition.setOnFinished(finishedEvent -> {
+                // Minimiser la fenêtre une fois que la transition est terminée
+                Platform.exit();
+            });
+
+            // Démarrer les transitions
+            scaleTransition.play();
+            fadeTransition.play();
+        });
+
         maximize.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if(isFullScreen){
                 stage.setX(saveX);
@@ -98,6 +108,7 @@ public class HelloController {
                 stage.setWidth(saveWitdh);
                 stage.setHeight(saveHeight);
                 isFullScreen = false;
+                rootPane.setStyle("");
             }else {
                 saveX = stage.getX();
                 saveY = stage.getY();
@@ -113,18 +124,23 @@ public class HelloController {
                 stage.setWidth(bounds.getWidth());
                 stage.setHeight(bounds.getHeight());
                 isFullScreen = true;
+                rootPane.setStyle("-fx-background-radius: 0;");
             }
         });
         minimizeIcon.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> ((Stage) rootPane.getScene().getWindow()).setIconified(true));
 
         //Move windows
         windowHeader.setOnMousePressed(event -> {
-            xOffset = stage.getX() - event.getScreenX();
-            yOffset = stage.getY() - event.getScreenY();
+            if(Cursor.DEFAULT.equals(cursorEvent)){
+                xOffset = stage.getX() - event.getScreenX();
+                yOffset = stage.getY() - event.getScreenY();
+            }
         });
         windowHeader.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() + xOffset);
-            stage.setY(event.getScreenY() + yOffset);
+            if(Cursor.DEFAULT.equals(cursorEvent)){
+                stage.setX(event.getScreenX() + xOffset);
+                stage.setY(event.getScreenY() + yOffset);
+            }
         });
 
         // Gestion du redimensionnement de la fenêtre avec la souris
@@ -162,17 +178,13 @@ public class HelloController {
             double startX = 0;
             double startY = 0;
 
-            Scene scene = stage.getScene();
-
             double mouseEventX = mouseEvent.getSceneX(),
-                    mouseEventY = mouseEvent.getSceneY(),
-                    sceneWidth = scene.getWidth(),
-                    sceneHeight = scene.getHeight();
+                    mouseEventY = mouseEvent.getSceneY();
 
-            if (Cursor.DEFAULT.equals(cursorEvent) == false) {
-                if (Cursor.W_RESIZE.equals(cursorEvent) == false && Cursor.E_RESIZE.equals(cursorEvent) == false) {
+            if (!Cursor.DEFAULT.equals(cursorEvent)) {
+                if (!Cursor.W_RESIZE.equals(cursorEvent) && !Cursor.E_RESIZE.equals(cursorEvent)) {
                     double minHeight = stage.getMinHeight() > (border*2) ? stage.getMinHeight() : (border*2);
-                    if (Cursor.NW_RESIZE.equals(cursorEvent) == true || Cursor.N_RESIZE.equals(cursorEvent) == true || Cursor.NE_RESIZE.equals(cursorEvent) == true) {
+                    if (Cursor.NW_RESIZE.equals(cursorEvent) || Cursor.N_RESIZE.equals(cursorEvent) || Cursor.NE_RESIZE.equals(cursorEvent)) {
                         if (stage.getHeight() > minHeight || mouseEventY < 0) {
                             stage.setHeight(stage.getY() - mouseEvent.getScreenY() + stage.getHeight());
                             stage.setY(mouseEvent.getScreenY());
@@ -184,9 +196,9 @@ public class HelloController {
                     }
                 }
 
-                if (Cursor.N_RESIZE.equals(cursorEvent) == false && Cursor.S_RESIZE.equals(cursorEvent) == false) {
+                if (!Cursor.N_RESIZE.equals(cursorEvent) && !Cursor.S_RESIZE.equals(cursorEvent)) {
                     double minWidth = stage.getMinWidth() > (border*2) ? stage.getMinWidth() : (border*2);
-                    if (Cursor.NW_RESIZE.equals(cursorEvent) == true || Cursor.W_RESIZE.equals(cursorEvent) == true || Cursor.SW_RESIZE.equals(cursorEvent) == true) {
+                    if (Cursor.NW_RESIZE.equals(cursorEvent) || Cursor.W_RESIZE.equals(cursorEvent) || Cursor.SW_RESIZE.equals(cursorEvent)) {
                         if (stage.getWidth() > minWidth || mouseEventX < 0) {
                             stage.setWidth(stage.getX() - mouseEvent.getScreenX() + stage.getWidth());
                             stage.setX(mouseEvent.getScreenX());
@@ -207,17 +219,20 @@ public class HelloController {
     private void initializeLoader() {
         MFXLoader loader = new MFXLoader();
         loader.addView(MFXLoaderBean.of("Accueil", loadURL("fxml/home.fxml")).setBeanToNodeMapper(() -> createToggle("Accueil")).setDefaultRoot(true).get());
-        loader.addView(MFXLoaderBean.of("Test", loadURL("fxml/hello-view.fxml")).setBeanToNodeMapper(() -> createToggle("Test")).get());
+        loader.addView(MFXLoaderBean.of("Simulateur", loadURL("fxml/simulateur.fxml")).setBeanToNodeMapper(() -> createToggle("Simulateur")).get());
         //loader.addView(MFXLoaderBean.of("Simulateur", loadURL("fxml/simu.fxml")).setBeanToNodeMapper(() -> createToggle("Simulateur")).get());
 
         loader.addView(MFXLoaderBean.of("A propos", loadURL("fxml/about.fxml")).setBeanToNodeMapper(() -> createToggle("A propos")).get());
+
+        NavigationUtils nav = new NavigationUtils(contentPane);
 
         loader.setOnLoadedAction(beans -> {
             List<ToggleButton> nodes = beans.stream()
                     .map(bean -> {
                         ToggleButton toggle = (ToggleButton) bean.getBeanToNodeMapper().get();
-                        System.out.println(toggle.getClass());
+                        //System.out.println(toggle.getClass());
                         toggle.setOnAction(event -> contentPane.getChildren().setAll(bean.getRoot()));
+                        nav.add(bean.getViewName(), new ToggleNode(bean.getRoot(), toggle));
                         if (bean.isDefaultView()) {
                             contentPane.getChildren().setAll(bean.getRoot());
                             toggle.setSelected(true);
@@ -230,13 +245,6 @@ public class HelloController {
         loader.start();
     }
 
-    private boolean isResizeZone(MouseEvent event) {
-        double x = event.getX();
-        double y = event.getY();
-        double width = stage.getWidth();
-        double height = stage.getHeight();
-        return x < 10 || y < 10 || x > width - 10 || y > height - 10;
-    }
 
     private ToggleButton createToggle(String text) {
         MFXRectangleToggleNode toggleNode = new MFXRectangleToggleNode(text);
@@ -246,33 +254,4 @@ public class HelloController {
         return toggleNode;
     }
 
-    /*public void about(ActionEvent actionEvent) {
-        try {
-            //Create view from FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/old_about.fxml"));
-
-            //Create Stage
-            Stage stage = new Stage();
-            stage.setTitle("A propos - Triceratops");
-
-            //Logo
-            URL url = getClass().getResource("img/logo_simple.png");
-            stage.getIcons().add(new Image(String.valueOf(url)));
-
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            // Bloquer la redimension de la fenêtre
-            stage.setResizable(false);
-
-            //Set view in window
-            stage.setScene(new Scene(loader.load(), 400, 200));
-
-            //Launch
-            stage.showAndWait();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        };
-
-    }*/
 }

@@ -8,7 +8,7 @@
 
 <GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@../css/home.css"
           fx:controller="com.triceratops.triceratops.controllers.Home"
-          prefHeight="550.0" prefWidth="1200.0" styleClass="menu" alignment="center" hgap="10">
+          prefHeight="550.0" prefWidth="1200.0" styleClass="home" alignment="center" hgap="10">
 
     <!-- Colonne 0 -->
     <columnConstraints>

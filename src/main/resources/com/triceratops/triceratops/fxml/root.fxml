@@ -39,9 +39,13 @@
           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
     >
         <padding>
-            <Insets top="-1"/>
+            <Insets top="-10"/>
         </padding>
-        <HBox fx:id="navBar" styleClass="navBar"/>
+        <HBox fx:id="navBar" styleClass="navBar" spacing="5">
+            <padding>
+                <Insets left="10"/>
+            </padding>
+        </HBox>
     </MFXScrollPane>
 
 

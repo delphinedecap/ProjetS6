@@ -1,6 +1,6 @@
 package com.triceratops.triceratops.controllers;
 
-import com.triceratops.triceratops.HelloController;
+import com.triceratops.triceratops.utils.NavigationUtils;
 import com.triceratops.triceratops.modele.Produit;
 import com.triceratops.triceratops.modele.StockProduit;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
@@ -25,8 +25,6 @@ public class Home implements Initializable {
 
     @FXML
     private MFXTableView<Produit> table;
-
-    private HelloController helloController;
 
     /**
      * Permet d'initialiser une page à partir d'un url et d'un ressourceBundle
@@ -72,12 +70,6 @@ public class Home implements Initializable {
     }
 
     public void simulateur(ActionEvent event) {
-        /*
-        try {
-            // Appelle la méthode changeGrid de HelloController pour changer la grille
-            HelloController.changeGrid("fxml/old_about.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        NavigationUtils.goTo("Simulateur");
     }
 }

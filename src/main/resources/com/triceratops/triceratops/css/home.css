@@ -1,13 +1,13 @@
 @import 'Colors.css';
 @import "../font/font.css";
 
-.menu{
+.home{
     -fx-background-color: -color-white;
-    -fx-background-radius: 0 0 10 10;
+    -fx-background-radius: 0 0 10px 10px;
 }
 
 
-.menu .content{
+.home .content{
     -fx-background-color: -color-background;
     /*-fx-background-color: -color-primary;
     -fx-background-color: -color-primary-darker;*/
@@ -15,14 +15,14 @@
     -fx-start-margin: 20;
 }
 
-.menu .t-second {
+.home .t-second {
     /*-fx-font-family: 'Protest Riot', sans-serif;*/
     -fx-text-fill: #FFF;
     -fx-font-size: 18;
     -fx-alignment: center;
 }
 
-.menu .simule {
+.home .simule {
     -fx-background-color: -color-icon;
     -fx-background-radius: 8;
     -fx-border-radius: 10;
