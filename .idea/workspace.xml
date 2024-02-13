@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="Upate Design menu&#10;Patch Bug resize sur hauteur">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="mise a jour javadoc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/About.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/About.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/Produit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/Produit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/StockProduit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/StockProduit.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +30,20 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "delphinedecap"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="9c1fa039-e2f6-4f84-85f9-8508f09b1e8a" />
+        <option name="url" value="https://github.com/delphinedecap/ProjetS6.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -156,7 +166,7 @@
       <workItem from="1707745754794" duration="603000" />
       <workItem from="1707748191608" duration="28312000" />
       <workItem from="1707813457545" duration="12946000" />
-      <workItem from="1707844436177" duration="1686000" />
+      <workItem from="1707844436177" duration="2155000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>
@@ -181,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707579881666</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="mise a jour javadoc">
+      <option name="closed" value="true" />
+      <created>1707846160557</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707846160557</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +255,8 @@
     <MESSAGE value="idea files" />
     <MESSAGE value="Upate Design &amp; WindowsHeader&#10;Patch Bug&#10;Bug connue au niveau du resize sur la hauteur" />
     <MESSAGE value="Upate Design menu&#10;Patch Bug resize sur hauteur" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upate Design menu&#10;Patch Bug resize sur hauteur" />
+    <MESSAGE value="mise a jour javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="mise a jour javadoc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

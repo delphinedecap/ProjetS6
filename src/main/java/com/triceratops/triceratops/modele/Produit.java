@@ -21,13 +21,13 @@ public class Produit {
     private String unite; // Remplacer éventuellement par un enum
 
     /**
-     * constructeur par defaut
+     * Constructeur par defaut du produit
      */
     public Produit() {
     }
 
     /**
-     *
+     * Constructeur
      * @param quantite : quantité actuelle du produit
      * @param code : code générique du produit
      * @param nom : nom du produit
@@ -45,7 +45,7 @@ public class Produit {
     }
 
     /**
-     * methode toString
+     * Methode toString
      * @return la descrition du produit
      */
     @Override
@@ -69,7 +69,7 @@ public class Produit {
     }
 
     /**
-     * met à jour la quantité du produit
+     * Met à jour la quantité du produit
      * @param quantite : nouvelle quantité du produit
      */
     public void setQuantite(int quantite) {
