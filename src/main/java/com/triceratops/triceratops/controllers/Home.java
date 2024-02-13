@@ -28,7 +28,7 @@ public class Home implements Initializable {
     private MFXTableView<Produit> table;
 
     /**
-     * Permet d'initialiser une page à partir d'un url et d'un ressourceBundle
+     * Permet d'initialiser une page d'accueil à partir d'un url et d'un ressourceBundle
      *
      * @param url
      * @param resourceBundle
@@ -42,7 +42,7 @@ public class Home implements Initializable {
     }
 
     /**
-     * Permet de créer un tableau avec les données
+     * Permet de créer un tableau avec les données correspondant aux différents produits et leurs stocks associés
      */
     private void setupTable() {
         MFXTableColumn<Produit> codeColumn = new MFXTableColumn<>("Code", false, Comparator.comparing(Produit::getCode));
@@ -78,6 +78,10 @@ public class Home implements Initializable {
         table.setItems(observableList);
     }
 
+    /**
+     * Permet de changer de page pour se rendre sur l'onglet simulateur
+     * @param event clic sur l'onglet simulateur
+     */
     public void simulateur(ActionEvent event) {
         NavigationUtils.goTo("Simulateur");
     }

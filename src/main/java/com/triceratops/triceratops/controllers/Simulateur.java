@@ -24,6 +24,12 @@ import static com.triceratops.triceratops.persistance.InterfacePersistance.deser
 public class Simulateur implements Initializable {
     public TableView tableSimu;
 
+    /**
+     * Permet d'initialiser la page du simulateur à partir d'un url et d'un ressourceBundle
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //tableSimu.autosizeColumnsOnInitialization();
@@ -32,6 +38,9 @@ public class Simulateur implements Initializable {
         //tableSimu.setFooterVisible(false);
     }
 
+    /**
+     * Permet de créer un tableau avec les données correspondant aux différentes chaines de production
+     */
     private void setupTable() {
         TableColumn<LigneSimu, String> codeColumn = new TableColumn<>("Code");
         codeColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("codeProduit"));
@@ -148,11 +157,5 @@ public class Simulateur implements Initializable {
         tableSimu.setItems(observableList);*/
         tableSimu.setItems(FXCollections.observableArrayList(data));
     }
-
-    // recuperer produit + chaine prod
-    // creer hmap
-    // pour chaque chaine avoir produit, quantite ...
-
-
 
 }

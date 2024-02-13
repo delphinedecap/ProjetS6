@@ -18,13 +18,19 @@ public class LigneSimu {
 
     private boolean espace,modeProd;
 
+    /**
+     * constructeur d'une ligne de simulation
+     */
     public  LigneSimu(){
         espace = true;
     }
 
-    /*
-       Constructeur Produit
-    */
+    /**
+     * Constructeur d'une ligne de simulation
+     * @param p produit de la ligne
+     * @param quantite quantité de produit nécéssaire
+     * @param marge marge realisé
+     */
     public  LigneSimu(Produit p, int quantite, float marge){
         this.codeProduit = p.getCode();
         //Stock de l'objet produit pour changer les autres
@@ -40,9 +46,13 @@ public class LigneSimu {
         this.production = -1;
     }
 
-    /*
-       Constructeur Chaine de production
-    */
+    /**
+     * Constructeur d'une ligne correspondant à une chaine de production
+     * @param map
+     * @param p produit de la ligne
+     * @param quantite quantité de produit nécéssaire
+     * @param marge marge realisé
+     */
     public  LigneSimu(Produit p, HashMap<LigneSimu,Integer> map , int quantite, float marge){
         this(p, quantite, marge);
         this.mapProduitChaine = map;
@@ -50,10 +60,18 @@ public class LigneSimu {
         this.modeProd = true;
     }
 
+    /**
+     *
+     * @return Produit de la ligne de simulation
+     */
     public Produit getP() {
         return p;
     }
 
+    /**
+     *
+     * @return variation du stock
+     */
     public String getVariation() {
         if(espace){
             return "";
@@ -61,10 +79,18 @@ public class LigneSimu {
         return variation+"";
     }
 
+    /**
+     * Met à jour la variation
+     * @param variation
+     */
     public void setVariation(int variation) {
         this.variation = variation;
     }
 
+    /**
+     * Met à jour la production
+     * @param production
+     */
     public void setProduction(int production) {
         //Vérification que c'est une chaine de prod
         if(modeProd && production >= 0){
@@ -83,6 +109,10 @@ public class LigneSimu {
         }
     }
 
+    /**
+     *
+     * @return code du produit de la ligne
+     */
     public String getCodeProduit() {
         if(espace){
             return "";
@@ -90,6 +120,10 @@ public class LigneSimu {
         return codeProduit;
     }
 
+    /**
+     *
+     * @return quantité du produit de la ligne
+     */
     public String getQuantite() {
         if(espace){
             return "";
@@ -98,7 +132,10 @@ public class LigneSimu {
     }
 
 
-
+    /**
+     *
+     * @return stock total du produit
+     */
     public String getStockTotal() {
         if(espace){
             return "";
@@ -106,6 +143,11 @@ public class LigneSimu {
         return p.getQuantite()+"";
     }
 
+    /**
+     * Met a jour le stock
+     * @param qte
+     * @param nombre
+     */
     public void setStock(int qte, int nombre) {
         this.variation = nombre;
         this.stock = qte+nombre;
@@ -119,6 +161,10 @@ public class LigneSimu {
         return stock+"";
     }
 
+    /**
+     *
+     * @return nombre de produits produit
+     */
     public String getProduction() {
         if(espace || !modeProd) {
             return "";
@@ -126,6 +172,10 @@ public class LigneSimu {
         return production+"";
     }
 
+    /**
+     *
+     * @return cout unitaire de la production
+     */
     public String getCoutUnit() {
         if(espace){
             return "";
@@ -133,6 +183,10 @@ public class LigneSimu {
         return coutUnit+"";
     }
 
+    /**
+     *
+     * @return marge de la production
+     */
     public String getMarge() {
         if(espace){
             return "";
