@@ -19,6 +19,16 @@ public class StockProduit {
         stock.add(p);
     }
 
+    public Produit getProduit(String code){
+        for (Produit p:stock){
+            if (p.getCode().equals(code)){
+                return p;
+            }
+        }
+
+        return null;
+    }
+
     public Produit remove(String code){
         for (Produit p:stock){
             if (p.getCode().equals(code)){

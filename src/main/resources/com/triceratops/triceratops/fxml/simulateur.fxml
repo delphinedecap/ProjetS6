@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+
+<?import javafx.scene.control.TableView?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@../css/simulateur.css"
             fx:controller="com.triceratops.triceratops.controllers.Simulateur"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="550.0" prefWidth="1200.0" styleClass="simulateur"
+>
 
-    <Label text="simu ..."/>
-
+    <TableView fx:id="tableSimu" prefWidth="800" prefHeight="300"
+                  AnchorPane.topAnchor="5" AnchorPane.bottomAnchor="5"
+                  AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5"
+    >
+    </TableView>
 </AnchorPane>

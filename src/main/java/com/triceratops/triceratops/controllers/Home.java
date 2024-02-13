@@ -5,6 +5,7 @@ import com.triceratops.triceratops.modele.Produit;
 import com.triceratops.triceratops.modele.StockProduit;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.filter.IntegerFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
@@ -35,7 +36,7 @@ public class Home implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        table.autosizeColumnsOnInitialization();
+        //table.autosizeColumnsOnInitialization();
         setupTable();
         table.setFooterVisible(false);
     }
@@ -51,6 +52,14 @@ public class Home implements Initializable {
         codeColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getCode));
         nomColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getNom));
         quantiteColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getQuantite));
+        /*quantiteColumn.setRowCellFactory(produit -> {
+            MFXTableRowCell rowCell = new MFXTableRowCell<>(null);
+            MFXTextField text = new MFXTextField(produit.getQuantite()+"");
+            rowCell.setGraphic(text);
+            return rowCell;
+        });*/
+
+        //    <MFXTextField floatMode="DISABLED" promptText="No Floating Text" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
 
         codeColumn.setAlignment(Pos.CENTER);
         nomColumn.setAlignment(Pos.CENTER);

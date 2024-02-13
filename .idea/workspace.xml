@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="Upate Design &amp; WindowsHeader&#10;Patch Bug&#10;Bug connue au niveau du resize sur la hauteur">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/utils/NavigationUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/utils/ToggleNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/simulateur.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="Upate Design menu&#10;Patch Bug resize sur hauteur">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/simulateur.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/root.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/root.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/StockProduit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/StockProduit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/simulateur.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/simulateur.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +46,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -84,7 +77,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.qodana&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -96,6 +89,7 @@
       <recent name="com.triceratops.triceratops" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.triceratops.triceratops.controllers" />
       <recent name="com.triceratops.triceratops" />
     </key>
   </component>
@@ -122,6 +116,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-18.0.2-corretto-18.0.2-3183f394aec4-38982a12" />
         <option value="jdk-19.0.2-corretto-19.0.2-3183f394aec4-f0552fc0" />
         <option value="jdk-19.0.2-corretto-19.0.2-f644763e9732-1e16d6ec" />
         <option value="jdk-21.0.1-liberica-21.0.1-3183f394aec4-a11a7b3b" />
@@ -154,7 +149,13 @@
       <workItem from="1707388295025" duration="7804000" />
       <workItem from="1707486122653" duration="20984000" />
       <workItem from="1707558071810" duration="7941000" />
-      <workItem from="1707566047159" duration="9410000" />
+      <workItem from="1707566047159" duration="9477000" />
+      <workItem from="1707579950513" duration="686000" />
+      <workItem from="1707603025957" duration="138000" />
+      <workItem from="1707729062472" duration="122000" />
+      <workItem from="1707745754794" duration="603000" />
+      <workItem from="1707748191608" duration="28312000" />
+      <workItem from="1707813457545" duration="12946000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>
@@ -171,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707523902522</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Upate Design menu&#10;Patch Bug resize sur hauteur">
+      <option name="closed" value="true" />
+      <created>1707579881666</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707579881666</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +235,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="idea files" />
     <MESSAGE value="Upate Design &amp; WindowsHeader&#10;Patch Bug&#10;Bug connue au niveau du resize sur la hauteur" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upate Design &amp; WindowsHeader&#10;Patch Bug&#10;Bug connue au niveau du resize sur la hauteur" />
+    <MESSAGE value="Upate Design menu&#10;Patch Bug resize sur hauteur" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upate Design menu&#10;Patch Bug resize sur hauteur" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
