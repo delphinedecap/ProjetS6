@@ -11,6 +11,8 @@ public class LigneSimu {
 
     private HashMap<LigneSimu,Integer> mapProduitChaine;
 
+    private ArrayList<LigneSimu> arraySomme;
+
     private int quantite, stock;
 
     private int variation, production;
@@ -60,14 +62,11 @@ public class LigneSimu {
         this.modeSomme = true;
         this.marge = 0;
 
+        data.remove(this);
 
+        this.arraySomme = data;
 
-        for (LigneSimu ligneSimu:data){
-            if(ligneSimu.modeProd){
-                System.out.println(ligneSimu);
-                marge += ligneSimu.marge;
-            }
-        }
+        calculSomme();
     }
 
 
@@ -159,10 +158,13 @@ public class LigneSimu {
         if(espace){
             return "";
         }
+        if(modeSomme){
+            calculSomme();
+        }
         return marge+"";
     }
 
-    private float calculMarge(){
+    private void calculMarge(){
         float marge, prixTotalP = 0;
 
         for (Map.Entry<LigneSimu,Integer> e : mapProduitChaine.entrySet()){
@@ -173,7 +175,15 @@ public class LigneSimu {
         marge = (p.getpVente() - prixTotalP)*this.production;
 
         this.marge=marge;
+    }
 
-        return marge;
+    private void calculSomme(){
+        marge = 0;
+        for (LigneSimu ligneSimu:this.arraySomme){
+            if(ligneSimu.modeProd){
+                System.out.println(ligneSimu);
+                marge += ligneSimu.marge;
+            }
+        }
     }
 }

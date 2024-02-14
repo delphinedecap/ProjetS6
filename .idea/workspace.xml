@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="Update Design menu&#10;Add Simulateur">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Acheter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Vendre.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/acheter.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/vendre.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/simulateur.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/simulateur.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +30,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
