@@ -17,7 +17,7 @@ public class ChaineProduction {
 
     /**
      * constructeur de la chaine de production
-     * @param produitOut produit créer par la chaine de production
+     * @param produitOut produit créé par la chaine de production
      */
     public ChaineProduction(Produit produitOut) {
         this.produitOut = produitOut;
@@ -28,8 +28,8 @@ public class ChaineProduction {
 
     /**
      * constructeur de la chaine de production
-     * @param produitOut produit créer par la chaine de production
-     * @param produitIn liste des produits nécessaire pour le fonctionnement de la chaine de production
+     * @param produitOut produit créé par la chaine de production
+     * @param produitIn liste des produits nécessaires pour le fonctionnement de la chaine de production
      */
     @JsonCreator
     public ChaineProduction(@JsonProperty("ProduitIn") Map<String, Integer> produitIn,
