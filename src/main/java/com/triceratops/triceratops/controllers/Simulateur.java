@@ -142,13 +142,15 @@ public class Simulateur implements Initializable {
                     //Produit introuvable
                 }
             }
-
+            /*
             Produit pOut = stockProduit.getProduit(chaineProduction.getProduitOut().getCode());
 
             //new LigneSimu de chaine de prod
             data.add(new LigneSimu(pOut, mapProduitChaine,1, 0f));
             //data.add(new LigneSimu(chaineProduction, 1, 0f));
             data.add(new LigneSimu());
+
+             */
         }
 
         // Somme / Dernière ligne

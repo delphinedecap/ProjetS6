@@ -1,5 +1,8 @@
 package com.triceratops.triceratops;
 
+import com.triceratops.triceratops.modele.ChaineProduction;
+import com.triceratops.triceratops.modele.Prix;
+import com.triceratops.triceratops.modele.Produit;
 import io.github.palexdev.materialfx.theming.JavaFXThemes;
 import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
 import io.github.palexdev.materialfx.theming.UserAgentBuilder;
@@ -13,6 +16,11 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeFromFile;
+import static com.triceratops.triceratops.persistance.InterfacePersistance.serializeToFile;
 
 public class HelloApplication extends Application {
     /**
@@ -55,39 +63,57 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
 
-        /*
+
 
         // TERRAIN DE JEU POUR COMPRENDRE LA PERSISTANCE (SERIALIZATION/DESERIALIZATION)
-        ArrayList<Produit> produitsTest = new ArrayList<>();
+
         Produit p1 = new Produit(20,"TEST1","produit1",10,20,"kg");
         Produit p2 = new Produit(20,"TEST2","produit2",5,10,"L");
         Produit p3 = new Produit(30,"TEST3","produit3",10,30,"Kg");
         Produit p4 = new Produit(30,"TEST4","produit4",60,80,"Kg");
+        ArrayList<Produit> produitsTest = new ArrayList<>();
         produitsTest.add(p1);produitsTest.add(p2);produitsTest.add(p3);produitsTest.add(p4);
 
+        HashMap<String, Integer>produitIn = new HashMap<>();
+        HashMap<String, Integer>produitOut = new HashMap<>();
+        produitIn.put(p1.getCode(),5);
+        produitIn.put(p2.getCode(),1);
+        produitOut.put(p3.getCode(),1);
+        ChaineProduction chaineProd1 = new ChaineProduction("CH-TEST1","chaine test 1",produitIn,produitOut);
+
+        HashMap<String, Integer>produitIn2 = new HashMap<>();
+        HashMap<String, Integer>produitOut2 = new HashMap<>();
+        produitIn2.put(p2.getCode(),5);
+        produitIn2.put(p3.getCode(),1);
+        produitOut2.put(p4.getCode(),1);
+        produitOut2.put(p1.getCode(),2);
+        ChaineProduction chaineProd2 = new ChaineProduction("CH-TEST2","chaine test 2",produitIn2,produitOut2);
 
         ArrayList<ChaineProduction> chainesTest = new ArrayList<>();
-        ChaineProduction chaineProd1 = new ChaineProduction(p3);
-        chaineProd1.getProduitIn().put(p1.getCode(),5);
-        chaineProd1.getProduitIn().put(p2.getCode(),1);
-        ChaineProduction chaineProd2 = new ChaineProduction(p4);
-        chaineProd2.getProduitIn().put(p3.getCode(),2);
-        chaineProd2.getProduitIn().put(p1.getCode(),1);
-        chaineProd2.getProduitIn().put(p2.getCode(),10);
         chainesTest.add(chaineProd1); chainesTest.add(chaineProd2);
+
+        Prix prixP1 = new Prix(p1.getCode(),12.7, -1,0);
+        Prix prixP2 = new Prix(p2.getCode(),12.7, -1,0);
+        Prix prixP3 = new Prix(p3.getCode(),-1, 124.99,30);
+        Prix prixP4 = new Prix(p4.getCode(),-1, 199.99,62);
+
+        ArrayList<Prix> prices = new ArrayList<>();
+        prices.add(prixP1); prices.add(prixP2); prices.add(prixP3); prices.add(prixP4);
 
         //      SERIALIZATION
         //addToFile(test,Produit.class,"produit.json");
         serializeToFile(produitsTest,"produit.json");
         serializeToFile(chainesTest, "chaine.json");
+        serializeToFile(prices, "prix.json");
         //      DESERIALIZATION
         ArrayList<Produit> resultTestProduit = deserializeFromFile(Produit.class, "produit.json");
         ArrayList<ChaineProduction> resultTestChaine = deserializeFromFile(ChaineProduction.class, "chaine.json");
-        System.out.println(resultTestChaine);
+        ArrayList<Prix> resutlTestPrix = deserializeFromFile(Prix.class, "prix.json");
+        System.out.println(resultTestProduit);
 
-        */
 
-        launch();
+
+        //launch();
     }
 
 }

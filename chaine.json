@@ -1,28 +1,22 @@
 [ {
-  "ProduitIn" : {
+  "code" : "CH-TEST1",
+  "nom" : "chaine test 1",
+  "produitIn" : {
     "TEST2" : 1,
     "TEST1" : 5
   },
   "produitOut" : {
-    "code" : "TEST3",
-    "nom" : "produit3",
-    "quantite" : 30,
-    "pAchat" : 10.0,
-    "pVente" : 30.0,
-    "unite" : "Kg"
+    "TEST3" : 1
   }
 }, {
-  "ProduitIn" : {
-    "TEST2" : 10,
-    "TEST3" : 2,
-    "TEST1" : 1
+  "code" : "CH-TEST2",
+  "nom" : "chaine test 2",
+  "produitIn" : {
+    "TEST2" : 5,
+    "TEST3" : 1
   },
   "produitOut" : {
-    "code" : "TEST4",
-    "nom" : "produit4",
-    "quantite" : 30,
-    "pAchat" : 60.0,
-    "pVente" : 80.0,
-    "unite" : "Kg"
+    "TEST4" : 1,
+    "TEST1" : 2
   }
 } ]

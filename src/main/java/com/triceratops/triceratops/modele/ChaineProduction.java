@@ -9,31 +9,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ChaineProduction {
-
-    @JsonProperty("ProduitIn")
+    @JsonProperty("code")
+    private String code;
+    @JsonProperty("nom")
+    private String nom;
+    @JsonProperty("produitIn")
     private Map<String, Integer> produitIn = new HashMap<>();
     @JsonProperty("produitOut")
-    private Produit produitOut;
+    private Map<String, Integer> produitOut = new HashMap<>();
 
-    /**
-     * constructeur de la chaine de production
-     * @param produitOut produit créé par la chaine de production
-     */
-    public ChaineProduction(Produit produitOut) {
-        this.produitOut = produitOut;
-    }
 
-    public ChaineProduction() {
-    }
 
-    /**
-     * constructeur de la chaine de production
-     * @param produitOut produit créé par la chaine de production
-     * @param produitIn liste des produits nécessaires pour le fonctionnement de la chaine de production
-     */
-    @JsonCreator
-    public ChaineProduction(@JsonProperty("ProduitIn") Map<String, Integer> produitIn,
-                            @JsonProperty("produitOut") Produit produitOut) {
+    public ChaineProduction(String code, String nom, Map<String, Integer> produitIn, Map<String, Integer> produitOut) {
+        this.code = code;
+        this.nom = nom;
         this.produitIn = produitIn;
         this.produitOut = produitOut;
     }
@@ -43,15 +32,24 @@ public class ChaineProduction {
      * @return Liste des produits et des quantités nécessaires à la chaine de production
      */
     public Map<String, Integer> getProduitIn() {
-        return produitIn;
+        return this.produitIn;
     }
 
     /**
      *
-     * @return produit final produit par la chaine de production
+     * @return liste des produits finis produis par la chaine de production
      */
-    public Produit getProduitOut() {
-        return produitOut;
+    public Map<String, Integer> getProduitOut() {
+        return this.produitOut;
+    }
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     /**
@@ -64,9 +62,9 @@ public class ChaineProduction {
 
     /**
      * Permet de modifier le produit en sortie de la chaine de production
-     * @param produitOut : produit créé par la chaine de production
+     * @param produitOut : liste de produits créés par la chaine de production
      */
-    public void setProduitOut(Produit produitOut) {
+    public void setProduitOut(Map<String, Integer> produitOut) {
         this.produitOut = produitOut;
     }
 }

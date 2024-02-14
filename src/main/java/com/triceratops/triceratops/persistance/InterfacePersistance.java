@@ -30,7 +30,7 @@ public class InterfacePersistance {
     /**
      * Retourne une liste contenant les données stockées en persistance
      * @param type type des données
-     * @param path fichier utilisé par la pêrsistance
+     * @param path fichier utilisé par la persistance
      * @return liste des données stockées
      */
     public static <T> ArrayList<T> deserializeFromFile(Class<T> type,String path) {
