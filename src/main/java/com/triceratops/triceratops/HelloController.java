@@ -220,6 +220,8 @@ public class HelloController {
         MFXLoader loader = new MFXLoader();
         loader.addView(MFXLoaderBean.of("Accueil", loadURL("fxml/home.fxml")).setBeanToNodeMapper(() -> createToggle("Accueil")).setDefaultRoot(true).get());
         loader.addView(MFXLoaderBean.of("Simulateur", loadURL("fxml/simulateur.fxml")).setBeanToNodeMapper(() -> createToggle("Simulateur")).get());
+        loader.addView(MFXLoaderBean.of("Vendre", loadURL("fxml/vendre.fxml")).setBeanToNodeMapper(() -> createToggle("Vendre")).get());
+        loader.addView(MFXLoaderBean.of("Acheter", loadURL("fxml/acheter.fxml")).setBeanToNodeMapper(() -> createToggle("Acheter")).get());
         //loader.addView(MFXLoaderBean.of("Simulateur", loadURL("fxml/simu.fxml")).setBeanToNodeMapper(() -> createToggle("Simulateur")).get());
 
         loader.addView(MFXLoaderBean.of("A propos", loadURL("fxml/about.fxml")).setBeanToNodeMapper(() -> createToggle("A propos")).get());

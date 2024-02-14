@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="Upate Design menu&#10;Patch Bug resize sur hauteur">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/simulateur.css" afterDir="false" />
+    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="Update Design menu&#10;Add Simulateur">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Acheter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Vendre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/acheter.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/vendre.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/StockProduit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/StockProduit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/simulateur.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/fxml/simulateur.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/LigneSimu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/root.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/simulateur.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/triceratops/triceratops/css/simulateur.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +68,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev-jeremy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev-unstable&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/JérémyPatapy/IdeaProjects/ProjetS6/src/main/resources/com/triceratops/triceratops/img&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -156,6 +159,10 @@
       <workItem from="1707745754794" duration="603000" />
       <workItem from="1707748191608" duration="28312000" />
       <workItem from="1707813457545" duration="12946000" />
+      <workItem from="1707845196111" duration="215000" />
+      <workItem from="1707845629962" duration="1896000" />
+      <workItem from="1707860134413" duration="2733000" />
+      <workItem from="1707901671945" duration="275000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>

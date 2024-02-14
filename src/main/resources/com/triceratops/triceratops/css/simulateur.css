@@ -8,7 +8,7 @@
 }
 
 #tableSimu.table-view{
-    -fx-background-color: #0000;
+    -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 

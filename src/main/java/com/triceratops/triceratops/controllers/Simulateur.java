@@ -113,7 +113,7 @@ public class Simulateur implements Initializable {
         //tableSimu.getColumnResizePolicy();
 
         StockProduit stockProduit = new StockProduit(deserializeFromFile(Produit.class, "produit.json"));
-        System.out.println(stockProduit);
+        //System.out.println(stockProduit);
         ArrayList<ChaineProduction> stockChaineP = deserializeFromFile(ChaineProduction.class, "chaine.json");
         //ObservableList<Produit> observableList = FXCollections.observableArrayList(stockProduit.getStock());
 
@@ -141,6 +141,9 @@ public class Simulateur implements Initializable {
             //data.add(new LigneSimu(chaineProduction, 1, 0f));
             data.add(new LigneSimu());
         }
+
+        // Somme / Dernière ligne
+        data.add(new LigneSimu(data));
 
 
         /*ObservableList<LigneSimu> observableList = FXCollections.observableArrayList(data);

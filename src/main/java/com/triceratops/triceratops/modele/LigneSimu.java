@@ -1,5 +1,6 @@
 package com.triceratops.triceratops.modele;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,17 +15,18 @@ public class LigneSimu {
 
     private int variation, production;
 
-    private float coutUnit, marge;
+    private float coutUnit;
+    private float marge;
 
-    private boolean espace,modeProd;
+    private boolean espace, modeProd, modeSomme;
 
     public  LigneSimu(){
         espace = true;
     }
 
     /*
-       Constructeur Produit
-    */
+           Constructeur Produit
+        */
     public  LigneSimu(Produit p, int quantite, float marge){
         this.codeProduit = p.getCode();
         //Stock de l'objet produit pour changer les autres
@@ -48,14 +50,33 @@ public class LigneSimu {
         this.mapProduitChaine = map;
         this.production = 0;
         this.modeProd = true;
+
+        this.calculMarge();
     }
+
+
+    public  LigneSimu( ArrayList<LigneSimu> data ){
+        this.codeProduit = "Somme";
+        this.modeSomme = true;
+        this.marge = 0;
+
+
+
+        for (LigneSimu ligneSimu:data){
+            if(ligneSimu.modeProd){
+                System.out.println(ligneSimu);
+                marge += ligneSimu.marge;
+            }
+        }
+    }
+
 
     public Produit getP() {
         return p;
     }
 
     public String getVariation() {
-        if(espace){
+        if(espace || modeSomme){
             return "";
         }
         return variation+"";
@@ -80,6 +101,7 @@ public class LigneSimu {
 
             this.variation-=variation;
             this.setStock(Integer.parseInt(this.getStockTotal()),-variation);
+            this.calculMarge();
         }
     }
 
@@ -91,7 +113,7 @@ public class LigneSimu {
     }
 
     public String getQuantite() {
-        if(espace){
+        if(espace || modeSomme){
             return "";
         }
         return quantite+"";
@@ -100,7 +122,7 @@ public class LigneSimu {
 
 
     public String getStockTotal() {
-        if(espace){
+        if(espace || modeSomme){
             return "";
         }
         return p.getQuantite()+"";
@@ -109,7 +131,7 @@ public class LigneSimu {
     public void setStock(int qte, int nombre) {
         this.variation = nombre;
         this.stock = qte+nombre;
-        p.setQuantite(qte+nombre);
+        //p.setQuantite(qte+nombre);
     }
 
     public String getStockUtilise() {
@@ -127,7 +149,7 @@ public class LigneSimu {
     }
 
     public String getCoutUnit() {
-        if(espace){
+        if(espace || modeSomme){
             return "";
         }
         return coutUnit+"";
@@ -138,5 +160,20 @@ public class LigneSimu {
             return "";
         }
         return marge+"";
+    }
+
+    private float calculMarge(){
+        float marge, prixTotalP = 0;
+
+        for (Map.Entry<LigneSimu,Integer> e : mapProduitChaine.entrySet()){
+            LigneSimu p = e.getKey();
+            prixTotalP+= p.coutUnit*e.getValue();
+        }
+
+        marge = (p.getpVente() - prixTotalP)*this.production;
+
+        this.marge=marge;
+
+        return marge;
     }
 }
