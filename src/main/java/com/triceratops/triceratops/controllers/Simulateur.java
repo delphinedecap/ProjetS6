@@ -1,25 +1,20 @@
 package com.triceratops.triceratops.controllers;
 
 import com.triceratops.triceratops.modele.ChaineProduction;
-import com.triceratops.triceratops.modele.LigneSimu;
 import com.triceratops.triceratops.modele.Produit;
-import com.triceratops.triceratops.modele.StockProduit;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.*;
 
 import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeFromFile;
+import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeWithKeyFromFile;
 
 public class Simulateur implements Initializable {
     public TableView tableSimu;
@@ -42,6 +37,10 @@ public class Simulateur implements Initializable {
      * Permet de créer un tableau avec les données correspondant aux différentes chaines de production
      */
     private void setupTable() {
+
+
+
+
         TableColumn<LigneSimu, String> codeColumn = new TableColumn<>("Code");
         codeColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("codeProduit"));
         codeColumn.setSortable(false);
@@ -121,7 +120,7 @@ public class Simulateur implements Initializable {
 
         //tableSimu.getColumnResizePolicy();
 
-        StockProduit stockProduit = new StockProduit(deserializeFromFile(Produit.class, "produit.json"));
+        HashMap<String,Produit> stockProduit = deserializeWithKeyFromFile(Produit.class, "produit.json","getCode");
         //System.out.println(stockProduit);
         ArrayList<ChaineProduction> stockChaineP = deserializeFromFile(ChaineProduction.class, "chaine.json");
         //ObservableList<Produit> observableList = FXCollections.observableArrayList(stockProduit.getStock());
@@ -133,7 +132,7 @@ public class Simulateur implements Initializable {
             HashMap<LigneSimu,Integer> mapProduitChaine = new HashMap<>();
 
             for (Map.Entry<String,Integer> e : chaineProduction.getProduitIn().entrySet()){
-                Produit p = stockProduit.getProduit(e.getKey());
+                Produit p = stockProduit.get(e.getKey());
                 if(p != null){
                     LigneSimu ligneSimu = new LigneSimu(p,e.getValue(),0f);
                     data.add(ligneSimu);

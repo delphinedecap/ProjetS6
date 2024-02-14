@@ -1,29 +1,21 @@
 [ {
-  "code" : "TEST1",
-  "nom" : "produit1",
+  "code" : "CBU",
+  "nom" : "Combustible usée",
   "quantite" : 20,
-  "pAchat" : 10.0,
-  "pVente" : 20.0,
   "unite" : "kg"
 }, {
-  "code" : "TEST2",
-  "nom" : "produit2",
+  "code" : "UAE",
+  "nom" : "Uranium enrichie",
   "quantite" : 20,
-  "pAchat" : 5.0,
-  "pVente" : 10.0,
-  "unite" : "L"
-}, {
-  "code" : "TEST3",
-  "nom" : "produit3",
-  "quantite" : 30,
-  "pAchat" : 10.0,
-  "pVente" : 30.0,
   "unite" : "Kg"
 }, {
-  "code" : "TEST4",
-  "nom" : "produit4",
+  "code" : "CBR",
+  "nom" : "Combustible ready",
   "quantite" : 30,
-  "pAchat" : 60.0,
-  "pVente" : 80.0,
   "unite" : "Kg"
+}, {
+  "code" : "ENR",
+  "nom" : "Energie",
+  "quantite" : 30,
+  "unite" : "kJ"
 } ]

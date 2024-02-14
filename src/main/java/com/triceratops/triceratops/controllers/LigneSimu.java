@@ -1,4 +1,6 @@
-package com.triceratops.triceratops.modele;
+package com.triceratops.triceratops.controllers;
+
+import com.triceratops.triceratops.modele.Produit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +41,7 @@ public class LigneSimu {
         //Qte dispo
         this.stock = p.getQuantite();
 
-        this.coutUnit = p.getpAchat();
+        //this.coutUnit = p.getpAchat();
         this.marge = marge;
         this.production = -1;
     }
@@ -130,7 +132,7 @@ public class LigneSimu {
     public void setStock(int qte, int nombre) {
         this.variation = nombre;
         this.stock = qte+nombre;
-        //p.setQuantite(qte+nombre);
+        p.setQuantite(qte+nombre);
     }
 
     public String getStockUtilise() {
@@ -172,9 +174,9 @@ public class LigneSimu {
             prixTotalP+= p.coutUnit*e.getValue();
         }
 
-        marge = (p.getpVente() - prixTotalP)*this.production;
+        //marge = (p.getpVente() - prixTotalP)*this.production;
 
-        this.marge=marge;
+        //this.marge=marge;
     }
 
     private void calculSomme(){

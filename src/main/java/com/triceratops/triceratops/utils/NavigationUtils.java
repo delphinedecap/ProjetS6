@@ -23,6 +23,8 @@ public class NavigationUtils {
         contentPane.getChildren().setAll(toggleNode.node());
     }
 
+
+
     public static void goHome() {
         contentPane.getChildren().setAll(listView.get("Accueil").node());
     }

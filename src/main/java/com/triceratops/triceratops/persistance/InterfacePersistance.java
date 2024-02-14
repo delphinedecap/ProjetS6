@@ -5,7 +5,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 
 public class InterfacePersistance {
@@ -44,6 +50,25 @@ public class InterfacePersistance {
         }
     }
 
+    public static <K, T> HashMap<K,T> deserializeWithKeyFromFile(Class<T> type, String path,
+                                                                   String getterKey) {
+        ArrayList<T> resultArrayList = deserializeFromFile(type,path);
+        HashMap<K,T> resultHash = new HashMap<K, T>();
+
+        for (T t : resultArrayList) {
+            try {
+                K key = (K) type.getMethod(getterKey).invoke(t);
+                resultHash.put(key, t);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return resultHash;
+    }
 
     /**
      * Permet de mettre à jour un fichier à partir d'une liste de nouvelles entrées

@@ -1,22 +1,22 @@
 [ {
-  "code" : "CH-TEST1",
-  "nom" : "chaine test 1",
+  "code" : "FABCBR",
+  "nom" : "Production de combustible nucléaire",
   "produitIn" : {
-    "TEST2" : 1,
-    "TEST1" : 5
+    "CBU" : 1,
+    "UAE" : 5
   },
   "produitOut" : {
-    "TEST3" : 1
+    "CBR" : 6
   }
 }, {
-  "code" : "CH-TEST2",
-  "nom" : "chaine test 2",
+  "code" : "FISSIV",
+  "nom" : "Fission réacteur Gen IV",
   "produitIn" : {
-    "TEST2" : 5,
-    "TEST3" : 1
+    "CBR" : 1,
+    "UAE" : 5
   },
   "produitOut" : {
-    "TEST4" : 1,
-    "TEST1" : 2
+    "CBU" : 2,
+    "ENR" : 100
   }
 } ]

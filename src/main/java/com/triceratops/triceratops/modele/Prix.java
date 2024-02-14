@@ -12,6 +12,9 @@ public class Prix {
     @JsonProperty("quantiteCommande")
     private int quantiteCommande;
 
+    public Prix() {
+    }
+
     public Prix(String code, double pAchat, double pVente, int quantiteCommande) {
         this.code = code;
         this.pAchat = pAchat;
@@ -49,5 +52,15 @@ public class Prix {
 
     public void setpVente(double pVente) {
         this.pVente = pVente;
+    }
+
+    @Override
+    public String toString() {
+        return "Prix{" +
+                "code='" + code + '\'' +
+                ", pAchat=" + pAchat +
+                ", pVente=" + pVente +
+                ", quantiteCommande=" + quantiteCommande +
+                '}';
     }
 }

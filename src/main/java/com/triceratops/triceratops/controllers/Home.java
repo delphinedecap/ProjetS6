@@ -1,11 +1,10 @@
 package com.triceratops.triceratops.controllers;
 
+import com.triceratops.triceratops.persistance.FileException;
 import com.triceratops.triceratops.utils.NavigationUtils;
 import com.triceratops.triceratops.modele.Produit;
-import com.triceratops.triceratops.modele.StockProduit;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.filter.IntegerFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
@@ -17,9 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
+import static com.triceratops.triceratops.modele.DataSet.*;
 import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeFromFile;
 
 public class Home implements Initializable {
@@ -37,6 +38,17 @@ public class Home implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //table.autosizeColumnsOnInitialization();
+
+        //Il faudra demander a l'utilisateur de saisir le nom des fichiers qu'il souhaite utiliser
+        String fichierProduit = "produit.json";
+        String fichierPrix = "prix.json";
+        String fichierChaine = "chaine.json";
+        try {
+            extractDataset(fichierProduit,fichierPrix,fichierChaine);
+        } catch (FileException e) {
+            throw new RuntimeException(e);
+        }
+
         setupTable();
         table.setFooterVisible(false);
     }
@@ -52,6 +64,9 @@ public class Home implements Initializable {
         codeColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getCode));
         nomColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getNom));
         quantiteColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getQuantite));
+
+        //ON FAIT QUOI DE CA ?? :
+
         /*quantiteColumn.setRowCellFactory(produit -> {
             MFXTableRowCell rowCell = new MFXTableRowCell<>(null);
             MFXTextField text = new MFXTextField(produit.getQuantite()+"");
@@ -72,9 +87,7 @@ public class Home implements Initializable {
                 new IntegerFilter<>("Quantite", Produit::getQuantite)
         );
 
-        StockProduit stockProduit = new StockProduit(deserializeFromFile(Produit.class, "produit.json"));
-        ObservableList<Produit> observableList = FXCollections.observableArrayList(stockProduit.getStock());
-
+        ObservableList<Produit> observableList = FXCollections.observableArrayList(getProduits().values());
         table.setItems(observableList);
     }
 

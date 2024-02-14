@@ -1,21 +1,21 @@
 [ {
-  "code" : "TEST1",
+  "code" : "CBU",
   "pAchat" : 12.7,
   "pVente" : -1.0,
   "quantiteCommande" : 0
 }, {
-  "code" : "TEST2",
-  "pAchat" : 12.7,
+  "code" : "UAE",
+  "pAchat" : 90.5,
   "pVente" : -1.0,
   "quantiteCommande" : 0
 }, {
-  "code" : "TEST3",
+  "code" : "CBR",
   "pAchat" : -1.0,
-  "pVente" : 124.99,
+  "pVente" : 244.92,
   "quantiteCommande" : 30
 }, {
-  "code" : "TEST4",
+  "code" : "ENR",
   "pAchat" : -1.0,
-  "pVente" : 199.99,
-  "quantiteCommande" : 62
+  "pVente" : -1.0,
+  "quantiteCommande" : 0
 } ]

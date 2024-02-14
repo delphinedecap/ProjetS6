@@ -13,4 +13,6 @@
 
             <Label text="Acheter ...."/>
 
+    <VBox fx:id="boxTab"/>
+
 </AnchorPane>

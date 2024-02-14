@@ -12,5 +12,6 @@ module com.triceratops.triceratops {
 
     exports com.triceratops.triceratops;
     exports com.triceratops.triceratops.modele;
-    exports com.triceratops.triceratops.controllers; // Ajoutez cette ligne pour exporter le package avec la classe Home
+    exports com.triceratops.triceratops.controllers;
+    exports com.triceratops.triceratops.persistance; // Ajoutez cette ligne pour exporter le package avec la classe Home
 }

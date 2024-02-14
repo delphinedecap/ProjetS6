@@ -15,12 +15,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeFromFile;
-import static com.triceratops.triceratops.persistance.InterfacePersistance.serializeToFile;
+import static com.triceratops.triceratops.persistance.InterfacePersistance.*;
 
 public class HelloApplication extends Application {
     /**
@@ -40,7 +40,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/root.fxml"));
         fxmlLoader.setControllerFactory(c -> new HelloController(stage));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         scene.setFill(Color.TRANSPARENT);
 
         stage.setTitle("Triceratops");
@@ -61,41 +61,43 @@ public class HelloApplication extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchFieldException {
 
 
 
-        // TERRAIN DE JEU POUR COMPRENDRE LA PERSISTANCE (SERIALIZATION/DESERIALIZATION)
+        // TERRAIN DE JEU POUR COMPRENDRE LA PERSISTANCE (SERIALIZATION/DESERIALIZATION) NE PAS COMMENTER
 
-        Produit p1 = new Produit(20,"TEST1","produit1",10,20,"kg");
-        Produit p2 = new Produit(20,"TEST2","produit2",5,10,"L");
-        Produit p3 = new Produit(30,"TEST3","produit3",10,30,"Kg");
-        Produit p4 = new Produit(30,"TEST4","produit4",60,80,"Kg");
+        Produit p1 = new Produit(20,"CBU","Combustible usée","kg");
+        Produit p2 = new Produit(20,"UAE","Uranium enrichie","Kg");
+        Produit p3 = new Produit(30,"CBR","Combustible ready","Kg");
+        Produit p4 = new Produit(30,"ENR","Energie","kJ");
         ArrayList<Produit> produitsTest = new ArrayList<>();
         produitsTest.add(p1);produitsTest.add(p2);produitsTest.add(p3);produitsTest.add(p4);
 
         HashMap<String, Integer>produitIn = new HashMap<>();
         HashMap<String, Integer>produitOut = new HashMap<>();
-        produitIn.put(p1.getCode(),5);
-        produitIn.put(p2.getCode(),1);
-        produitOut.put(p3.getCode(),1);
-        ChaineProduction chaineProd1 = new ChaineProduction("CH-TEST1","chaine test 1",produitIn,produitOut);
+        produitIn.put(p1.getCode(),1);
+        produitIn.put(p2.getCode(),5);
+        produitOut.put(p3.getCode(),6);
+        ChaineProduction chaineProd1 = new ChaineProduction("FABCBR","Production de combustible nucléaire",produitIn,
+                produitOut);
 
         HashMap<String, Integer>produitIn2 = new HashMap<>();
         HashMap<String, Integer>produitOut2 = new HashMap<>();
         produitIn2.put(p2.getCode(),5);
         produitIn2.put(p3.getCode(),1);
-        produitOut2.put(p4.getCode(),1);
+        produitOut2.put(p4.getCode(),100);
         produitOut2.put(p1.getCode(),2);
-        ChaineProduction chaineProd2 = new ChaineProduction("CH-TEST2","chaine test 2",produitIn2,produitOut2);
+        ChaineProduction chaineProd2 = new ChaineProduction("FISSIV","Fission réacteur Gen IV",produitIn2,
+                produitOut2);
 
         ArrayList<ChaineProduction> chainesTest = new ArrayList<>();
         chainesTest.add(chaineProd1); chainesTest.add(chaineProd2);
 
         Prix prixP1 = new Prix(p1.getCode(),12.7, -1,0);
-        Prix prixP2 = new Prix(p2.getCode(),12.7, -1,0);
-        Prix prixP3 = new Prix(p3.getCode(),-1, 124.99,30);
-        Prix prixP4 = new Prix(p4.getCode(),-1, 199.99,62);
+        Prix prixP2 = new Prix(p2.getCode(),90.5, -1,0);
+        Prix prixP3 = new Prix(p3.getCode(),-1, 244.92,30);
+        Prix prixP4 = new Prix(p4.getCode(),-1, -1,0);
 
         ArrayList<Prix> prices = new ArrayList<>();
         prices.add(prixP1); prices.add(prixP2); prices.add(prixP3); prices.add(prixP4);
@@ -106,14 +108,16 @@ public class HelloApplication extends Application {
         serializeToFile(chainesTest, "chaine.json");
         serializeToFile(prices, "prix.json");
         //      DESERIALIZATION
-        ArrayList<Produit> resultTestProduit = deserializeFromFile(Produit.class, "produit.json");
-        ArrayList<ChaineProduction> resultTestChaine = deserializeFromFile(ChaineProduction.class, "chaine.json");
-        ArrayList<Prix> resutlTestPrix = deserializeFromFile(Prix.class, "prix.json");
-        System.out.println(resultTestProduit);
+        //ArrayList<Produit> resultTestProduit = deserializeFromFile(Produit.class, "produit.json");
+        //ArrayList<ChaineProduction> resultTestChaine = deserializeFromFile(ChaineProduction.class, "chaine.json");
+        //ArrayList<Prix> resultTestPrix = deserializeFromFile(Prix.class, "prix.json");
+        //HashMap<String, Produit> produitHashMap = deserializeWithKeyFromFile(Produit.class,"produit.json", "getCode");
 
 
 
-        //launch();
+
+
+        launch();
     }
 
 }

@@ -18,7 +18,8 @@ public class ChaineProduction {
     @JsonProperty("produitOut")
     private Map<String, Integer> produitOut = new HashMap<>();
 
-
+    public ChaineProduction() {
+    }
 
     public ChaineProduction(String code, String nom, Map<String, Integer> produitIn, Map<String, Integer> produitOut) {
         this.code = code;
@@ -66,5 +67,23 @@ public class ChaineProduction {
      */
     public void setProduitOut(Map<String, Integer> produitOut) {
         this.produitOut = produitOut;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public String toString() {
+        return "ChaineProduction{" +
+                "code='" + code + '\'' +
+                ", nom='" + nom + '\'' +
+                ", produitIn=" + produitIn +
+                ", produitOut=" + produitOut +
+                '}';
     }
 }

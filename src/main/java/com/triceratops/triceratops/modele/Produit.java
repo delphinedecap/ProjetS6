@@ -13,10 +13,6 @@ public class Produit {
     private String nom;
     @JsonProperty("quantite")
     private int quantite;
-    @JsonProperty("pAchat")
-    private float pAchat;
-    @JsonProperty("pVente")
-    private float pVente;
     @JsonProperty("unite")
     private String unite; // Remplacer éventuellement par un enum
 
@@ -31,16 +27,12 @@ public class Produit {
      * @param quantite : quantité actuelle du produit
      * @param code : code générique du produit
      * @param nom : nom du produit
-     * @param pAchat : prix d'achat du produit
-     * @param pVente : prix de vente du produit
      * @param unite : type d'unité du produit (litre, kilogramme ...)
      */
-    public Produit(int quantite, String code, String nom, float pAchat, float pVente, String unite) {
+    public Produit(int quantite, String code, String nom, String unite) {
         this.quantite = quantite;
         this.code = code;
         this.nom = nom;
-        this.pAchat = pAchat;
-        this.pVente = pVente;
         this.unite = unite;
     }
 
@@ -54,8 +46,6 @@ public class Produit {
                 "quantite=" + quantite +
                 ", code='" + code + '\'' +
                 ", nom='" + nom + '\'' +
-                ", pAchat=" + pAchat +
-                ", pVente=" + pVente +
                 ", unite='" + unite + '\'' +
                 '}';
     }
@@ -106,38 +96,6 @@ public class Produit {
      */
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    /**
-     *
-     * @return prix d'achat du produit
-     */
-    public float getpAchat() {
-        return pAchat;
-    }
-
-    /**
-     * Met à jour le prix d'achat du produit
-     * @param pAchat : nouveau prix d'achat
-     */
-    public void setpAchat(float pAchat) {
-        this.pAchat = pAchat;
-    }
-
-    /**
-     *
-     * @return prix de vente du produit
-     */
-    public float getpVente() {
-        return pVente;
-    }
-
-    /**
-     * Met à jour le prix de vente du produit
-     * @param pVente : nouveau prix de vente du produit
-     */
-    public void setpVente(float pVente) {
-        this.pVente = pVente;
     }
 
     /**
