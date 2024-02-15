@@ -18,6 +18,7 @@ public class Produit {
 
     /**
      * Constructeur par defaut du produit
+     * Tout les attribust sont initialisés à null ou à une valeur équivalente
      */
     public Produit() {
     }
@@ -60,7 +61,7 @@ public class Produit {
 
     /**
      * Met à jour la quantité du produit
-     * @param quantite : nouvelle quantité du produit
+     * @param quantite nouvelle quantité du produit
      */
     public void setQuantite(int quantite) {
         this.quantite = quantite;
@@ -76,7 +77,7 @@ public class Produit {
 
     /**
      * Met à jour le code du produit
-     * @param code : nouveau code du produit
+     * @param code nouveau code du produit
      */
     public void setCode(String code) {
         this.code = code;

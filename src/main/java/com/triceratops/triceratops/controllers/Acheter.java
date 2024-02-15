@@ -16,9 +16,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import static com.triceratops.triceratops.modele.DataSet.*;
 
+/**
+ * En cours de dev
+ */
 public class Acheter implements Initializable {
 
-
+    /**
+     * Permet d'initialiser une page à partir d'un url et d'un ressourceBundle
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

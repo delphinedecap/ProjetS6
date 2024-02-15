@@ -18,9 +18,20 @@ public class ChaineProduction {
     @JsonProperty("produitOut")
     private Map<String, Integer> produitOut = new HashMap<>();
 
+    /**
+     * Constructeur par defaut d'une chaine de production
+     * Les attributs sont initilisés à null ou à une valeur équivalente
+     */
     public ChaineProduction() {
     }
 
+    /**
+     * Constructeur d'une chaine de production
+     * @param code code de la chaine de production
+     * @param nom nom de la chaine de production
+     * @param produitIn liste des produits en entréee de la chaine de production
+     * @param produitOut liste des produits en sortie de la chaine de production
+     */
     public ChaineProduction(String code, String nom, Map<String, Integer> produitIn, Map<String, Integer> produitOut) {
         this.code = code;
         this.nom = nom;
@@ -38,17 +49,25 @@ public class ChaineProduction {
 
     /**
      *
-     * @return liste des produits finis produis par la chaine de production
+     * @return liste des produits finis produis par la chaine de production et leurs quantité
      */
     public Map<String, Integer> getProduitOut() {
         return this.produitOut;
     }
 
 
+    /**
+     *
+     * @return code de la chaine de production
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     *
+     * @return nom de la chaine de production
+     */
     public String getNom() {
         return nom;
     }
@@ -62,21 +81,33 @@ public class ChaineProduction {
     }
 
     /**
-     * Permet de modifier le produit en sortie de la chaine de production
-     * @param produitOut : liste de produits créés par la chaine de production
+     * Permet de modifier la liste de produits en sortie de la chaine de production
+     * @param produitOut liste de produits créés par la chaine de production
      */
     public void setProduitOut(Map<String, Integer> produitOut) {
         this.produitOut = produitOut;
     }
 
+    /**
+     * Permet de mettre à jour le code de la chaine de production
+     * @param code nouveau code
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * Permet de mettre à jour le nom de la chaine de production
+     * @param nom nouveau nom
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * Methode toString
+     * @return description de la chaine de production
+     */
     @Override
     public String toString() {
         return "ChaineProduction{" +

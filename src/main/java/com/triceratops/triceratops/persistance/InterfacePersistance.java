@@ -50,6 +50,15 @@ public class InterfacePersistance {
         }
     }
 
+    /**
+     * Permet de deserialiser une liste d'objet à partir d'un fichier
+     * @param type type de l'objet à déserialiser
+     * @param path nom du fichier
+     * @param getterKey nom de la méthode pout obtenir la clé
+     * @return liste des objets avec une clé
+     * @param <K> type de la clé
+     * @param <T> type de l'objet
+     */
     public static <K, T> HashMap<K,T> deserializeWithKeyFromFile(Class<T> type, String path,
                                                                    String getterKey) {
         ArrayList<T> resultArrayList = deserializeFromFile(type,path);
