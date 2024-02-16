@@ -18,4 +18,9 @@
   "nom" : "Energie",
   "quantite" : 30,
   "unite" : "kJ"
+}, {
+  "code" : "ANJ",
+  "nom" : "Atome Nucléaire",
+  "quantite" : 10,
+  "unite" : "kJ"
 } ]

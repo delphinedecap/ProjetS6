@@ -40,7 +40,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/root.fxml"));
         fxmlLoader.setControllerFactory(c -> new HelloController(stage));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         scene.setFill(Color.TRANSPARENT);
 
         stage.setTitle("Triceratops");

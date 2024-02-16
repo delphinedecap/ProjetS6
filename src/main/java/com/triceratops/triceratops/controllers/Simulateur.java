@@ -1,23 +1,47 @@
 package com.triceratops.triceratops.controllers;
 
 import com.triceratops.triceratops.modele.ChaineProduction;
+import com.triceratops.triceratops.modele.Prix;
 import com.triceratops.triceratops.modele.Produit;
+import com.triceratops.triceratops.utils.NumberTextField;
+import io.github.palexdev.materialfx.beans.Alignment;
+import io.github.palexdev.materialfx.controls.MFXTableColumn;
+import io.github.palexdev.materialfx.controls.MFXTableView;
+import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
+import javax.swing.*;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.*;
 
+import static com.triceratops.triceratops.modele.DataSet.*;
 import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeFromFile;
 import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeWithKeyFromFile;
 
 public class Simulateur implements Initializable {
-    public TableView tableSimu;
+    public VBox tableSimu;
+
+    private TableView<Produit> produitsInTable,
+            produitsOutTable;
+
+    private double margeTotal = 0,
+            margeOut;
 
     /**
      * Permet d'initialiser la page du simulateur à partir d'un url et d'un ressourceBundle
@@ -27,139 +51,217 @@ public class Simulateur implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //tableSimu.autosizeColumnsOnInitialization();
+        tableSimu.setSpacing(40);
         setupTable();
-        tableSimu.setEditable(true);
-        //tableSimu.setFooterVisible(false);
     }
 
     /**
      * Permet de créer un tableau avec les données correspondant aux différentes chaines de production
      */
+
     private void setupTable() {
+        /*
+         *
+         * Récupération Produits & Chaine de prod
+         *
+         */
 
+        HashMap<String, Produit> produits = getProduits();
+        ArrayList<ChaineProduction> chaineProductions = getChaines();
+        ArrayList<Prix> prixArrayList = getPrix();
 
+        /*
+         *
+         * Config Tableau
+         *
+         */
 
+        for (ChaineProduction chaine : chaineProductions) {
+            // Création d'un HBox pour chaque chaine de production
+            VBox chaineVBox = new VBox();
+            chaineVBox.setSpacing(20);
+            chaineVBox.setAlignment(Pos.CENTER);
 
-        TableColumn<LigneSimu, String> codeColumn = new TableColumn<>("Code");
-        codeColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("codeProduit"));
-        codeColumn.setSortable(false);
-        codeColumn.setMinWidth(100);
+            // Ajout du nom de la chaine de production au HBox
+            Text chaineNom = new Text(chaine.getNom());
+            NumberTextField marge = new NumberTextField();
 
-        TableColumn<LigneSimu, String> quantiteColumn = new TableColumn<>("Qte");
-        quantiteColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("quantite"));
-        quantiteColumn.setSortable(false);
-        quantiteColumn.setMinWidth(60);
+            chaineVBox.getChildren().addAll(chaineNom, marge);
 
+            HBox tableaux = new HBox();
+            tableaux.setSpacing(40);
 
-        TableColumn<LigneSimu, String> stockColumn = new TableColumn<>("Stock");
-        stockColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("stockTotal"));
-        stockColumn.setSortable(false);
-        stockColumn.setMinWidth(60);
+            // Création et configuration du TableView pour les produits IN
+            Map<String, Integer> produitsInMap = chaine.getProduitIn();
+            produitsInTable = createProduitsTableView(produitsInMap, produits, prixArrayList, chaine, 0, TypeTableau.IN);
 
+            // Création et configuration du TableView pour les produits OUT
+            Map<String, Integer> produitsOutMap = chaine.getProduitOut();
+            produitsOutTable = createProduitsTableView(produitsOutMap, produits, prixArrayList, chaine,0, TypeTableau.OUT);
+            margeOut = 0;
 
+            // Ajout de la table des produits IN & OUT au HBox
+            tableaux.getChildren().addAll(produitsInTable,produitsOutTable);
 
-        TableColumn<LigneSimu, String> variationColumn = new TableColumn<>("Variation");
-        variationColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("variation"));
-        variationColumn.setSortable(false);
-        variationColumn.setMinWidth(70);
+            marge.textProperty().addListener(((observable, oldValue, newValue) -> {
 
-        TableColumn<LigneSimu, String> productionColumn = new TableColumn<>("Production");
-        productionColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("production"));
-        productionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        productionColumn.setSortable(false);
-        productionColumn.setMinWidth(80);
-        productionColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<LigneSimu, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<LigneSimu, String> event) {
-                LigneSimu ligneSimu = event.getRowValue();
-                if(!Objects.equals(ligneSimu.getProduction(), "")){
-                    ligneSimu.setProduction(Integer.parseInt(event.getNewValue()));
+                if(newValue != null){
+
+                    margeTotal -= margeOut;
+
+                    if(newValue.equals(""))
+                        newValue = "0";
+
+                    int variance =  Integer.parseInt(newValue);
+
+                    if(variance < 0)
+                        variance = 0;
+
+                    tableaux.getChildren().clear();
+                    produitsInTable = createProduitsTableView(produitsInMap, produits, prixArrayList, chaine, variance, TypeTableau.IN);
+
+                    //Calcul de la marge
+                    double margeProduitOUT = getMarge(prixArrayList,chaine,variance);
+
+                    margeOut = margeProduitOUT;
+                    margeTotal += margeProduitOUT;
+
+                    produitsOutTable = createProduitsTableView(produitsOutMap, produits, prixArrayList, chaine, margeProduitOUT, TypeTableau.OUT);
+                    tableaux.getChildren().addAll(produitsInTable,produitsOutTable);
                 }
-                event.getTableView().refresh();
-                //event.getTableView().setItems(event.getTableView().getItems());
-            }
-        });
-
-        /*MFXTableColumn<LigneSimu> productionColumn = new MFXTableColumn<>("Production", false);
-        //productionColumn.setRowCellFactory(TextFieldTableCell.<String>forTableColumn());
-        productionColumn.setRowCellFactory(ligneSimu -> {
-            String str = ligneSimu.getProduction();
-
-            MFXTableRowCell row = new MFXTableRowCell<>(null);
-            if(str != ""){
-                MFXTextField textField = new MFXTextField(str);
-                Shape shape = new Rectangle(40,40);
-                Text text = new Text();
-                row.setGraphic(textField);
-                row.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
 
-            }
-            return row;
-        });
-        productionColumn.setAlignment(Pos.CENTER);*/
+
+                System.out.println("textfield changed from " + oldValue + " to " + newValue);
+
+                System.out.println("margeTotal : " + margeTotal);
+            }));
 
 
-        TableColumn<LigneSimu, String> coutUnitColumn = new TableColumn<>("Cout unit");
-        coutUnitColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("coutUnit"));
-        coutUnitColumn.setSortable(false);
-        coutUnitColumn.setMinWidth(65);
 
+            //Ajout des tableaux a HBox
+            chaineVBox.getChildren().add(tableaux);
 
-        TableColumn<LigneSimu, String> margeColumn = new TableColumn<>("Marge");
-        margeColumn.setCellValueFactory(new PropertyValueFactory<LigneSimu,String>("marge"));
-        margeColumn.setSortable(false);
-        margeColumn.setMinWidth(60);
+            // Ajout du VBox à la VBox principale
+            tableSimu.getChildren().add(chaineVBox);
 
-
-        // Ajouter les colonnes à TableView
-        tableSimu.getColumns().addAll(codeColumn, quantiteColumn, stockColumn, variationColumn,
-                productionColumn, coutUnitColumn, margeColumn);
-
-
-        //tableSimu.getColumnResizePolicy();
-
-        HashMap<String,Produit> stockProduit = deserializeWithKeyFromFile(Produit.class, "produit.json","getCode");
-        //System.out.println(stockProduit);
-        ArrayList<ChaineProduction> stockChaineP = deserializeFromFile(ChaineProduction.class, "chaine.json");
-        //ObservableList<Produit> observableList = FXCollections.observableArrayList(stockProduit.getStock());
-
-        ArrayList<LigneSimu> data = new ArrayList<>();
-
-        for (ChaineProduction chaineProduction:stockChaineP){
-
-            HashMap<LigneSimu,Integer> mapProduitChaine = new HashMap<>();
-
-            for (Map.Entry<String,Integer> e : chaineProduction.getProduitIn().entrySet()){
-                Produit p = stockProduit.get(e.getKey());
-                if(p != null){
-                    LigneSimu ligneSimu = new LigneSimu(p,e.getValue(),0f);
-                    data.add(ligneSimu);
-                    mapProduitChaine.put(ligneSimu,e.getValue());
-                }else{
-                    //Produit introuvable
-                }
-            }
             /*
-            Produit pOut = stockProduit.getProduit(chaineProduction.getProduitOut().getCode());
+            tableaux.getChildren().remove(produitsInTable);
 
-            //new LigneSimu de chaine de prod
-            data.add(new LigneSimu(pOut, mapProduitChaine,1, 0f));
-            //data.add(new LigneSimu(chaineProduction, 1, 0f));
-            data.add(new LigneSimu());
+            produitsInTable = createProduitsTableView(produitsInMap, produits, prixArrayList, chaine, TypeTableau.OUT);
 
+            tableaux.getChildren().add(produitsInTable);
+
+            produitsInTable.refresh();
              */
         }
+    }
 
-        // Somme / Dernière ligne
-        data.add(new LigneSimu(data));
+    private enum TypeTableau{IN, OUT}
+
+    private TableView<Produit> createProduitsTableView(Map<String, Integer> produitsMap, HashMap<String, Produit> produits,
+                                                       List<Prix> prixArrayList, ChaineProduction chaine, double variation,
+                                                       TypeTableau typeTableau) {
+        TableView<Produit> produitsTable = new TableView<>();
+        produitsTable.setEditable(false);
+
+        TableColumn<Produit, String> codeCol = new TableColumn<>("Code");
+        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+
+        TableColumn<Produit, String> nomCol = new TableColumn<>("Nom");
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Produit, String> quantiteCol = new TableColumn<>("Quantité");
+
+        TableColumn<Produit, Integer> stockCol = new TableColumn<>("Stock");
+        stockCol.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+
+        // Produit IN
+        TableColumn<Produit, String> varianceCol = new TableColumn<>("Variation");
+        TableColumn<Produit, String> pAchatCol = new TableColumn<>("Prix d'achat");
+
+        // Produit OUT
+        TableColumn<Produit, String> pVenteCol = new TableColumn<>("Prix de vente");
+        TableColumn<Produit, String> margeCol = new TableColumn<>("Marge");
+
+        if(typeTableau==TypeTableau.IN){
+            quantiteCol.setCellValueFactory(cellData -> new SimpleStringProperty(chaine.getProduitIn().get(cellData.getValue().getCode()).toString()));
+            varianceCol.setCellValueFactory(cellData -> new SimpleStringProperty(
+                    String.valueOf(
+                            -chaine.getProduitIn().get(
+                                    cellData.getValue().getCode()
+                            )*variation
+                    )
+            ));
+            pAchatCol.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(getPrixProduit(cellData.getValue().getCode(), prixArrayList).getpAchat())));
+        }else{
+            pVenteCol.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(getPrixProduit(cellData.getValue().getCode(), prixArrayList).getpVente())));
+            margeCol.setCellValueFactory(cellData -> new SimpleStringProperty(
+                    String.valueOf(variation)
+            ));
+        }
 
 
-        /*ObservableList<LigneSimu> observableList = FXCollections.observableArrayList(data);
+        /*TableColumn<Produit, String> quantiteProdCol = new TableColumn<>("Quantité de production");
+        quantiteProdCol.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(getQuantiteProductionProduit(cellData.getValue().getCode(), chaine))));*/
 
-        tableSimu.setItems(observableList);*/
-        tableSimu.setItems(FXCollections.observableArrayList(data));
+
+        for (Map.Entry<String, Integer> entry : produitsMap.entrySet()) {
+            Produit produit = produits.get(entry.getKey());
+            /*
+             * Debug
+             */
+//            System.out.println(produit);
+//            System.out.println("qte : "+produit.getQuantite());
+            if (produit != null) {
+                produitsTable.getItems().add(produit);
+            }
+        }
+
+        if(typeTableau==TypeTableau.IN){
+            produitsTable.getColumns().addAll(codeCol, nomCol, quantiteCol, stockCol, varianceCol, pAchatCol);
+        }else{
+            produitsTable.getColumns().addAll(codeCol, nomCol, stockCol, pVenteCol, margeCol);
+        }
+
+        return produitsTable;
+    }
+
+
+    // Méthode pour récupérer le prix d'un produit à partir de la liste des prix
+    private Prix getPrixProduit(String codeProduit, List<Prix> prixList) {
+        for (Prix prix : prixList) {
+            if (prix.getCode().equals(codeProduit)) {
+                return prix;
+            }
+        }
+        return null; // Si aucun prix n'est trouvé pour le produit
+    }
+
+    private double getMarge(List<Prix> prixArrayList,
+                           ChaineProduction chaine, int variance){
+        double margeIn = 0,
+                margeOut = 0;
+        for (Map.Entry<String, Integer> entry : chaine.getProduitIn().entrySet())  {
+            double prixAchat = getPrixProduit(entry.getKey(), prixArrayList).getpAchat();
+            if(prixAchat > 0)
+                margeIn += prixAchat  * entry.getValue() * variance;
+        }
+
+        System.out.println(margeIn);
+
+        for (Map.Entry<String, Integer> entry : chaine.getProduitOut().entrySet()){
+            margeOut += (getPrixProduit(entry.getKey(), prixArrayList).getpVente() * variance);
+        }
+
+        System.out.println(margeOut);
+
+        return margeOut-margeIn;
+    }
+
+    // Méthode pour récupérer la quantité de production d'un produit à partir de la chaîne de production
+    private int getQuantiteProductionProduit(String codeProduit, ChaineProduction chaine) {
+        return chaine.getProduitOut().getOrDefault(codeProduit, 0);
     }
 
 }

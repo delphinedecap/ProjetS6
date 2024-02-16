@@ -74,8 +74,6 @@ public class Home implements Initializable {
             return rowCell;
         });*/
 
-        //    <MFXTextField floatMode="DISABLED" promptText="No Floating Text" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
-
         codeColumn.setAlignment(Pos.CENTER);
         nomColumn.setAlignment(Pos.CENTER);
         quantiteColumn.setAlignment(Pos.CENTER);

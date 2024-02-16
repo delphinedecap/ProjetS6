@@ -5,14 +5,21 @@
 
 <?import javafx.scene.control.TableView?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.control.ScrollPane?>
 <AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@../css/simulateur.css"
             fx:controller="com.triceratops.triceratops.controllers.Simulateur"
             prefHeight="550.0" prefWidth="1200.0" styleClass="simulateur"
 >
-
+    <ScrollPane
+            prefWidth="800" prefHeight="300"
+            AnchorPane.topAnchor="5" AnchorPane.bottomAnchor="5"
+            AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5">
+        <VBox fx:id="tableSimu"/>
+    </ScrollPane>
+    <!--
     <TableView fx:id="tableSimu" prefWidth="800" prefHeight="300"
                   AnchorPane.topAnchor="5" AnchorPane.bottomAnchor="5"
                   AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5"
     >
-    </TableView>
+    </TableView>-->
 </AnchorPane>
