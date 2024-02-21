@@ -7,19 +7,28 @@
     -fx-text-fill: #000D;
 }
 
-#tableSimu.table-view{
+.simulateur *{
+    -fx-font-family: Exo;
+}
+
+.simulateur .titre{
+    -fx-padding: 0 20px 0 0;
+    -fx-font-size: 20px;
+}
+
+.table-view{
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
-#tableSimu.table-view .column-header-background .filler,
-#tableSimu.table-view .corner,
-#tableSimu.table-view .table-cell{
+.table-view .column-header-background .filler,
+.table-view .corner,
+.table-view .table-cell{
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
 
-#tableSimu.table-view .column-header-background,
+.table-view .column-header-background,
 .table-row-cell:odd,
 .table-row-cell:even{
     -fx-background-color: #0000;
@@ -34,7 +43,7 @@
     -fx-background-insets: 5px;*/
 }
 
-#tableSimu.table-view .column-header-background{
+.table-view .column-header-background{
     -fx-background-color: -color-vert-clair;
 
     -fx-padding: 10;
@@ -44,7 +53,7 @@
 }
 
 
-#tableSimu.table-view .column-header{
+.table-view .column-header{
     -fx-background-color: #0000;
     -fx-alignment: center;
 }
@@ -55,21 +64,21 @@
     -fx-border-color: #0002;
 }
 
-#tableSimu.table-view *{
+.table-view *{
     -fx-alignment: center;
 }
 
-#tableSimu.table-view .virtual-flow .scroll-bar:vertical,
-#tableSimu.table-view .virtual-flow .scroll-bar:vertical .track,
-#tableSimu.table-view .virtual-flow .scroll-bar:vertical .track-background,
-#tableSimu.table-view .virtual-flow .scroll-bar:horizontal,
-#tableSimu.table-view .virtual-flow .scroll-bar:horizontal .track,
-#tableSimu.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
     -fx-background-color: transparent;
 }
 
-#tableSimu.table-view .virtual-flow .scroll-bar .increment-button,
-#tableSimu.table-view .virtual-flow .scroll-bar .decrement-button {
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
     -fx-opacity: 0;
     -fx-padding: 2;
 }
@@ -153,3 +162,28 @@
     -fx-text-fill: #FFF;
     -fx-text-alignment: center !important;
 }*/
+
+
+.valid{
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+
+    -fx-background-color: -color-background;
+    -fx-background-radius: 30;
+    -fx-border-radius: 10;
+    -fx-text-fill: #FFF;
+    -fx-font-size: 20;
+    -fx-font-weight: 900;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+
+    -fx-background-image: url("../img/save.png");
+    -fx-background-size: 47px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+
+}
+
+.valid:hover{
+    -fx-background-position: 12px center;
+}

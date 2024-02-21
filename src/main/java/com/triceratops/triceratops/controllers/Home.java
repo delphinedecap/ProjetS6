@@ -63,6 +63,7 @@ public class Home implements Initializable {
 
         codeColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getCode));
         nomColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getNom));
+        nomColumn.setMinWidth(120);
         quantiteColumn.setRowCellFactory(produit -> new MFXTableRowCell<>(Produit::getQuantite));
 
         //ON FAIT QUOI DE CA ?? :
