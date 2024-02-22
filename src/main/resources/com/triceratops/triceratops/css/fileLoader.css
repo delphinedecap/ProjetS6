@@ -1,0 +1,96 @@
+@import 'Colors.css';
+@import "../font/font.css";
+
+
+/**************************************************
+ * fileLoader
+**************************************************/
+.fileLoader {
+    -fx-font-family: "Exo";
+    -fx-background-color: -color-background;
+    -fx-background-radius: 10;
+    -fx-border-color: #ebebeb;
+    -fx-border-width: 0;
+}
+
+
+.fileLoader .title{
+    -fx-font-weight: 900;
+    -fx-font-size: 40px;
+    -fx-text-fill: -color-icon;
+    /*-fx-font-family: 'Protest Riot', sans-serif;*/
+}
+
+
+/**************************************************
+ * Window Header
+**************************************************/
+.fileLoader .close-icon,
+.fileLoader .minimize-icon,
+.fileLoader .maximize{
+    -fx-cursor: hand;
+}
+
+.fileLoader .close-icon {
+    -mfx-color: -mfx-red;
+    -fx-opacity: 0.5;
+}
+
+.fileLoader .close-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+.fileLoader .minimize-icon {
+    -mfx-color: #ffbf37;
+    -fx-opacity: 0.5;
+}
+
+.fileLoader .minimize-icon:hover {
+    -fx-opacity: 1.0;
+}
+
+/*
+*
+* Content
+*
+*/
+
+.inputs>*{
+    -fx-border-color: #FFF8;
+    -fx-border-width: 4px;
+    -fx-border-style: dashed;
+
+    -fx-cursor: hand;
+
+    -fx-border-radius: 10px;
+
+    -fx-text-fill: #FFF;
+}
+
+.inputs>* .image{
+    -fx-min-width: 120px;
+    -fx-max-width: 120px;
+    -fx-min-height: 120px;
+
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+
+    -fx-background-image: url("../img/json.png");
+    -fx-background-size: 120px;
+
+}
+
+.inputs Label{
+    -fx-font-size: 18px;
+    -fx-text-fill: #FFF;
+}
+
+.fileLoader .start {
+    -fx-background-color: -color-icon;
+    -fx-background-radius: 8;
+    -fx-border-radius: 10;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15px;
+    -fx-padding: 7 40;
+    -fx-cursor: hand;
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import io.github.palexdev.mfxresources.fonts.MFXFontIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<AnchorPane fx:id="fileLoader" xmlns="http://javafx.com/javafx" stylesheets="@../css/fileLoader.css"
+            xmlns:fx="http://javafx.com/fxml" styleClass="fileLoader"
+            fx:controller="com.triceratops.triceratops.controllers.FileLoader"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <HBox fx:id="windowHeader" alignment="CENTER_RIGHT" layoutY="6.0" prefHeight="50.0" prefWidth="1281.0"
+          spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-5.0">
+        <padding>
+            <Insets right="10.0"/>
+        </padding>
+        <MFXFontIcon fx:id="minimizeIcon" description="fas-circle" size="15.0" styleClass="minimize-icon"/>
+        <MFXFontIcon fx:id="closeIcon" description="fas-circle" size="15.0" styleClass="close-icon"/>
+    </HBox>
+
+    <GridPane styleClass="inputs" alignment="center"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" AnchorPane.bottomAnchor="70"
+              hgap="70"
+    >
+
+        <!-- Colonne 0 -->
+        <columnConstraints>
+            <ColumnConstraints percentWidth="30"/>
+        </columnConstraints>
+        <!-- Colonne 1 -->
+        <columnConstraints>
+            <ColumnConstraints percentWidth="30"/>
+        </columnConstraints>
+        <!-- Colonne 2 -->
+        <columnConstraints>
+            <ColumnConstraints percentWidth="30"/>
+        </columnConstraints>
+
+        <!-- Ligne 0 -->
+        <rowConstraints>
+            <RowConstraints percentHeight="100"/>
+        </rowConstraints>
+
+
+        <VBox GridPane.columnIndex="0" styleClass="produit" fx:id="produit"
+              alignment="CENTER" onMouseClicked="#openProduit"
+        >
+            <HBox styleClass="image" />
+            <Label text="Produit.json"/>
+        </VBox>
+
+        <VBox GridPane.columnIndex="1" styleClass="chaine" fx:id="chaine"
+              alignment="CENTER"  onMouseClicked="#openChaine"
+        >
+            <HBox styleClass="image" />
+            <Label text="Chaine.json"/>
+        </VBox>
+
+        <VBox GridPane.columnIndex="2" styleClass="prix" fx:id="prix"
+              alignment="CENTER"  onMouseClicked="#openPrix"
+        >
+            <HBox styleClass="image" />
+            <Label text="Prix.json"/>
+        </VBox>
+
+    </GridPane>
+
+    <MFXButton text="Démarrer" styleClass="start" onAction="#start" fx:id="startBtn"
+               AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10"
+    >
+        <VBox.margin>
+            <Insets bottom="15.0"/>
+        </VBox.margin>
+    </MFXButton>
+
+</AnchorPane>

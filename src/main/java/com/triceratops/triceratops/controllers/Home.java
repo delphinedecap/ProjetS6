@@ -38,17 +38,6 @@ public class Home implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //table.autosizeColumnsOnInitialization();
-
-        //Il faudra demander a l'utilisateur de saisir le nom des fichiers qu'il souhaite utiliser
-        String fichierProduit = "produit.json";
-        String fichierPrix = "prix.json";
-        String fichierChaine = "chaine.json";
-        try {
-            extractDataset(fichierProduit,fichierPrix,fichierChaine);
-        } catch (FileException e) {
-            throw new RuntimeException(e);
-        }
-
         setupTable();
         table.setFooterVisible(false);
     }

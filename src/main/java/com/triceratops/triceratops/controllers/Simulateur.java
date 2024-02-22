@@ -357,10 +357,10 @@ public class Simulateur implements Initializable {
                         setTextFill(Color.BLACK); // Couleur par défaut si la cellule est vide
                     } else {
                         setText(item);
-                        if (!item.equals("NA") && Double.parseDouble(item.replace("%","").replace(",",".")) >= 100) {
-                            setTextFill(Color.GREEN); // Mettre en rouge si la valeur est "NA"
+                        if (!item.equals("NA") && Double.parseDouble(item.replace("%","").replace(",",".")) < 100) {
+                            setTextFill(Color.RED); // Mettre en rouge si la valeur est "NA"
                         } else {
-                            setTextFill(Color.BLACK); // Utiliser la couleur par défaut pour les autres valeurs
+                            setTextFill(Color.GREEN); // Utiliser la couleur par défaut pour les autres valeurs
                         }
                     }
                 }
