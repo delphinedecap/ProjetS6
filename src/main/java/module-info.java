@@ -5,6 +5,7 @@ module com.triceratops.triceratops {
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.annotation;
     requires MaterialFX;
+    requires itextpdf;
 
     opens com.triceratops.triceratops to javafx.fxml;
 
