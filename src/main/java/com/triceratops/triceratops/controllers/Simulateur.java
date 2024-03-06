@@ -214,6 +214,7 @@ public class Simulateur implements Initializable {
 
                 doc.add(new Paragraph(chaine.getNom() , bold14));
                 doc.add(new Paragraph("Production demandée : " + production, bold14));
+                doc.add(new Paragraph("Durée de la production unitaire : " + production*chaine.getDuree() +"min", bold14));
                 doc.add(new Paragraph("Produits entrants : " , bold12));
 
                 PdfPTable tableEntrant = new PdfPTable(6);
