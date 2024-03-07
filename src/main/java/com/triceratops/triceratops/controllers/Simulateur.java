@@ -3,7 +3,6 @@ package com.triceratops.triceratops.controllers;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -29,7 +28,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,19 +42,14 @@ public class Simulateur implements Initializable {
     public VBox tableSimu;
     public ScrollPane scroll;
     public MFXButton valid;
-
-    private TableView<Produit> produitsInTable,
-            produitsOutTable;
-
-    private double margeTotal = 0,
-            margeOut = 0;
-
+    private TableView<Produit> produitsInTable;
+    private TableView<Produit> produitsOutTable;
     private HashMap<ChaineProduction, Integer> productions = new HashMap();
-
+    private HashMap<String, Produit> produits = new HashMap<>();
+    private ArrayList<Prix> prix = new ArrayList<>();
+    private ArrayList<ChaineProduction> chaineProductions = new ArrayList<>();
+    private enum TypeTableau{IN, OUT}
     private static final DecimalFormat df = new DecimalFormat("0.00");
-
-    //Animation btn
-    private boolean btnHover = false;
 
     /**
      * Permet d'initialiser la page du simulateur à partir d'un url et d'un ressourceBundle
@@ -66,6 +59,11 @@ public class Simulateur implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        this.produits = getProduits();
+        this.chaineProductions = getChaines();
+        this.prix = getPrix();
+
         tableSimu.setSpacing(20);
         setupTable();
 
@@ -92,7 +90,6 @@ public class Simulateur implements Initializable {
                 valid.setText("");
             }
         });
-
     }
 
     /**
@@ -100,23 +97,8 @@ public class Simulateur implements Initializable {
      */
 
     private void setupTable() {
-        /*
-         *
-         * Récupération Produits & Chaine de prod
-         *
-         */
 
-        HashMap<String, Produit> produits = getProduits();
-        ArrayList<ChaineProduction> chaineProductions = getChaines();
-        ArrayList<Prix> prixArrayList = getPrix();
-
-        /*
-         *
-         * Config Tableau
-         *
-         */
-
-        for (ChaineProduction chaine : chaineProductions) {
+        for (ChaineProduction chaine : this.chaineProductions) {
             // Création d'un HBox pour chaque chaine de production
             VBox chaineVBox = new VBox();
             chaineVBox.setSpacing(20);
@@ -135,12 +117,11 @@ public class Simulateur implements Initializable {
 
             // Création et configuration du TableView pour les produits IN
             Map<String, Integer> produitsInMap = chaine.getProduitIn();
-            produitsInTable = createProduitsTableView(produitsInMap, produits, prixArrayList, chaine, 0, TypeTableau.IN);
+            produitsInTable = createProduitsTableView(produitsInMap, this.produits, this.prix, chaine, 0, TypeTableau.IN);
 
             // Création et configuration du TableView pour les produits OUT
             Map<String, Integer> produitsOutMap = chaine.getProduitOut();
-            produitsOutTable = createProduitsTableView(produitsOutMap, produits, prixArrayList, chaine,0, TypeTableau.OUT);
-            margeOut = 0;
+            produitsOutTable = createProduitsTableView(produitsOutMap, this.produits, this.prix, chaine,0, TypeTableau.OUT);
 
             // Ajout de la table des produits IN & OUT au HBox
             tableaux.getChildren().addAll(produitsInTable,produitsOutTable);
@@ -148,8 +129,6 @@ public class Simulateur implements Initializable {
             marge.textProperty().addListener(((observable, oldValue, newValue) -> {
 
                 if(newValue != null){
-
-                    margeTotal -= margeOut;
 
                     if(newValue.equals(""))
                         newValue = "0";
@@ -162,19 +141,13 @@ public class Simulateur implements Initializable {
                     this.productions.put(chaine, variance);
 
                     tableaux.getChildren().clear();
-                    produitsInTable = createProduitsTableView(produitsInMap, produits, prixArrayList, chaine, variance, TypeTableau.IN);
+                    produitsInTable = createProduitsTableView(produitsInMap, produits, this.prix, chaine, variance, TypeTableau.IN);
 
-                    //Calcul de la marge
-                    margeOut = getMarge(prixArrayList,chaine,variance);
-                    margeTotal += margeOut;
-
-                    produitsOutTable = createProduitsTableView(produitsOutMap, produits, prixArrayList, chaine, variance, TypeTableau.OUT);
+                    produitsOutTable = createProduitsTableView(produitsOutMap, produits, this.prix, chaine, variance, TypeTableau.OUT);
                     tableaux.getChildren().addAll(produitsInTable,produitsOutTable);
                 }
 
             }));
-
-
 
             //Ajout des tableaux a HBox
             chaineVBox.getChildren().add(tableaux);
@@ -185,10 +158,42 @@ public class Simulateur implements Initializable {
         }
     }
 
+    private boolean estPossible(){
+        HashMap<String, Integer> produits = new HashMap<>();
+        for (Map.Entry<ChaineProduction, Integer> mapEntry : productions.entrySet()) {
+            ChaineProduction chaine = mapEntry.getKey();
+            Integer production = mapEntry.getValue();
+            Map<String, Integer> produitsIn = chaine.getProduitIn();
+            for ( String code: produitsIn.keySet()) {
+                if (produits.containsKey(code)){
+                    produits.put(code, produits.get(code)-produitsIn.get(code) * production );
+                } else {
+                    produits.put(code, produitsIn.get(code) * production * -1);
+                }
+            }
+
+            Map<String, Integer> produitsOut = chaine.getProduitOut();
+            for ( String code: produitsOut.keySet()) {
+                if (produits.containsKey(code)){
+                    produits.put(code, produits.get(code)+ produitsOut.get(code) * production );
+                } else {
+                    produits.put(code,produitsOut.get(code) * production );
+                }
+            }
+        }
+
+
+        for (Map.Entry<String, Integer> mapEntry : produits.entrySet()) {
+            String code = mapEntry.getKey();
+            Integer i = mapEntry.getValue();
+            if (i+this.produits.get(code).getQuantite()<0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void valider(ActionEvent actionEvent) {
-        // Valider simu @Delphine
-        HashMap<String, Produit> produits = getProduits();
-        ArrayList<Prix> prix = getPrix();
         //created PDF document instance
         Document doc = new Document();
         try
@@ -267,7 +272,7 @@ public class Simulateur implements Initializable {
 
                 PdfPTable ligne;
                 for ( String code: produitsIn.keySet()) {
-                    Produit p = produits.get(code);
+                    Produit p = this.produits.get(code);
                     ligne= new PdfPTable(6);
 
                     cell1 = new PdfPCell();
@@ -307,7 +312,7 @@ public class Simulateur implements Initializable {
                     ligne.addCell(cell5);
 
                     Double prixAchat = 0.0;
-                    for (Prix prix1 : prix){
+                    for (Prix prix1 : this.prix){
                         if (Objects.equals(prix1.getCode(), code)){
                             prixAchat = prix1.getpAchat();
                         }
@@ -390,7 +395,7 @@ public class Simulateur implements Initializable {
                 Map<String, Integer> produitsOut = chaine.getProduitOut();
 
                 for ( String code: produitsOut.keySet()) {
-                    Produit p = produits.get(code);
+                    Produit p = this.produits.get(code);
                     ligne= new PdfPTable(7);
 
                     cell1 = new PdfPCell();
@@ -423,7 +428,7 @@ public class Simulateur implements Initializable {
                     ligne.addCell(cell4);
 
                     Double prixVente = 0.0;
-                    for (Prix prix1 : prix){
+                    for (Prix prix1 : this.prix){
                         if (Objects.equals(prix1.getCode(), code)){
                             prixVente = prix1.getpVente();
                         }
@@ -443,7 +448,7 @@ public class Simulateur implements Initializable {
                     ligne.addCell(cell5);
 
                     cell6 = new PdfPCell();
-                    double marge = getMarge(prix,chaine,production);
+                    double marge = getMarge(this.prix,chaine,production);
                     margeTexte = new Paragraph(String.valueOf(marge), font);
                     cell6.addElement(margeTexte);
                     cell6.setRowspan(3);
@@ -451,7 +456,7 @@ public class Simulateur implements Initializable {
                     ligne.addCell(cell6);
 
                     int quantiteCommande = 0;
-                    for (Prix prix1 : prix){
+                    for (Prix prix1 : this.prix){
                         if (Objects.equals(prix1.getCode(), code)){
                             quantiteCommande = prix1.getQuantiteCommande();
                         }
@@ -494,8 +499,6 @@ public class Simulateur implements Initializable {
         }
 
     }
-
-    private enum TypeTableau{IN, OUT}
 
     private TableView<Produit> createProduitsTableView(Map<String, Integer> produitsMap, HashMap<String, Produit> produits,
                                                        List<Prix> prixArrayList, ChaineProduction chaine, double variation,
@@ -611,8 +614,6 @@ public class Simulateur implements Initializable {
 
                 qteCommandé = getPrixProduit(cellData.getValue().getCode(), prixArrayList).getQuantiteCommande();
 
-                System.out.println("stock : "+stock+" prod : "+prod+" qteCommandé : "+qteCommandé);
-
                 return new SimpleStringProperty(qteCommandé > 0 ? (df.format(((stock + prod) / qteCommandé) * 100) + "%"): "NA" );
             });
 
@@ -694,12 +695,5 @@ public class Simulateur implements Initializable {
 
         return margeOut-margeIn;
     }
-
-    // Méthode pour récupérer la quantité de production d'un produit à partir de la chaîne de production
-    private int getQuantiteProductionProduit(String codeProduit, ChaineProduction chaine) {
-        return chaine.getProduitOut().getOrDefault(codeProduit, 0);
-    }
-
-
 
 }

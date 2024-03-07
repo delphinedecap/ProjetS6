@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="validation simulateur, generate pdf">
+    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="refacto + estPossible simulateur">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chaine.json" beforeDir="false" afterPath="$PROJECT_DIR$/chaine.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/modele/ChaineProduction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +30,20 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "delphinedecap"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="9c1fa039-e2f6-4f84-85f9-8508f09b1e8a" />
+        <option name="url" value="https://github.com/delphinedecap/ProjetS6.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -170,7 +182,8 @@
       <workItem from="1708520131189" duration="13694000" />
       <workItem from="1708605878074" duration="10483000" />
       <workItem from="1709143630869" duration="13992000" />
-      <workItem from="1709726287254" duration="718000" />
+      <workItem from="1709726287254" duration="1409000" />
+      <workItem from="1709804963531" duration="6768000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>
@@ -219,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709211129468</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ajout durée chaine de production">
+      <option name="closed" value="true" />
+      <created>1709727047671</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709727047671</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +299,9 @@
     <MESSAGE value="Update Simu" />
     <MESSAGE value="Update Simulateur --&gt; color" />
     <MESSAGE value="validation simulateur, generate pdf" />
-    <option name="LAST_COMMIT_MESSAGE" value="validation simulateur, generate pdf" />
+    <MESSAGE value="ajout durée chaine de production" />
+    <MESSAGE value="refacto + estPossible simulateur" />
+    <option name="LAST_COMMIT_MESSAGE" value="refacto + estPossible simulateur" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
