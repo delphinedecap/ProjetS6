@@ -28,15 +28,11 @@ import java.util.Objects;
 
 import static com.triceratops.triceratops.modele.DataSet.extractDataset;
 
+public class FileLoader {
 
-public class FileLoader { @FXML
+    @FXML
     private AnchorPane fileLoader;
 
-    /*
-
-        Header
-
-     */
     private double xOffset, yOffset;
     private Cursor cursorEvent = Cursor.DEFAULT;
 
@@ -63,11 +59,17 @@ public class FileLoader { @FXML
             fichierPrix,
             fichierChaine;
 
+    /**
+     * Construsteur du chargement de fichier
+     * @param stage fenetre de chargement
+     */
     public FileLoader(Stage stage){
         this.stage = stage;
     }
 
-
+    /**
+     * Initialise la fenetre de chargement de fichier
+     */
     public void initialize() {
          /*
             WindowsHeader
@@ -111,6 +113,11 @@ public class FileLoader { @FXML
         startBtn.setVisible(false);
     }
 
+    /**
+     * Permet de charger les différents fichiers à partir d'un evenement
+     * @param actionEvent evenement lançant le chargement
+     * @throws IOException
+     */
     public void start(ActionEvent actionEvent) throws IOException {
 
         // Load File ....
@@ -122,7 +129,6 @@ public class FileLoader { @FXML
         stage.close();
 
         /*
-        *
         *
         * Load App
         *
@@ -143,12 +149,21 @@ public class FileLoader { @FXML
         stage.show();
     }
 
+    /**
+     * Charge le fichier contenant la liste des produits
+     * @param mouseEvent
+     */
     public void openProduit(MouseEvent mouseEvent) {
         fichierProduit = openFile("Produit");
         reloadStartbtn();
         if(fichierProduit!=null)
             produit.setStyle("-fx-border-color: #ecba14;");
     }
+
+    /**
+     * Charge le fichier contenant la liste des chaines de productions
+     * @param mouseEvent
+     */
     public void openChaine(MouseEvent mouseEvent) {
         fichierChaine = openFile("Chaine");
         reloadStartbtn();
@@ -156,6 +171,10 @@ public class FileLoader { @FXML
             chaine.setStyle("-fx-border-color: #ecba14;");
     }
 
+    /**
+     * Charge le fichier contenant la liste des prix
+     * @param mouseEvent
+     */
     public void openPrix(MouseEvent mouseEvent) {
         fichierPrix = openFile("Prix");
         reloadStartbtn();
@@ -163,6 +182,11 @@ public class FileLoader { @FXML
             prix.setStyle("-fx-border-color: #ecba14;");
     }
 
+    /**
+     * Permet de selectionner un fichier dans son répertoire
+     * @param name type de fichier à choisir
+     * @return path du fichier choisi
+     */
     private String openFile(String name){
         // Obtenez le répertoire parent du fichier JAR
         String currentDir = System.getProperty("user.dir");
@@ -193,6 +217,9 @@ public class FileLoader { @FXML
         return null;
     }
 
+    /**
+     * Si tout les fichiers ont été chargés correctement, le bouton de démarrage devient visible
+     */
     private void reloadStartbtn(){
         if(!Objects.equals(fichierProduit, "") && fichierProduit != null &&
                 !Objects.equals(fichierChaine, "") && fichierChaine != null &&

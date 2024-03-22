@@ -1,6 +1,5 @@
 package com.triceratops.triceratops.controllers;
 
-import com.triceratops.triceratops.persistance.FileException;
 import com.triceratops.triceratops.utils.NavigationUtils;
 import com.triceratops.triceratops.modele.Produit;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
@@ -16,12 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import static com.triceratops.triceratops.modele.DataSet.*;
-import static com.triceratops.triceratops.persistance.InterfacePersistance.deserializeFromFile;
 
 public class Home implements Initializable {
 

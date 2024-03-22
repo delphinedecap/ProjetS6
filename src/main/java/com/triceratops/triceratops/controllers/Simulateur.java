@@ -95,7 +95,6 @@ public class Simulateur implements Initializable {
     /**
      * Permet de créer un tableau avec les données correspondant aux différentes chaines de production
      */
-
     private void setupTable() {
 
         for (ChaineProduction chaine : this.chaineProductions) {
@@ -109,6 +108,14 @@ public class Simulateur implements Initializable {
             chaineNom.getStyleClass().add("titre");
             NumberTextField marge = new NumberTextField();
             marge.textProperty().setValue("Production");
+
+            marge.hoverProperty().addListener((observable, oldValue, newValue) -> {
+                        if (estPossible()) {
+                            valid.setDisable(false);
+                        } else {
+                            valid.setDisable(true);
+                        }
+            });
 
             chaineVBox.getChildren().addAll(chaineNom, marge);
 
@@ -158,12 +165,18 @@ public class Simulateur implements Initializable {
         }
     }
 
+    /**
+     * Permet de savoir si la production demandée est possible avec les stocks actuels
+     * @return vraie si c'est possible, faux sinon
+     */
     private boolean estPossible(){
         HashMap<String, Integer> produits = new HashMap<>();
+        //Calcul de la variation de stock engendré par la production
         for (Map.Entry<ChaineProduction, Integer> mapEntry : productions.entrySet()) {
             ChaineProduction chaine = mapEntry.getKey();
             Integer production = mapEntry.getValue();
             Map<String, Integer> produitsIn = chaine.getProduitIn();
+            //Calcul des produits utilisés par la chaine
             for ( String code: produitsIn.keySet()) {
                 if (produits.containsKey(code)){
                     produits.put(code, produits.get(code)-produitsIn.get(code) * production );
@@ -173,6 +186,7 @@ public class Simulateur implements Initializable {
             }
 
             Map<String, Integer> produitsOut = chaine.getProduitOut();
+            //Calcul des produits produits par la chaine
             for ( String code: produitsOut.keySet()) {
                 if (produits.containsKey(code)){
                     produits.put(code, produits.get(code)+ produitsOut.get(code) * production );
@@ -182,7 +196,8 @@ public class Simulateur implements Initializable {
             }
         }
 
-
+        //Comparaison au stock actuel
+        //Si un stock actuel + variation est négatif alors la production n'est pas possible
         for (Map.Entry<String, Integer> mapEntry : produits.entrySet()) {
             String code = mapEntry.getKey();
             Integer i = mapEntry.getValue();
@@ -193,7 +208,346 @@ public class Simulateur implements Initializable {
         return true;
     }
 
+    /**
+     * Création des pdf de résultat et de visualisation temporelle
+     * @param actionEvent clic sur le bouton permettant de sauvegarder les productions
+     */
     public void valider(ActionEvent actionEvent) {
+        pdfSimulation();
+        pdfResultat();
+    }
+
+    /**
+     * Creation de la table permettant de representer les differents produits utilisés ou produits par une chaine
+     * @param produitsMap liste des produits
+     * @param produits liste des produits
+     * @param prixArrayList liste des prix
+     * @param chaine chaine de production concernée
+     * @param variation nombre de production demandée
+     * @param typeTableau produitsIn ou produitsOut
+     * @return tableau des produits
+     */
+    private TableView<Produit> createProduitsTableView(Map<String, Integer> produitsMap, HashMap<String, Produit> produits,
+                                                       List<Prix> prixArrayList, ChaineProduction chaine, double variation,
+                                                       TypeTableau typeTableau) {
+        TableView<Produit> produitsTable = new TableView<>();
+        produitsTable.setEditable(false);
+
+        TableColumn<Produit, String> codeCol = new TableColumn<>("Code");
+        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+
+        TableColumn<Produit, String> nomCol = new TableColumn<>("Nom");
+        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+        TableColumn<Produit, String> quantiteCol = new TableColumn<>("Quantité");
+
+        TableColumn<Produit, Integer> stockCol = new TableColumn<>("Stock");
+        stockCol.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+
+        //Produit iN && OUT
+        TableColumn<Produit, String> variationCol = new TableColumn<>("Variation");
+
+        // Produit IN
+        TableColumn<Produit, String> pAchatCol = new TableColumn<>("Prix d'achat");
+
+        // Produit OUT
+        TableColumn<Produit, String> pVenteCol = new TableColumn<>("Prix de vente");
+        TableColumn<Produit, String> margeCol = new TableColumn<>("Marge");
+
+
+        TableColumn<Produit, String> couvertureCommandeCol = new TableColumn<>("% Commande");
+
+        if(typeTableau==TypeTableau.IN){
+            produitsTable.setMaxWidth(445);
+
+
+            quantiteCol.setCellValueFactory(cellData -> new SimpleStringProperty(chaine.getProduitIn().get(cellData.getValue().getCode()).toString()));
+            variationCol.setCellValueFactory(cellData -> new SimpleStringProperty(
+                        "- "+String.valueOf(chaine.getProduitIn().get(
+                                cellData.getValue().getCode()
+                        )*variation)
+                )
+            );
+
+            variationCol.setCellFactory(column -> new TableCell<Produit, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                        setTextFill(Color.BLACK); // Couleur par défaut si la cellule est vide
+                    } else {
+                        double value = chaine.getProduitIn().get(getTableView().getItems().get(getIndex()).getCode()) * variation;
+                        double somme = getTableView().getItems().get(getIndex()).getQuantite() - value;
+                        setText("- " + String.valueOf(value));
+                        if (somme < 0) {
+                            setTextFill(Color.RED); // Mettre en rouge si la somme est négative
+                        } else {
+                            setTextFill(Color.BLACK); // Sinon, utiliser la couleur par défaut
+                        }
+                    }
+                }
+            });
+
+            pAchatCol.setCellValueFactory(cellData -> {
+                double pAchat = getPrixProduit(cellData.getValue().getCode(), prixArrayList).getpAchat();
+                return new SimpleStringProperty(pAchat >= 0 ? Double.toString(pAchat) : "NA");
+            });
+
+        }else{
+            produitsTable.setMaxWidth(540);
+
+            variationCol.setCellValueFactory(cellData -> new SimpleStringProperty(
+                        "+ "+String.valueOf(chaine.getProduitOut().get(
+                                cellData.getValue().getCode()
+                        )*variation)
+                    )
+            );
+
+            variationCol.setCellFactory(column -> new TableCell<Produit, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                        setTextFill(Color.BLACK); // Couleur par défaut si la cellule est vide
+                    } else {
+                        double value = chaine.getProduitOut().get(getTableView().getItems().get(getIndex()).getCode()) * variation;
+                        setText("+ " + String.valueOf(value));
+                        if (value > 0) {
+                            setTextFill(Color.GREEN); // Mettre en vert si la valeur est positive
+                        } else {
+                            setTextFill(Color.BLACK); // Sinon, utiliser la couleur par défaut
+                        }
+                    }
+                }
+            });
+
+            pVenteCol.setCellValueFactory(cellData -> {
+                double pVente = getPrixProduit(cellData.getValue().getCode(), prixArrayList).getpVente();
+                return new SimpleStringProperty(pVente >= 0 ? Double.toString(pVente) : "NA");
+            });
+
+            margeCol.setCellValueFactory(cellData -> new SimpleStringProperty(
+                    String.valueOf(df.format(getMarge(prixArrayList,chaine, (int) variation)))
+            ));
+
+            couvertureCommandeCol.setCellValueFactory(cellData -> {
+                double stock, prod, qteCommandé;
+
+                stock = cellData.getValue().getQuantite();
+
+                prod = chaine.getProduitOut().get(cellData.getValue().getCode())*variation;
+
+                qteCommandé = getPrixProduit(cellData.getValue().getCode(), prixArrayList).getQuantiteCommande();
+
+                return new SimpleStringProperty(qteCommandé > 0 ? (df.format(((stock + prod) / qteCommandé) * 100) + "%"): "NA" );
+            });
+
+            couvertureCommandeCol.setCellFactory(column -> new TableCell<Produit, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                        setTextFill(Color.BLACK); // Couleur par défaut si la cellule est vide
+                    } else {
+                        setText(item);
+                        if (!item.equals("NA") && Double.parseDouble(item.replace("%","").replace(",",".")) < 100) {
+                            setTextFill(Color.RED); // Mettre en rouge si la valeur est "NA"
+                        } else {
+                            setTextFill(Color.GREEN); // Utiliser la couleur par défaut pour les autres valeurs
+                        }
+                    }
+                }
+            });
+        }
+
+
+        /*TableColumn<Produit, String> quantiteProdCol = new TableColumn<>("Quantité de production");
+        quantiteProdCol.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(getQuantiteProductionProduit(cellData.getValue().getCode(), chaine))));*/
+
+
+        for (Map.Entry<String, Integer> entry : produitsMap.entrySet()) {
+            Produit produit = produits.get(entry.getKey());
+            if (produit != null) {
+                produitsTable.getItems().add(produit);
+            }
+        }
+
+        if(typeTableau==TypeTableau.IN){
+            produitsTable.getColumns().addAll(codeCol, nomCol, quantiteCol, stockCol, variationCol, pAchatCol);
+        }else{
+            produitsTable.getColumns().addAll(codeCol, nomCol, stockCol, variationCol, pVenteCol, margeCol, couvertureCommandeCol);
+        }
+
+        produitsTable.setMaxHeight(200);
+
+        return produitsTable;
+    }
+
+    /**
+     * Retourne le prix d'un produit
+     * @param codeProduit code du produit
+     * @param prixList liste des prix
+     * @return prix du produit
+     */
+    private Prix getPrixProduit(String codeProduit, List<Prix> prixList) {
+        for (Prix prix : prixList) {
+            if (prix.getCode().equals(codeProduit)) {
+                return prix;
+            }
+        }
+        return null; // Si aucun prix n'est trouvé pour le produit
+    }
+
+    /**
+     * Renvoie la marge réalisé par une chaine de production
+     * @param prixArrayList liste des prix
+     * @param chaine chaine de production concernée
+     * @param variation nombre de production demandée
+     * @return marge totale
+     */
+    private double getMarge(List<Prix> prixArrayList,
+                           ChaineProduction chaine, int variation){
+        double margeIn = 0,
+                margeOut = 0;
+        for (Map.Entry<String, Integer> entry : chaine.getProduitIn().entrySet())  {
+            double prixAchat = getPrixProduit(entry.getKey(), prixArrayList).getpAchat();
+            if(prixAchat > 0)
+                margeIn += prixAchat  * entry.getValue() * variation;
+        }
+
+        for (Map.Entry<String, Integer> entry : chaine.getProduitOut().entrySet()){
+            margeOut += (getPrixProduit(entry.getKey(), prixArrayList).getpVente() * variation);
+        }
+
+        return margeOut-margeIn;
+    }
+
+    /**
+     * Simule heure par heure l'avancement des chaines de production
+     * @return chaine de production et la liste de leurs temps finaux d'execution
+     */
+    public HashMap<ChaineProduction, ArrayList<Integer>> simulation(){
+        HashMap<String, Integer> stockSimule  = new HashMap<>();
+        for (Produit p : this.produits.values()){
+            stockSimule.put(p.getCode(), p.getQuantite());
+        }
+        HashMap<ChaineProduction, Integer> productionsEnCours = new HashMap<>();
+        HashMap<ChaineProduction, ArrayList<Integer>> productionsFinies= new HashMap<>();
+        HashMap<ChaineProduction, Integer> productionAFaire = (HashMap<ChaineProduction, Integer>) this.productions.clone();
+        for (int i=0; i<60; i++){
+            //gestion des chaines deja lancées
+            HashMap<ChaineProduction, Integer> productionsEnCoursCopy = new HashMap<>(productionsEnCours);
+            for (ChaineProduction c : productionsEnCoursCopy.keySet()) {
+                if (productionsEnCours.get(c) == 1) {
+                    productionsEnCours.remove(c);
+                    if (productionsFinies.containsKey(c)) {
+                        productionsFinies.get(c).add(i);
+                    } else {
+                        ArrayList<Integer> l = new ArrayList<>();
+                        l.add(i);
+                        productionsFinies.put(c, l);
+                    }
+                    //ajout des produits créés au stock
+                    for (String p : c.getProduitOut().keySet()) {
+                        if (stockSimule.containsKey(p)) {
+                            int j = stockSimule.get(p) + c.getProduitOut().get(p);
+                            stockSimule.replace(p, j);
+                        } else {
+                            stockSimule.put(p, c.getProduitOut().get(p));
+                        }
+                    }
+                } else {
+                    productionsEnCours.replace(c,productionsEnCours.get(c)-1);
+                }
+            }
+
+            // lancement des nouvelles chaines possibles
+            HashMap<ChaineProduction, Integer> productionAFaireCopy = new HashMap<>(productionAFaire);
+            for (ChaineProduction c : productionAFaireCopy.keySet()) {
+                if (c.estRealisable(stockSimule) && !productionsEnCours.containsKey(c)) {
+                    productionsEnCours.put(c, c.getDuree());
+                    productionAFaire.replace(c, productionAFaire.get(c) - 1);
+                    if (productionAFaire.get(c) == 0) {
+                        productionAFaire.remove(c);
+                    }
+                    //mise à jour des stocks
+                    for (String p : c.getProduitIn().keySet()) {
+                        int j = stockSimule.get(p) - c.getProduitIn().get(p);
+                        stockSimule.replace(p, j);
+                    }
+                }
+            }
+        }
+
+        if(productionAFaire.isEmpty() && productionsEnCours.isEmpty()){
+            return productionsFinies;
+        }
+        return null;
+    }
+
+    /**
+     * Edite le pdf correspondant à l'avancement heure par heure des chaines de productions
+     * Le pdf sera sauvegardé dans C:\Users\Public\Downloads
+     */
+    public void pdfSimulation(){
+        HashMap<ChaineProduction, ArrayList<Integer>> result = simulation();
+        Document doc = new Document();
+        try
+        {
+            //generate a PDF at the specified location
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Public\\Downloads\\Simulation.pdf"));
+            System.out.println("PDF created.");
+            //opens the PDF
+            doc.open();
+            //adds paragraph to the PDF file
+
+            Font bold16 = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
+            Font bold14 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
+            Font bold12 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+            Font font = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+            doc.add(new Paragraph("Temps fonctionnement : ", bold16));
+            doc.add(new Paragraph(" "));
+
+            if (result == null){
+                doc.add(new Paragraph("La production demandée n'est pas réalisable en 60 heures", bold14));
+            } else {
+                for (ChaineProduction c : result.keySet()){
+                    doc.add(new Paragraph(c.getNom() , bold14));
+                    doc.add(new Paragraph("Durée de fonctionnement de la chaine : " + c.getDuree()*result.get(c).size() +"heures", bold12));
+                    int duree = c.getDuree();
+                    for (int i=0; i<result.get(c).size(); i++){
+                        int tempsFin = result.get(c).get(i);
+                        doc.add(new Paragraph("     Itération " + (i+1) + " : de heure " + (tempsFin-duree ) + " à heure " + tempsFin, bold12));
+                    }
+                    doc.add(new Paragraph(" "));
+                }
+            }
+
+            //close the PDF file
+            doc.close();
+            //closes the writer
+            writer.close();
+        }
+        catch (DocumentException e)
+        {
+            e.printStackTrace();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Edite le pdf correspondant à la production demandée
+     * Le pdf sera sauvegardé dans C:\Users\Public\Downloads
+     */
+    public void pdfResultat(){
         //created PDF document instance
         Document doc = new Document();
         try
@@ -219,7 +573,7 @@ public class Simulateur implements Initializable {
 
                 doc.add(new Paragraph(chaine.getNom() , bold14));
                 doc.add(new Paragraph("Production demandée : " + production, bold14));
-                doc.add(new Paragraph("Durée de la production unitaire : " + production*chaine.getDuree() +"min", bold14));
+                doc.add(new Paragraph("Durée de la production unitaire : " + production*chaine.getDuree() +"heures", bold14));
                 doc.add(new Paragraph("Produits entrants : " , bold12));
 
                 PdfPTable tableEntrant = new PdfPTable(6);
@@ -497,203 +851,5 @@ public class Simulateur implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
-
-    private TableView<Produit> createProduitsTableView(Map<String, Integer> produitsMap, HashMap<String, Produit> produits,
-                                                       List<Prix> prixArrayList, ChaineProduction chaine, double variation,
-                                                       TypeTableau typeTableau) {
-        TableView<Produit> produitsTable = new TableView<>();
-        produitsTable.setEditable(false);
-
-        TableColumn<Produit, String> codeCol = new TableColumn<>("Code");
-        codeCol.setCellValueFactory(new PropertyValueFactory<>("code"));
-
-        TableColumn<Produit, String> nomCol = new TableColumn<>("Nom");
-        nomCol.setCellValueFactory(new PropertyValueFactory<>("nom"));
-
-        TableColumn<Produit, String> quantiteCol = new TableColumn<>("Quantité");
-
-        TableColumn<Produit, Integer> stockCol = new TableColumn<>("Stock");
-        stockCol.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-
-        //Produit iN && OUT
-        TableColumn<Produit, String> variationCol = new TableColumn<>("Variation");
-
-        // Produit IN
-        TableColumn<Produit, String> pAchatCol = new TableColumn<>("Prix d'achat");
-
-        // Produit OUT
-        TableColumn<Produit, String> pVenteCol = new TableColumn<>("Prix de vente");
-        TableColumn<Produit, String> margeCol = new TableColumn<>("Marge");
-
-
-        TableColumn<Produit, String> couvertureCommandeCol = new TableColumn<>("% Commande");
-
-        if(typeTableau==TypeTableau.IN){
-            produitsTable.setMaxWidth(445);
-
-
-            quantiteCol.setCellValueFactory(cellData -> new SimpleStringProperty(chaine.getProduitIn().get(cellData.getValue().getCode()).toString()));
-            variationCol.setCellValueFactory(cellData -> new SimpleStringProperty(
-                        "- "+String.valueOf(chaine.getProduitIn().get(
-                                cellData.getValue().getCode()
-                        )*variation)
-                )
-            );
-
-            variationCol.setCellFactory(column -> new TableCell<Produit, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (item == null || empty) {
-                        setText(null);
-                        setTextFill(Color.BLACK); // Couleur par défaut si la cellule est vide
-                    } else {
-                        double value = chaine.getProduitIn().get(getTableView().getItems().get(getIndex()).getCode()) * variation;
-                        double somme = getTableView().getItems().get(getIndex()).getQuantite() - value;
-                        setText("- " + String.valueOf(value));
-                        if (somme < 0) {
-                            setTextFill(Color.RED); // Mettre en rouge si la somme est négative
-                        } else {
-                            setTextFill(Color.BLACK); // Sinon, utiliser la couleur par défaut
-                        }
-                    }
-                }
-            });
-
-            pAchatCol.setCellValueFactory(cellData -> {
-                double pAchat = getPrixProduit(cellData.getValue().getCode(), prixArrayList).getpAchat();
-                return new SimpleStringProperty(pAchat >= 0 ? Double.toString(pAchat) : "NA");
-            });
-
-        }else{
-            produitsTable.setMaxWidth(540);
-
-            variationCol.setCellValueFactory(cellData -> new SimpleStringProperty(
-                        "+ "+String.valueOf(chaine.getProduitOut().get(
-                                cellData.getValue().getCode()
-                        )*variation)
-                    )
-            );
-
-            variationCol.setCellFactory(column -> new TableCell<Produit, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (item == null || empty) {
-                        setText(null);
-                        setTextFill(Color.BLACK); // Couleur par défaut si la cellule est vide
-                    } else {
-                        double value = chaine.getProduitOut().get(getTableView().getItems().get(getIndex()).getCode()) * variation;
-                        setText("+ " + String.valueOf(value));
-                        if (value > 0) {
-                            setTextFill(Color.GREEN); // Mettre en vert si la valeur est positive
-                        } else {
-                            setTextFill(Color.BLACK); // Sinon, utiliser la couleur par défaut
-                        }
-                    }
-                }
-            });
-
-            pVenteCol.setCellValueFactory(cellData -> {
-                double pVente = getPrixProduit(cellData.getValue().getCode(), prixArrayList).getpVente();
-                return new SimpleStringProperty(pVente >= 0 ? Double.toString(pVente) : "NA");
-            });
-
-            margeCol.setCellValueFactory(cellData -> new SimpleStringProperty(
-                    String.valueOf(df.format(getMarge(prixArrayList,chaine, (int) variation)))
-            ));
-
-            couvertureCommandeCol.setCellValueFactory(cellData -> {
-                double stock, prod, qteCommandé;
-
-                stock = cellData.getValue().getQuantite();
-
-                prod = chaine.getProduitOut().get(cellData.getValue().getCode())*variation;
-
-                qteCommandé = getPrixProduit(cellData.getValue().getCode(), prixArrayList).getQuantiteCommande();
-
-                return new SimpleStringProperty(qteCommandé > 0 ? (df.format(((stock + prod) / qteCommandé) * 100) + "%"): "NA" );
-            });
-
-            couvertureCommandeCol.setCellFactory(column -> new TableCell<Produit, String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (item == null || empty) {
-                        setText(null);
-                        setTextFill(Color.BLACK); // Couleur par défaut si la cellule est vide
-                    } else {
-                        setText(item);
-                        if (!item.equals("NA") && Double.parseDouble(item.replace("%","").replace(",",".")) < 100) {
-                            setTextFill(Color.RED); // Mettre en rouge si la valeur est "NA"
-                        } else {
-                            setTextFill(Color.GREEN); // Utiliser la couleur par défaut pour les autres valeurs
-                        }
-                    }
-                }
-            });
-        }
-
-
-        /*TableColumn<Produit, String> quantiteProdCol = new TableColumn<>("Quantité de production");
-        quantiteProdCol.setCellValueFactory(cellData -> new SimpleStringProperty(Integer.toString(getQuantiteProductionProduit(cellData.getValue().getCode(), chaine))));*/
-
-
-        for (Map.Entry<String, Integer> entry : produitsMap.entrySet()) {
-            Produit produit = produits.get(entry.getKey());
-            /*
-             * Debug
-             */
-//            System.out.println(produit);
-//            System.out.println("qte : "+produit.getQuantite());
-            if (produit != null) {
-                produitsTable.getItems().add(produit);
-            }
-        }
-
-        if(typeTableau==TypeTableau.IN){
-            produitsTable.getColumns().addAll(codeCol, nomCol, quantiteCol, stockCol, variationCol, pAchatCol);
-        }else{
-            produitsTable.getColumns().addAll(codeCol, nomCol, stockCol, variationCol, pVenteCol, margeCol, couvertureCommandeCol);
-        }
-
-        produitsTable.setMaxHeight(200);
-
-        return produitsTable;
-    }
-
-
-    // Méthode pour récupérer le prix d'un produit à partir de la liste des prix
-    private Prix getPrixProduit(String codeProduit, List<Prix> prixList) {
-        for (Prix prix : prixList) {
-            if (prix.getCode().equals(codeProduit)) {
-                return prix;
-            }
-        }
-        return null; // Si aucun prix n'est trouvé pour le produit
-    }
-
-    private double getMarge(List<Prix> prixArrayList,
-                           ChaineProduction chaine, int variation){
-        double margeIn = 0,
-                margeOut = 0;
-        for (Map.Entry<String, Integer> entry : chaine.getProduitIn().entrySet())  {
-            double prixAchat = getPrixProduit(entry.getKey(), prixArrayList).getpAchat();
-            if(prixAchat > 0)
-                margeIn += prixAchat  * entry.getValue() * variation;
-        }
-
-        //System.out.println(margeIn);
-
-        for (Map.Entry<String, Integer> entry : chaine.getProduitOut().entrySet()){
-            margeOut += (getPrixProduit(entry.getKey(), prixArrayList).getpVente() * variation);
-        }
-
-        //System.out.println(margeOut);
-
-        return margeOut-margeIn;
-    }
-
 }

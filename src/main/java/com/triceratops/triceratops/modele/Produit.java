@@ -1,9 +1,6 @@
 package com.triceratops.triceratops.modele;
 
-
-import com.fasterxml.jackson.annotation.JsonKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 public class Produit {
 
@@ -14,7 +11,7 @@ public class Produit {
     @JsonProperty("quantite")
     private int quantite;
     @JsonProperty("unite")
-    private String unite; // Remplacer éventuellement par un enum
+    private String unite;
 
     /**
      * Constructeur par defaut du produit

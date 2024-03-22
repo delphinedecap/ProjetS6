@@ -1,9 +1,6 @@
 package com.triceratops.triceratops.modele;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -137,5 +134,21 @@ public class ChaineProduction {
                 ", produitOut = " + this.produitOut +
                 ", duree = " + this.duree + "min" +
                 '}';
+    }
+
+    /**
+     * Permet de savoir si une chaine de production est réalisable à partir d'un stock donné
+     * @param stock
+     * @return vrai si elle est réalisable, faux sinon
+     */
+    public boolean estRealisable(HashMap<String, Integer> stock) {
+        for (String produit : this.produitIn.keySet()){
+            if(stock.containsKey(produit)){
+                if (stock.get(produit)<this.produitIn.get(produit)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

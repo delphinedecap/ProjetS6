@@ -8,7 +8,7 @@
   "produitOut" : {
     "CBR" : 6
   },
-  "duree" : 60
+  "duree" : 1
 }, {
   "code" : "FISSIV",
   "nom" : "Fission réacteur Gen IV",
@@ -20,5 +20,5 @@
     "CBU" : 2,
     "ENR" : 100
   },
-  "duree" : 45
+  "duree" : 2
 } ]
