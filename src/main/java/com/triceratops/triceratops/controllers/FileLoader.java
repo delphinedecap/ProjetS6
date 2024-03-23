@@ -124,7 +124,11 @@ public class FileLoader {
         try {
             extractDataset(fichierProduit,fichierPrix,fichierChaine);
         } catch (FileException e) {
+            chaine.setStyle("-fx-border-color: #ff0000;");
+            produit.setStyle("-fx-border-color: #ff0000;");
+            prix.setStyle("-fx-border-color: #ff0000;");
             throw new RuntimeException(e);
+
         }
         stage.close();
 

@@ -6,6 +6,6 @@ public class FileException extends Exception{
      * @param message nom du fichier
      */
     public FileException(String message) {
-        super("Fichier : " + message + " introuvable");
+        super("Fichier : " + message + " introuvable ou erronée");
     }
 }

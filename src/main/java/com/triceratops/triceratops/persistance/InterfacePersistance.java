@@ -39,14 +39,15 @@ public class InterfacePersistance {
      * @param path fichier utilisé par la persistance
      * @return liste des données stockées
      */
-    public static <T> ArrayList<T> deserializeFromFile(Class<T> type,String path) {
+    public static <T> ArrayList<T> deserializeFromFile(Class<T> type,String path) throws FileException {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             ArrayList<T> arrayList = objectMapper.readValue(new File(path),
                     objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, type));
             return arrayList;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("ERREUR !! FICHIER INCOMPATIBLE");
+            throw new FileException(" ");
         }
     }
 
@@ -60,7 +61,7 @@ public class InterfacePersistance {
      * @param <T> type de l'objet
      */
     public static <K, T> HashMap<K,T> deserializeWithKeyFromFile(Class<T> type, String path,
-                                                                   String getterKey) {
+                                                                   String getterKey) throws FileException {
         ArrayList<T> resultArrayList = deserializeFromFile(type,path);
         HashMap<K,T> resultHash = new HashMap<K, T>();
 
@@ -85,7 +86,7 @@ public class InterfacePersistance {
      * @param objectType : type des objets
      * @param path : fichier à mettre à jour
      */
-    public static <T> void addToFile(ArrayList<T> objects, Class<T> objectType, String path) {
+    public static <T> void addToFile(ArrayList<T> objects, Class<T> objectType, String path) throws FileException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         for (T object : deserializeFromFile(objectType,path)){

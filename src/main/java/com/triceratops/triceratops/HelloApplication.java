@@ -46,7 +46,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/fileLoader.fxml"));
         fxmlLoader.setControllerFactory(c -> new FileLoader(stage));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 330);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 450);
         scene.setFill(Color.TRANSPARENT);
 
         stage.setTitle("Triceratops - Chargeur de fichiers");
