@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="refacto + estPossible simulateur">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chaine.json" beforeDir="false" afterPath="$PROJECT_DIR$/chaine.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prix.json" beforeDir="false" afterPath="$PROJECT_DIR$/prix.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/produit.json" beforeDir="false" afterPath="$PROJECT_DIR$/produit.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/FileLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

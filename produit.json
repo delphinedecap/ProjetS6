@@ -6,7 +6,7 @@
 }, {
   "code" : "PUR",
   "nom" : "Purée de fruit",
-  "quantite" : 25,
+  "quantite" : 30,
   "unite" : "t"
 }, {
   "code" : "SUC",
@@ -26,7 +26,13 @@
 }, {
   "code" : "JUS",
   "nom" : "Jus de Fruits",
-  "quantite" : 600,
+  "quantite" : 0,
+  "unite" : "L"
+}
+, {
+  "code" : "JUF",
+  "nom" : "Jus de Fruits Fermenté",
+  "quantite" : 200,
   "unite" : "L"
 }
 ]

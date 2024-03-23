@@ -7,25 +7,35 @@
   "produitOut" : {
     "PUR" : 1
   },
-  "duree" : 4
+  "duree" : 1
 }, {
   "code" : "FABJUS",
   "nom" : "Fabrication de jus de fruit",
   "produitIn" : {
-    "PUR" : 2,
+    "PUR" : 3,
     "SUC" : 1,
     "EAU" : 300
   },
   "produitOut" : {
     "JUS" : 400
   },
-  "duree" : 5
+  "duree" : 4
+}, {
+  "code" : "FABJUF",
+  "nom" : "Fabrication de jus de fruit fermenté",
+  "produitIn" : {
+    "JUS" : 1
+  },
+  "produitOut" : {
+    "JUF" : 1
+  },
+  "duree" : 12
 }, {
   "code" : "FABCOM",
   "nom" : "Fabrication de compote",
   "produitIn" : {
     "PUR" : 4,
-    "SUC" : 2
+    "SUC" : 1
   },
   "produitOut" : {
     "COM" : 4

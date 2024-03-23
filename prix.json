@@ -29,5 +29,11 @@
   "pVente" : 4500,
   "quantiteCommande" : 25
 }
+, {
+  "code" : "JUF",
+  "pAchat" : -1.0,
+  "pVente" : 5500,
+  "quantiteCommande" : 600
+}
 
 ]

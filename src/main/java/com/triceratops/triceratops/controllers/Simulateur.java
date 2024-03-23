@@ -219,7 +219,7 @@ public class Simulateur implements Initializable {
             }
 
             Map<String, Integer> produitsOut = chaine.getProduitOut();
-            //Calcul des produits produits par la chaine
+            //Calcul des produits produit par la chaine
             for ( String code: produitsOut.keySet()) {
                 if (produits.containsKey(code)){
                     produits.put(code, produits.get(code)+ produitsOut.get(code) * production );
@@ -893,6 +893,10 @@ public class Simulateur implements Initializable {
         }
     }
 
+    /**
+     * Fonction qui permet de renvoyer le temps de production global estimé
+     * @return -1 si ce temps dépasse 60h, le nombre d'heures sinon
+     */
     public int getTempsProduction(){
         HashMap<ChaineProduction, ArrayList<Integer>> liste = simulation();
         if (liste==null){

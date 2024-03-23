@@ -139,7 +139,7 @@ public class FileLoader {
         */
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/root.fxml"));
         fxmlLoader.setControllerFactory(c -> new HelloController(stage));
-        Scene scene = new Scene(fxmlLoader.load(), 1100, 700);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 1000);
         scene.setFill(Color.TRANSPARENT);
 
         stage.setTitle("Triceratops");
