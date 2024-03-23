@@ -97,6 +97,8 @@ public class Simulateur implements Initializable {
      */
     private void setupTable() {
 
+        Label tempsGlobal = new Label("Temps de production estimé : ");
+
         for (ChaineProduction chaine : this.chaineProductions) {
             // Création d'un HBox pour chaque chaine de production
             VBox chaineVBox = new VBox();
@@ -109,15 +111,32 @@ public class Simulateur implements Initializable {
             NumberTextField marge = new NumberTextField();
             marge.textProperty().setValue("Production");
 
+            Label resultLabel = new Label("Temps d'utilisation de la chaine : ");
+
+            marge.textProperty().addListener(((observable, oldValue, newValue) -> {
+
+                if(newValue != null) {
+
+                    if (newValue.equals(""))
+                        newValue = "0";
+
+                    int variance = Integer.parseInt(newValue);
+                    resultLabel.setText("Temps d'utilisation de la chaine : " + variance * chaine.getDuree() + " heures");
+
+                }
+            }));
+
+
             marge.hoverProperty().addListener((observable, oldValue, newValue) -> {
-                        if (estPossible()) {
-                            valid.setDisable(false);
-                        } else {
-                            valid.setDisable(true);
-                        }
+                if (estPossible()) {
+                    valid.setDisable(false);
+                } else {
+                    valid.setDisable(true);
+                }
             });
 
             chaineVBox.getChildren().addAll(chaineNom, marge);
+            chaineVBox.getChildren().add(resultLabel);
 
             HBox tableaux = new HBox();
             tableaux.setSpacing(30);
@@ -152,12 +171,26 @@ public class Simulateur implements Initializable {
 
                     produitsOutTable = createProduitsTableView(produitsOutMap, produits, this.prix, chaine, variance, TypeTableau.OUT);
                     tableaux.getChildren().addAll(produitsInTable,produitsOutTable);
+
+                    int temps = getTempsProduction();
+                    System.out.println(temps);
+                    if (temps == -1 && estPossible()){
+                        tempsGlobal.setText("Temps de production estimé supérieur à 60 heures ");
+                    } else {
+                        if (!estPossible()) {
+                            tempsGlobal.setText("La production n'est pas réalisable avec les stocks actuels");
+                        } else {
+                            tempsGlobal.setText("Temps de production estimé : " + temps + " heures ");
+                        }
+                    }
                 }
 
             }));
 
             //Ajout des tableaux a HBox
             chaineVBox.getChildren().add(tableaux);
+
+            chaineVBox.getChildren().add(tempsGlobal);
 
             // Ajout du VBox à la VBox principale
             tableSimu.getChildren().add(chaineVBox);
@@ -263,10 +296,10 @@ public class Simulateur implements Initializable {
 
             quantiteCol.setCellValueFactory(cellData -> new SimpleStringProperty(chaine.getProduitIn().get(cellData.getValue().getCode()).toString()));
             variationCol.setCellValueFactory(cellData -> new SimpleStringProperty(
-                        "- "+String.valueOf(chaine.getProduitIn().get(
-                                cellData.getValue().getCode()
-                        )*variation)
-                )
+                            "- "+String.valueOf(chaine.getProduitIn().get(
+                                    cellData.getValue().getCode()
+                            )*variation)
+                    )
             );
 
             variationCol.setCellFactory(column -> new TableCell<Produit, String>() {
@@ -298,9 +331,9 @@ public class Simulateur implements Initializable {
             produitsTable.setMaxWidth(540);
 
             variationCol.setCellValueFactory(cellData -> new SimpleStringProperty(
-                        "+ "+String.valueOf(chaine.getProduitOut().get(
-                                cellData.getValue().getCode()
-                        )*variation)
+                            "+ "+String.valueOf(chaine.getProduitOut().get(
+                                    cellData.getValue().getCode()
+                            )*variation)
                     )
             );
 
@@ -409,7 +442,7 @@ public class Simulateur implements Initializable {
      * @return marge totale
      */
     private double getMarge(List<Prix> prixArrayList,
-                           ChaineProduction chaine, int variation){
+                            ChaineProduction chaine, int variation){
         double margeIn = 0,
                 margeOut = 0;
         for (Map.Entry<String, Integer> entry : chaine.getProduitIn().entrySet())  {
@@ -430,6 +463,7 @@ public class Simulateur implements Initializable {
      * @return chaine de production et la liste de leurs temps finaux d'execution
      */
     public HashMap<ChaineProduction, ArrayList<Integer>> simulation(){
+        System.out.println(this.productions);
         HashMap<String, Integer> stockSimule  = new HashMap<>();
         for (Produit p : this.produits.values()){
             stockSimule.put(p.getCode(), p.getQuantite());
@@ -467,16 +501,20 @@ public class Simulateur implements Initializable {
             // lancement des nouvelles chaines possibles
             HashMap<ChaineProduction, Integer> productionAFaireCopy = new HashMap<>(productionAFaire);
             for (ChaineProduction c : productionAFaireCopy.keySet()) {
-                if (c.estRealisable(stockSimule) && !productionsEnCours.containsKey(c)) {
-                    productionsEnCours.put(c, c.getDuree());
-                    productionAFaire.replace(c, productionAFaire.get(c) - 1);
-                    if (productionAFaire.get(c) == 0) {
-                        productionAFaire.remove(c);
-                    }
-                    //mise à jour des stocks
-                    for (String p : c.getProduitIn().keySet()) {
-                        int j = stockSimule.get(p) - c.getProduitIn().get(p);
-                        stockSimule.replace(p, j);
+                if (productionAFaireCopy.get(c) == 0){
+                    productionAFaire.remove(c);
+                } else {
+                    if (c.estRealisable(stockSimule) && !productionsEnCours.containsKey(c)) {
+                        productionsEnCours.put(c, c.getDuree());
+                        productionAFaire.replace(c, productionAFaire.get(c) - 1);
+                        if (productionAFaire.get(c) == 0) {
+                            productionAFaire.remove(c);
+                        }
+                        //mise à jour des stocks
+                        for (String p : c.getProduitIn().keySet()) {
+                            int j = stockSimule.get(p) - c.getProduitIn().get(p);
+                            stockSimule.replace(p, j);
+                        }
                     }
                 }
             }
@@ -495,10 +533,9 @@ public class Simulateur implements Initializable {
     public void pdfSimulation(){
         HashMap<ChaineProduction, ArrayList<Integer>> result = simulation();
         Document doc = new Document();
-        try
-        {
+        try {
             //generate a PDF at the specified location
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Public\\Downloads\\Simulation.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("Simulation.pdf"));
             System.out.println("PDF created.");
             //opens the PDF
             doc.open();
@@ -508,35 +545,38 @@ public class Simulateur implements Initializable {
             Font bold14 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
             Font bold12 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
             Font font = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-            doc.add(new Paragraph("Temps fonctionnement : ", bold16));
+
+            doc.add(new Paragraph("Temps de fonctionnement global : " + getTempsProduction(), bold16));
+
+            doc.add(new Paragraph("Temps de fonctionnement par chaînes : ", bold16));
             doc.add(new Paragraph(" "));
 
-            if (result == null){
-                doc.add(new Paragraph("La production demandée n'est pas réalisable en 60 heures", bold14));
-            } else {
-                for (ChaineProduction c : result.keySet()){
-                    doc.add(new Paragraph(c.getNom() , bold14));
-                    doc.add(new Paragraph("Durée de fonctionnement de la chaine : " + c.getDuree()*result.get(c).size() +"heures", bold12));
-                    int duree = c.getDuree();
-                    for (int i=0; i<result.get(c).size(); i++){
-                        int tempsFin = result.get(c).get(i);
-                        doc.add(new Paragraph("     Itération " + (i+1) + " : de heure " + (tempsFin-duree ) + " à heure " + tempsFin, bold12));
-                    }
-                    doc.add(new Paragraph(" "));
+            for (ChaineProduction c : result.keySet()) {
+                doc.add(new Paragraph(c.getNom(), bold14));
+                doc.add(new Paragraph("Durée de fonctionnement de la chaine : " + c.getDuree() * result.get(c).size() + "heures", bold12));
+                int duree = c.getDuree();
+                for (int i = 0; i < result.get(c).size(); i++) {
+                    int tempsFin = result.get(c).get(i);
+                    doc.add(new Paragraph("     Itération " + (i + 1) + " : de heure " + (tempsFin - duree) + " à heure " + tempsFin, bold12));
                 }
+                doc.add(new Paragraph(" "));
             }
+
+            doc.add(new Paragraph("Temps de fonctionnement global : ", bold16));
+            int somme = 0;
+            for (ChaineProduction c : result.keySet()) {
+                somme += result.get(c).get(result.get(c).size() - 1);
+            }
+
+            doc.add(new Paragraph("Temps de fonctionnement global : " + somme + " heures.", bold16));
 
             //close the PDF file
             doc.close();
             //closes the writer
             writer.close();
-        }
-        catch (DocumentException e)
-        {
+        } catch (DocumentException e) {
             e.printStackTrace();
-        }
-        catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -553,7 +593,7 @@ public class Simulateur implements Initializable {
         try
         {
             //generate a PDF at the specified location
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\Public\\Downloads\\Results.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("Results.pdf"));
             System.out.println("PDF created.");
             //opens the PDF
             doc.open();
@@ -851,5 +891,19 @@ public class Simulateur implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public int getTempsProduction(){
+        HashMap<ChaineProduction, ArrayList<Integer>> liste = simulation();
+        if (liste==null){
+            return -1;
+        }
+        int max = 0;
+        for (ArrayList<Integer> l : liste.values()){
+            if (l.get(l.size()-1)>max){
+                max = l.get(l.size()-1);
+            }
+        }
+        return max;
     }
 }
