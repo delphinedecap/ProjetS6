@@ -1,21 +1,33 @@
 [ {
-  "code" : "CBU",
-  "pAchat" : 12.7,
+  "code" : "FRU",
+  "pAchat" : 800,
   "pVente" : -1.0,
   "quantiteCommande" : 0
 }, {
-  "code" : "UAE",
-  "pAchat" : 90.5,
+  "code" : "SUC",
+  "pAchat" : 600,
   "pVente" : -1.0,
   "quantiteCommande" : 0
 }, {
-  "code" : "CBR",
+  "code" : "EAU",
+  "pAchat" : 0.05,
+  "pVente" : -1.0,
+  "quantiteCommande" : 0
+}, {
+  "code" : "PUR",
   "pAchat" : -1.0,
-  "pVente" : 244.92,
-  "quantiteCommande" : 30
-}, {
-  "code" : "ENR",
+  "pVente" : 3000,
+  "quantiteCommande" : 35
+} , {
+  "code" : "JUS",
   "pAchat" : -1.0,
-  "pVente" : -1.0,
-  "quantiteCommande" : 0
-} ]
+  "pVente" : 8,
+  "quantiteCommande" : 1200
+}, {
+  "code" : "COM",
+  "pAchat" : -1.0,
+  "pVente" : 4500,
+  "quantiteCommande" : 25
+}
+
+]

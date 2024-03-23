@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="refacto + estPossible simulateur">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chaine.json" beforeDir="false" afterPath="$PROJECT_DIR$/chaine.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prix.json" beforeDir="false" afterPath="$PROJECT_DIR$/prix.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/produit.json" beforeDir="false" afterPath="$PROJECT_DIR$/produit.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/persistance/FileException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/persistance/FileException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/persistance/InterfacePersistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/persistance/InterfacePersistance.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +189,7 @@
       <workItem from="1710322455062" duration="2731000" />
       <workItem from="1711109559323" duration="10407000" />
       <workItem from="1711223354323" duration="207000" />
-      <workItem from="1711223568818" duration="3993000" />
+      <workItem from="1711223568818" duration="5772000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>

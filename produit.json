@@ -1,21 +1,32 @@
 [ {
-  "code" : "CBU",
-  "nom" : "Combustible usée",
-  "quantite" : 20,
-  "unite" : "kg"
+  "code" : "FRU",
+  "nom" : "Fruits",
+  "quantite" : 200,
+  "unite" : "t"
 }, {
-  "code" : "UAE",
-  "nom" : "Uranium enrichie",
-  "quantite" : 300,
-  "unite" : "Kg"
+  "code" : "PUR",
+  "nom" : "Purée de fruit",
+  "quantite" : 25,
+  "unite" : "t"
 }, {
-  "code" : "CBR",
-  "nom" : "Combustible ready",
-  "quantite" : 30,
-  "unite" : "Kg"
+  "code" : "SUC",
+  "nom" : "Sucre",
+  "quantite" : 60,
+  "unite" : "t"
 }, {
-  "code" : "ENR",
-  "nom" : "Energie",
-  "quantite" : 30,
-  "unite" : "kJ"
-} ]
+  "code" : "EAU",
+  "nom" : "Eau",
+  "quantite" : 20000,
+  "unite" : "L"
+}, {
+  "code" : "COM",
+  "nom" : "Compote",
+  "quantite" : 12,
+  "unite" : "t"
+}, {
+  "code" : "JUS",
+  "nom" : "Jus de Fruits",
+  "quantite" : 600,
+  "unite" : "L"
+}
+]

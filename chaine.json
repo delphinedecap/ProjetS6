@@ -1,24 +1,34 @@
 [ {
-  "code" : "FABCBR",
-  "nom" : "Production de combustible nucléaire",
+  "code" : "FABPUR",
+  "nom" : "Fabrication de puree de fruit",
   "produitIn" : {
-    "CBU" : 1,
-    "UAE" : 5
+    "FRU" : 2
   },
   "produitOut" : {
-    "CBR" : 6
+    "PUR" : 1
   },
-  "duree" : 1
+  "duree" : 4
 }, {
-  "code" : "FISSIV",
-  "nom" : "Fission réacteur Gen IV",
+  "code" : "FABJUS",
+  "nom" : "Fabrication de jus de fruit",
   "produitIn" : {
-    "CBR" : 1,
-    "UAE" : 5
+    "PUR" : 2,
+    "SUC" : 1,
+    "EAU" : 300
   },
   "produitOut" : {
-    "CBU" : 2,
-    "ENR" : 100
+    "JUS" : 400
+  },
+  "duree" : 5
+}, {
+  "code" : "FABCOM",
+  "nom" : "Fabrication de compote",
+  "produitIn" : {
+    "PUR" : 4,
+    "SUC" : 2
+  },
+  "produitOut" : {
+    "COM" : 4
   },
   "duree" : 2
 } ]
