@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="refacto + estPossible simulateur">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/utils/PdfCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/utils/PlanProduction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chaine.json" beforeDir="false" afterPath="$PROJECT_DIR$/chaine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prix.json" beforeDir="false" afterPath="$PROJECT_DIR$/prix.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/produit.json" beforeDir="false" afterPath="$PROJECT_DIR$/produit.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Results.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Results.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simulation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Simulation.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/FileLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,6 +194,7 @@
       <workItem from="1711109559323" duration="10407000" />
       <workItem from="1711223354323" duration="207000" />
       <workItem from="1711223568818" duration="5772000" />
+      <workItem from="1711275910894" duration="2624000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>
