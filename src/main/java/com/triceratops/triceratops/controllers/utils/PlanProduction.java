@@ -3,6 +3,7 @@ package com.triceratops.triceratops.controllers.utils;
 import com.triceratops.triceratops.modele.ChaineProduction;
 import com.triceratops.triceratops.modele.Produit;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -139,5 +140,102 @@ public class PlanProduction {
             }
         }
         return true;
+    }
+
+    /**
+     * Permet de classer les chaines de productions selon un ordre de priorité
+     * @param productions
+     * @return
+     */
+    public ArrayList<ArrayList<ChaineProduction>> niveau(HashMap<ChaineProduction, Integer> productions) {
+        ArrayList<ChaineProduction> niveau0 = new ArrayList<>(); //chaine indépendante
+        ArrayList<ChaineProduction> niveau1 = new ArrayList<>(); //chaine nécessaire de faire démarrer rapidement car d'autres chaines attendent sa production
+        ArrayList<ChaineProduction> niveau2 = new ArrayList<>(); //chaine qui attend la production d'autre
+        ArrayList<ChaineProduction> niveau3 = new ArrayList<>(); //chaine qui attend la production d'autre mais qui est nécessaire auusi pour d'autres chaines
+        ArrayList<String> produitsCrees = new ArrayList<>();
+        ArrayList<String> produitsNecessaires = new ArrayList<>();
+        for (ChaineProduction c : productions.keySet()){
+            for (String p : c.getProduitIn().keySet()){
+                if (!produitsNecessaires.contains(p)){
+                    produitsNecessaires.add(p);
+                }
+            }
+            for (String p : c.getProduitOut().keySet()){
+                if (!produitsCrees.contains(p)){
+                    produitsCrees.add(p);
+                }
+            }
+        }
+
+        for (ChaineProduction c : productions.keySet()){
+            int[] niveau = {0,0};
+            for (String p : c.getProduitIn().keySet()){
+                if (produitsCrees.contains(p)){
+                    niveau[0] = 1;
+                }
+            }
+            for (String p : c.getProduitOut().keySet()){
+                if (produitsNecessaires.contains(p)){
+                    niveau[1] = 1;
+                }
+            }
+            if (niveau[0] == 0 && niveau[1] == 0){
+                niveau0.add(c);
+            } else if (niveau[0] == 0 && niveau[1] == 1) {
+                niveau1.add(c);
+            } else if (niveau[0] == 1 && niveau[1] == 0) {
+                niveau2.add(c);
+            } else {
+                niveau3.add(c);
+            }
+        }
+
+        ArrayList<ArrayList<ChaineProduction>> result = new ArrayList<>();
+        result.add(niveau0);
+        result.add(niveau1);
+        result.add(niveau2);
+        result.add(niveau3);
+        return result;
+    }
+
+    public int getTempsRoute(ChaineProduction c, HashMap<ChaineProduction, Integer> productions, ArrayList<ChaineProduction> niveau0){
+        ArrayList<Integer> tempsProd = new ArrayList<>();
+
+        HashMap<String, Integer> memoizationMap = new HashMap<>();
+        for (ChaineProduction chaine : niveau0){
+            for (String s : chaine.getProduitIn().keySet()){
+                if (!memoizationMap.containsKey(s)){
+                    memoizationMap.put(s,0);
+                }
+            }
+        }
+        for (String product : c.getProduitIn().keySet()){
+            tempsProd.add(calculateTotalDuration(product, productions, memoizationMap ));
+        }
+        int min = tempsProd.get(0);
+        for (int t : tempsProd){
+            min = Math.min(min, t);
+        }
+        return min + c.getDuree();
+    }
+
+    public int calculateTotalDuration(String productName, HashMap<ChaineProduction, Integer> productions , HashMap<String,Integer> memoizationMap){
+        if (memoizationMap.containsKey(productName)) {
+            return memoizationMap.get(productName);
+        }
+
+        int minDuration = Integer.MAX_VALUE;
+        for (ChaineProduction chain : productions.keySet()) {
+            if (chain.getProduitOut().containsKey(productName) ) {
+                int chainDuration = chain.getDuree();
+                for (String inputProduct : chain.getProduitIn().keySet()) {
+                    int inputProductDuration = calculateTotalDuration(inputProduct, productions, memoizationMap);
+                    chainDuration = chainDuration + inputProductDuration;
+                }
+                minDuration = Math.min(minDuration, chainDuration);
+            }
+        }
+        memoizationMap.put(productName, minDuration);
+        return minDuration;
     }
 }

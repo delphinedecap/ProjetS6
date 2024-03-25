@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="refacto + estPossible simulateur">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/utils/PdfCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/utils/PlanProduction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="30be7142-75b7-4323-81a1-9a6b9ee8349d" name="Changes" comment="refacto Simulateur">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Results.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Results.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simulation.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Simulation.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/Simulateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/utils/PlanProduction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/triceratops/triceratops/controllers/utils/PlanProduction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +188,7 @@
       <workItem from="1711109559323" duration="10407000" />
       <workItem from="1711223354323" duration="207000" />
       <workItem from="1711223568818" duration="5772000" />
-      <workItem from="1711275910894" duration="2624000" />
+      <workItem from="1711275910894" duration="7109000" />
     </task>
     <task id="LOCAL-00001" summary="idea files">
       <created>1702480871935</created>
@@ -259,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709816493518</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="refacto Simulateur">
+      <option name="closed" value="true" />
+      <created>1711278682643</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1711278682643</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +322,8 @@
     <MESSAGE value="validation simulateur, generate pdf" />
     <MESSAGE value="ajout durée chaine de production" />
     <MESSAGE value="refacto + estPossible simulateur" />
-    <option name="LAST_COMMIT_MESSAGE" value="refacto + estPossible simulateur" />
+    <MESSAGE value="refacto Simulateur" />
+    <option name="LAST_COMMIT_MESSAGE" value="refacto Simulateur" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
