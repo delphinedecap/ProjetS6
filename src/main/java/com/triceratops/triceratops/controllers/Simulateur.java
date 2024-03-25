@@ -196,7 +196,9 @@ public class Simulateur implements Initializable {
      * @param actionEvent clic sur le bouton permettant de sauvegarder les productions
      */
     public void valider(ActionEvent actionEvent) {
-        pdfSimulation(simulation(this.productions), getTempsProduction(this.productions));
+        if (getTempsProduction(this.productions)!=-1) {
+            pdfSimulation(simulation(this.productions), getTempsProduction(this.productions));
+        }
         pdfResultat(this.productions);
     }
 
